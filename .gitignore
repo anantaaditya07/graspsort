@@ -15,3 +15,6 @@ data/
 # Python bytecode
 __pycache__/
 *.pyc
+
+# GraspSort object models fetched by scripts/fetch_models.sh (D-08)
+src/graspsort_gazebo/models_external/
