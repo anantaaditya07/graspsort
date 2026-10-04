@@ -11,3 +11,7 @@ src/semnav_bringup/models_external/
 
 # Local script outputs (sim frames, YOLO check images)
 data/
+
+# Python bytecode
+__pycache__/
+*.pyc
