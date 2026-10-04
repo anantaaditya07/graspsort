@@ -13,7 +13,7 @@ re-run once by the main agent as a spot check (see the end of this file).
 
 ---
 
-## D-01 Simulator: Gazebo Classic 11 vs Fortress  - NEEDS DECISION
+## D-01 Simulator: Gazebo Classic 11 vs Fortress  - ACCEPTED
 
 **PDF (3, 9):** pick whichever has a working UR5e + gripper + ros2_control simulation; do not mix.
 
@@ -36,7 +36,9 @@ re-run once by the main agent as a spot check (see the end of this file).
 
 **Recommendation:** A.
 
-## D-02 Arm, gripper and controllers  - NEEDS DECISION
+**Final (accepted 2026-10-04):** A. Gazebo Classic 11; UR sim launch + controller yaml vendored into graspsort_gazebo (reference SHA 34a0417).
+
+## D-02 Arm, gripper and controllers  - ACCEPTED
 
 **PDF (3, 6):** UR5e; parallel-jaw gripper (e.g. Robotiq 2F-85) on a gripper action controller,
 `/gripper_controller/gripper_cmd` (control_msgs/action/GripperCommand); a simple custom 2-finger
@@ -73,7 +75,9 @@ gripper URDF is an acceptable fallback. Panda fallback.
 
 **Recommendation:** A.
 
-## D-03 Grasp attach mechanism and its service interface  - NEEDS DECISION
+**Final (accepted 2026-10-04):** A. UR5e + joint_trajectory_controller + custom 2-finger prismatic gripper on `/gripper_controller/gripper_cmd`; width-based close (never fully closed); squeeze/open width are parameters.
+
+## D-03 Grasp attach mechanism and its service interface  - ACCEPTED
 
 **PDF (3, 6, 7.6):** fixed joint gripper <-> object on /attach, removed on /detach; "existing port
 or ~150-line custom plugin"; service type "std_srvs or custom srv" (left open).
@@ -110,7 +114,9 @@ peak 1.33 m/s), 5/5 runs.
 
 **Recommendation:** A + S1.
 
-## D-04 Object set, YOLO classes and fine-tuning  - NEEDS DECISION
+**Final (accepted 2026-10-04):** A + S1. Custom attach plugin in graspsort_gazebo; new `graspsort_msgs/srv/AttachLink.srv` for /attach and /detach (approved addition per CLAUDE.md rule 5).
+
+## D-04 Object set, YOLO classes and fine-tuning  - ACCEPTED
 
 **PDF (2, 3, 9):** choose objects by measured detection rate, not by name. The candidates are cup,
 bottle, can, box and ball. Fallback: auto-labelled synthetic dataset (make_dataset.py) + short YOLOv8n
@@ -165,7 +171,9 @@ fine-tune.
 **Recommendation:** A. Class names stay COCO names in the detector (`cup`, `bottle`,
 `sports ball`); bins are mapped per class in bin_assignment.
 
-## D-05 Camera viewpoint: oblique instead of "fixed overhead"  - NEEDS DECISION (deviation from PDF)
+**Final (accepted 2026-10-04):** A, amended by the user: classes ball (cricket_ball), bottle (mustard_bottle), cup (plastic_cup, 0.70 accepted). The make_dataset.py + fine-tune to add can/box is an **optional stretch goal, not a Phase 3 requirement**.
+
+## D-05 Camera viewpoint: oblique instead of "fixed overhead"  - ACCEPTED (deviation from PDF)
 
 **PDF (1, 4):** "fixed overhead camera (no hand-eye loop)".
 
@@ -184,7 +192,9 @@ pipeline is equally accurate from both views (errors <= 3.1 mm oblique, 0.0 mm t
 **Recommendation:** A. The exact pose becomes a parameter in Phase 1, picked so the arm does not
 occlude the table during pre-grasp.
 
-## D-06 Reuse of the UR MoveIt config, planners and simulation gotchas  - INFO
+**Final (accepted 2026-10-04):** A. Fixed oblique camera (~50 deg pitch, 0.7-1.0 m from table centre), pose as parameters. Deviation from PDF "fixed overhead".
+
+## D-06 Reuse of the UR MoveIt config, planners and simulation gotchas  - ACCEPTED
 
 Recorded from docs/phase0/A, B and C; no conflict with the PDF.
 - **MoveIt config:**
@@ -207,7 +217,9 @@ Recorded from docs/phase0/A, B and C; no conflict with the PDF.
     C, which matters for the Phase 6 eval_runner.
   - The `/clock` publish rate defaults to 10 Hz, and subscribers need SensorData QoS.
 
-## D-07 Middleware: CycloneDDS (replaces SemNav's Fast DDS profile)  - INFO
+**Final (accepted 2026-10-04):** adopted as rules: RRTConnect default + Pilz pipeline in the MoveIt config; no colon+space in URDF/xacro comments; `_mimic` suffix handling; depth topic remaps; libgazebo_ros_state.so in the world; unique spawn names; SensorData QoS on /clock.
+
+## D-07 Middleware: CycloneDDS (replaces SemNav's Fast DDS profile)  - ACCEPTED
 
 The PDF says CycloneDDS "from SemNav D-19/D-20". SemNav actually used a Fast DDS SHM profile plus
 sysctl. For GraspSort, `rmw_cyclonedds_cpp` 1.3.5 is installed, and the raised UDP buffers
@@ -217,7 +229,9 @@ Measured in C: 640x480 RGB-D at 10 Hz with a SensorData subscriber lost 0/100 fr
 and 1/100 on the other. No extra config is needed now; this gets re-checked under full load in
 Phase 3.
 
-## D-08 Pinning external assets (fetch script, not git)  - NEEDS DECISION
+**Final (accepted 2026-10-04):** CycloneDDS with the existing raised UDP buffers; no extra config; re-check under full load in Phase 3.
+
+## D-08 Pinning external assets (fetch script, not git)  - ACCEPTED
 
 All Phase 0 downloads stayed in the session scratchpad. Phase 1 needs reproducible sources for:
 - the UR sim launch/config (D-01, vendored copy or pinned clone)
@@ -232,6 +246,8 @@ All Phase 0 downloads stayed in the session scratchpad. Phase 1 needs reproducib
 - B. Vendor the small osrf models into git (CC BY 3.0 with attribution). YCB stays fetched.
 
 **Recommendation:** A.
+
+**Final (accepted 2026-10-04):** A. scripts/fetch_models.sh downloads pinned assets into gitignored `src/graspsort_gazebo/models_external/` and patches YCB inertials/materials; licences in README.
 
 ---
 

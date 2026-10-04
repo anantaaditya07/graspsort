@@ -19,10 +19,11 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       oblique only, so the fallback applies (docs/phase0/C)
 - [x] C: RGB-D topics: 10 Hz, 32FC1, shared optical frame, depth error <= 3.1 mm (docs/phase0/C)
 - [x] Main-agent spot check of A, B and C (DECISIONS.md, end)
-- [ ] USER: decide D-01, D-02, D-03 (incl. AttachLink.srv), D-04, D-05, D-08
+- [x] USER: D-01..D-08 ACCEPTED (2026-10-04); D-04 can/box fine-tune is an optional stretch goal
 
-**Done when:** all three checks pass or a fallback is decided (D-01..D-04). Checks are done, but the
-decisions are not yet made. **Phase 0 is BLOCKED until the user decides.**
+**Status: Phase 0 DONE (2026-10-04).**
+
+**Done when:** all three checks pass or a fallback is decided (D-01..D-04).
 
 ## Phase 1 - World, robot, MoveIt
 - [ ] Workspace layout: repo root is the colcon workspace; packages per architecture section 5 build
@@ -39,8 +40,7 @@ decisions are not yet made. **Phase 0 is BLOCKED until the user decides.**
 **Done when:** the arm moves from the RViz MotionPlanning panel and from a script.
 
 ## Phase 2 - Messages + ROS-free libraries
-- [ ] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action (+ AttachLink.srv if
-      D-03 S1 is approved)
+- [ ] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action, AttachLink.srv (D-03)
 - [ ] projection.hpp (back-projection, percentile depth, minAreaRect yaw, stability gating) + GoogleTests
 - [ ] grasp_planner.hpp (top-down candidates, width/neighbour filtering, ranking) + GoogleTests
 - [ ] bin_assignment.hpp + GoogleTests
@@ -49,9 +49,10 @@ decisions are not yet made. **Phase 0 is BLOCKED until the user decides.**
 
 ## Phase 3 - Perception
 - [ ] scripts/setup_ort.sh and export_yolo.py copied from SemNav (pinned ORT 1.20.1)
-- [ ] object_detector_node copied from SemNav with its tests; class_filter per D-04, image topic renamed
+- [ ] object_detector_node copied from SemNav with its tests; class_filter [cup, bottle, sports ball]
+      (D-04), image topic renamed
 - [ ] object_localizer_node per 7.2 (frames from header, TF at the image stamp, fail loudly)
-- [ ] Fine-tune per D-04 (make_dataset.py), if approved
+- [ ] (Optional stretch, D-04) make_dataset.py + fine-tune to add can/box; not required for Phase 3
 - [ ] Verify CycloneDDS image transport under full load (D-07)
 
 **Done when:** 3D pose error has been measured against ground truth.
