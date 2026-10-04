@@ -53,6 +53,10 @@ struct GraspPlannerConfig {
   double max_opening{0.09};
   // Reject if object width > max_opening - width_margin (m).
   double width_margin{0.01};
+  // Safety check (D-14): reject a candidate if the object footprint's extent along its closing
+  // axis exceeds this (m). Independent of the candidate generation, so a mis-oriented candidate
+  // or estimate can never command the fingers onto an object wider than this.
+  double max_grasp_width{0.085};
   // Finger pad footprint (m), D-02 URDF: finger_t along the closing axis, finger_w across it.
   double finger_thickness{0.01};
   double finger_width{0.02};
@@ -70,7 +74,12 @@ struct GraspPlannerConfig {
   double cost_tie_tolerance{1e-9};
 };
 
-enum class Rejection : std::uint8_t { kNone = 0, kTooWide, kFingerCollision };
+enum class Rejection : std::uint8_t {
+  kNone = 0,
+  kTooWide,
+  kFingerCollision,
+  kExceedsMaxGraspWidth
+};
 
 inline const char* toString(Rejection r) {
   switch (r) {
@@ -80,6 +89,8 @@ inline const char* toString(Rejection r) {
       return "object wider than gripper opening";
     case Rejection::kFingerCollision:
       return "finger would hit a neighbouring object";
+    case Rejection::kExceedsMaxGraspWidth:
+      return "footprint across the fingers exceeds max_grasp_width";
   }
   return "unknown";
 }
@@ -191,6 +202,17 @@ inline double graspWidth(const Object& o) {
   return o.shape == kShapeBox ? std::min(o.size.x(), o.size.y()) : std::max(o.size.x(), o.size.y());
 }
 
+// Extent (m) of the object's footprint along a closing axis at world yaw `closing_yaw`: for a box
+// the projection of its rectangle (|sx cos d| + |sy sin d|, d = closing_yaw - object yaw), for a
+// cylinder its diameter.
+inline double footprintWidthAcross(const Object& o, double closing_yaw) {
+  if (o.shape != kShapeBox) {
+    return std::max(o.size.x(), o.size.y());
+  }
+  const double d = closing_yaw - o.yaw;
+  return std::abs(o.size.x() * std::cos(d)) + std::abs(o.size.y() * std::sin(d));
+}
+
 // ---------------------------------------------------------------------------------------------
 // Planner
 // ---------------------------------------------------------------------------------------------
@@ -206,6 +228,9 @@ class GraspPlanner {
     }
     if (cfg_.max_opening <= 0.0 || cfg_.finger_thickness <= 0.0 || cfg_.finger_width <= 0.0) {
       throw std::invalid_argument("gripper dimensions must be > 0");
+    }
+    if (cfg_.max_grasp_width <= 0.0) {
+      throw std::invalid_argument("max_grasp_width must be > 0");
     }
   }
 
@@ -281,7 +306,9 @@ class GraspPlanner {
       c.clearance = std::min(raw, cfg_.clearance_cap);
       c.cost = cfg_.yaw_weight * std::abs(wrapToPi(c.yaw - wrist_yaw)) -
                cfg_.clearance_weight * c.clearance;
-      if (c.width > cfg_.max_opening - cfg_.width_margin) {
+      if (footprintWidthAcross(target, c.yaw) > cfg_.max_grasp_width) {
+        c.rejection = Rejection::kExceedsMaxGraspWidth;
+      } else if (c.width > cfg_.max_opening - cfg_.width_margin) {
         c.rejection = Rejection::kTooWide;
       } else if (raw <= 0.0 || raw < cfg_.min_finger_clearance) {
         c.rejection = Rejection::kFingerCollision;

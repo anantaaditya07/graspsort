@@ -32,6 +32,8 @@ object_localizer_node:
     footprint:
       depth_band: 0.10               # m, D-12 (7.2 says 0.02; too narrow for the oblique camera)
       table_clearance: 0.005         # m, points this close to the table plane are table
+      max_height_fraction: 1.0       # D-14: fit footprint to points below this fraction of the
+                                     # height; 1.0 = off (cuts < 1.0 hurt on the oblique camera)
       min_points: 3                  # minimum object points for a footprint
     track:
       max_association_distance: 0.05 # m, nearest-neighbour gate in 3D

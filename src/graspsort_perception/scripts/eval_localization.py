@@ -6,8 +6,11 @@ origin is its bottom centre (scripts/fetch_models.sh), so the true centre is ori
 
 For every ground-truth object (selected by name prefix) the script takes the latest /objects_3d
 estimate of the same class that is nearest in 3D (within --max-match-dist) and reports the
-position error (3D, horizontal, vertical), size and yaw. Objects without a match are reported as
-MISSED. Exits non-zero if any object is missed, or if the median 3D error exceeds --pass-median.
+position error (3D, horizontal, vertical), size and yaw. For box-shaped estimates (ObjectPose.shape
+1) the yaw error is the footprint yaw vs the model yaw, modulo 180 deg (a rectangle's yaw). Objects
+without a match are reported as MISSED. Exits non-zero if any object is missed, if the median 3D
+error exceeds --pass-median, or if the median box yaw error exceeds --pass-yaw-deg
+(architecture 8: 1.5 cm, 10 deg).
 
 Run in a ROS-sourced shell while the sim and perception are running:
     ros2 run graspsort_perception eval_localization.py --duration 20 --csv /tmp/err.csv
@@ -40,6 +43,14 @@ def parse_objects(specs):
         prefix, cls, height = spec.split(":")
         table.append((prefix, cls, float(height)))
     return table
+
+
+SHAPE_BOX = 1  # graspsort_msgs/ObjectPose.shape
+
+
+def wrap_half_pi(a):
+    """Rectangle yaw difference wrapped to [-pi/2, pi/2)."""
+    return (a + math.pi / 2.0) % math.pi - math.pi / 2.0
 
 
 def yaw_of(q):
@@ -77,6 +88,8 @@ def main():
     ap.add_argument("--max-match-dist", type=float, default=0.10, help="[m]")
     ap.add_argument("--pass-median", type=float, default=0.015,
                     help="pass threshold on the median 3D error [m] (architecture 8: 1.5 cm)")
+    ap.add_argument("--pass-yaw-deg", type=float, default=10.0,
+                    help="pass threshold on the median box yaw error [deg] (architecture 8)")
     ap.add_argument("--csv", default="", help="optional per-object CSV output")
     args = ap.parse_args()
 
@@ -101,26 +114,32 @@ def main():
             rows.append({"object": name, "class": cls, "status": "MISSED"})
             continue
         p = best.pose.position
+        est_yaw = yaw_of(best.pose.orientation)
+        yaw_err = (abs(math.degrees(wrap_half_pi(est_yaw - tyaw)))
+                   if best.shape == SHAPE_BOX else None)
         rows.append({
             "object": name, "class": cls, "status": "OK", "id": best.id,
             "err_3d_mm": 1000 * best_d,
             "err_xy_mm": 1000 * math.hypot(p.x - tx, p.y - ty),
             "err_z_mm": 1000 * (p.z - tz),
             "est_size": "%.3f %.3f %.3f" % (best.size.x, best.size.y, best.size.z),
-            "est_yaw_deg": math.degrees(yaw_of(best.pose.orientation)),
+            "est_yaw_deg": math.degrees(est_yaw),
             "true_yaw_deg": math.degrees(tyaw),
+            "yaw_err_deg": yaw_err,
             "confidence": best.confidence,
         })
 
-    print("%-9s %-12s %-6s %8s %8s %8s  %-18s %8s" % (
-        "object", "class", "status", "3D mm", "xy mm", "z mm", "size x y z [m]", "yaw deg"))
+    print("%-9s %-12s %-6s %8s %8s %8s  %-18s %8s %8s" % (
+        "object", "class", "status", "3D mm", "xy mm", "z mm", "size x y z [m]", "yaw deg",
+        "yaw err"))
     for r in rows:
         if r["status"] != "OK":
             print("%-9s %-12s %-6s" % (r["object"], r["class"], r["status"]))
             continue
-        print("%-9s %-12s %-6s %8.1f %8.1f %8.1f  %-18s %8.1f" % (
+        yaw_err = "-" if r["yaw_err_deg"] is None else "%.1f" % r["yaw_err_deg"]
+        print("%-9s %-12s %-6s %8.1f %8.1f %8.1f  %-18s %8.1f %8s" % (
             r["object"], r["class"], r["status"], r["err_3d_mm"], r["err_xy_mm"], r["err_z_mm"],
-            r["est_size"], r["est_yaw_deg"]))
+            r["est_size"], r["est_yaw_deg"], yaw_err))
 
     ok = [r for r in rows if r["status"] == "OK"]
     missed = len(rows) - len(ok)
@@ -134,16 +153,22 @@ def main():
     median = statistics.median([r["err_3d_mm"] for r in ok]) if ok else float("inf")
     print("overall: %d/%d localized, median 3D error %.1f mm (pass < %.1f mm)" % (
         len(ok), len(rows), median, 1000 * args.pass_median))
+    yaw_errs = [r["yaw_err_deg"] for r in ok if r["yaw_err_deg"] is not None]
+    yaw_median = statistics.median(yaw_errs) if yaw_errs else 0.0
+    if yaw_errs:
+        print("boxes: n=%d median yaw error %.1f deg, max %.1f deg (pass < %.1f deg)" % (
+            len(yaw_errs), yaw_median, max(yaw_errs), args.pass_yaw_deg))
 
     if args.csv:
         with open(args.csv, "w", newline="") as f:
             keys = ["object", "class", "status", "id", "err_3d_mm", "err_xy_mm", "err_z_mm",
-                    "est_size", "est_yaw_deg", "true_yaw_deg", "confidence"]
+                    "est_size", "est_yaw_deg", "true_yaw_deg", "yaw_err_deg", "confidence"]
             w = csv.DictWriter(f, fieldnames=keys)
             w.writeheader()
             w.writerows(rows)
 
-    passed = missed == 0 and median < 1000 * args.pass_median
+    passed = (missed == 0 and median < 1000 * args.pass_median
+              and yaw_median < args.pass_yaw_deg)
     print("RESULT: %s" % ("PASS" if passed else "FAIL"))
     node.destroy_node()
     rclpy.shutdown()

@@ -377,7 +377,7 @@ are ROS parameters.
   source for that experiment only).
 - `fetch_models.sh` still fetches plastic_cup (unused). It is harmless and kept for that experiment.
 
-## D-14 Bottle footprint and yaw on the real mesh  - NEEDS DECISION (non-blocking for Phase 3, blocks good bottle grasps in Phase 4)
+## D-14 Bottle footprint and yaw on the real mesh  - ACCEPTED (resolved by an asset fix; see Final)
 
 **Finding (Phase 3 verification, real sim, 2 identical runs of eval_localization.py):**
 
@@ -401,6 +401,46 @@ are ROS parameters.
 - C. Leave it and rely on Phase 4 grasp retries.
 
 **Recommendation:** A, measured with eval_localization.py (with yaw error added for boxes) before Phase 4.
+
+**User decision (2026-10-04):** A (fit the footprint to a lower height band below the neck, parameterised), plus a
+grasp_planner safety check `max_grasp_width` (default 0.085 m).
+
+**What the measurements then showed (2026-10-04):**
+1. **The ground truth was wrong, not only the estimate.** The YCB mustard-bottle scan is rotated **-24.4 deg about z
+   inside its own OBJ frame**: cv::minAreaRect of all 8194 vertices gives a 0.0959 x 0.0582 m body at -24.446 deg.
+   - fetch_models.sh had built the collision box as the axis-aligned box around that rotated body
+     (0.097 x 0.067).
+   - So the collision box did not match what the camera sees, and "true yaw = model yaw = 0" was wrong by 24.4 deg.
+2. **The lower band does not help, so it is implemented but off.** An offline sweep on a real sim depth frame
+   (band 0.05/0.10/0.15 m x height fraction 0.3-1.0, corrected bottle):
+   - a fraction of 0.8 gives exactly the same result as 1.0;
+   - any fraction of 0.7 or less breaks yaw (47-66 deg errors), because from the 50 deg camera the bottle's far edge
+     is only visible on its top surfaces;
+   - for a flat-topped box any cut below 1.0 removes the top face (a unit test shows the footprint collapsing).
+   - So `footprint.max_height_fraction` exists as you asked, but defaults to **1.0 (off)**. **This departs from the
+     accepted option A and needs your OK.**
+
+**Final (implemented 2026-10-04):**
+- fetch_models.sh (PATCH_REV 2): the bottle visual is rotated +24.446 deg about its body centre, so the body's long
+  side is the model x axis. The collision box is now the body's own footprint, 0.0958 x 0.0582 x 0.1913.
+  Model yaw is now the body yaw.
+- projection.hpp / localizer: parameter `footprint.max_height_fraction`, default 1.0, plus a unit test.
+- eval_localization.py: yaw error for box-shaped estimates (modulo 180 deg), with pass criterion median < 10 deg.
+- grasp_planner: `max_grasp_width` (0.085 m). It rejects a candidate if the footprint extent along its closing axis
+  (box |sx cos d| + |sy sin d|, cylinder diameter) exceeds the limit. It is checked first, with its own rejection
+  reason. 4 GoogleTests.
+- **Re-measured** (sim, 2 identical runs):
+
+| object | 3D error | yaw error |
+|---|---|---|
+| ball_1 / ball_2 | 4.7 / 4.9 mm | n/a |
+| bottle_1 / bottle_2 | 15.7 / 10.0 mm | 3.3 / 4.8 deg |
+
+  Median 3D error 7.5 mm (< 15) and median box yaw error 4.0 deg (< 10): PASS.
+- **Limits:**
+  - Both bottles stand at yaw 0, so only one orientation was measured. Phase 6 randomised yaws will test more.
+  - The estimated bottle footprint is undersized along the view (0.063-0.075 vs 0.096 m), because the back half is
+    hidden. It is safe for grasping: the closing axis follows the short side, and max_grasp_width guards it.
 
 ---
 

@@ -145,6 +145,13 @@ struct FootprintConfig {
   // World points below table_height + table_clearance (m) are table, not object. Needed because
   // with the oblique camera (D-05) table pixels next to the object base share its depth.
   double table_clearance{0.005};
+  // Only points up to this fraction of the object height (above the table) are used for the
+  // footprint rectangle; height itself still uses all points. 1.0 = no cut (default).
+  // D-14: a cut below a bottle's neck was evaluated and is NOT enabled. From the oblique camera
+  // the top surfaces carry the object's far edge: on the real sim bottle 0.8 gave the same result
+  // as 1.0 and <= 0.7 broke yaw (47-66 deg errors); for a flat-topped box any cut < 1.0 removes
+  // the top face and the footprint collapses to the front face.
+  double max_height_fraction{1.0};
   // Minimum number of object points for a footprint (3 = smallest set with an area).
   std::size_t min_points{3};
   // Valid depth range (m), as in DepthSamplingConfig.
@@ -227,19 +234,30 @@ inline std::optional<double> heightAboveTable(const std::vector<Eigen::Vector3d>
   return zmax - table_height;
 }
 
-// Projects world points above the table (z >= table_height + table_clearance) vertically onto the
-// table plane and fits cv::minAreaRect. nullopt if fewer than cfg.min_points remain.
+// Projects world points above the table (z >= table_height + table_clearance) and below
+// table_height + max_height_fraction * height vertically onto the table plane and fits
+// cv::minAreaRect. height = highest point above the table (all points). nullopt if fewer than
+// cfg.min_points remain for the rectangle.
 inline std::optional<Footprint> footprintFromWorldPoints(
     const std::vector<Eigen::Vector3d>& points_world, double table_height,
     const FootprintConfig& cfg = {}) {
-  std::vector<cv::Point2f> xy;
   std::vector<Eigen::Vector3d> above;
-  xy.reserve(points_world.size());
   above.reserve(points_world.size());
   for (const auto& p : points_world) {
     if (p.allFinite() && p.z() >= table_height + cfg.table_clearance) {
-      xy.emplace_back(static_cast<float>(p.x()), static_cast<float>(p.y()));
       above.push_back(p);
+    }
+  }
+  const auto height = heightAboveTable(above, table_height);
+  if (!height) {
+    return std::nullopt;
+  }
+  const double z_max = table_height + cfg.max_height_fraction * *height;
+  std::vector<cv::Point2f> xy;
+  xy.reserve(above.size());
+  for (const auto& p : above) {
+    if (p.z() <= z_max) {
+      xy.emplace_back(static_cast<float>(p.x()), static_cast<float>(p.y()));
     }
   }
   if (xy.size() < std::max<std::size_t>(cfg.min_points, 1)) {
@@ -257,7 +275,7 @@ inline std::optional<Footprint> footprintFromWorldPoints(
   f.size_x = std::max(e0.norm(), e1.norm());
   f.size_y = std::min(e0.norm(), e1.norm());
   f.yaw = wrapHalfPi(std::atan2(long_edge.y(), long_edge.x()));
-  f.height = *heightAboveTable(above, table_height);
+  f.height = *height;
   f.num_points = xy.size();
   return f;
 }

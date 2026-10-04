@@ -77,8 +77,9 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       perception.yaml; table_height from world_layout.yaml via perception.launch.py
 - [x] eval_localization.py vs /gazebo/model_states (2 identical runs): 4/4 localized; balls
       4.7 / 4.9 mm, bottles 11.8 / 13.1 mm; median 8.4 mm (target < 15 mm): PASS
-- [ ] D-14: bottle yaw wrong (-64.8 / -11.9 deg vs 0) and footprint undersized on the real mesh;
-      fix before Phase 4 bottle grasps
+- [x] D-14: bottle mesh rotated -24.4 deg in its OBJ frame; asset fixed (fetch_models.sh rev 2).
+      Re-measured: bottle yaw error 3.3 / 4.8 deg (median 4.0 < 10), median 3D 7.5 mm. Height-band
+      parameter added, default off (evidence in D-14). grasp_planner max_grasp_width 0.085 m + tests
 - [x] CycloneDDS transport with sim + detector + localizer running: detector 10 fps, 0 dropped
       (re-check with MoveIt in Phase 4)
 - [ ] (Optional stretch, D-04) make_dataset.py + fine-tune to add can/box; not required for Phase 3

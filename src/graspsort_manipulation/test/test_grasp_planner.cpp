@@ -152,6 +152,50 @@ TEST(WidthRejection, TooWideObjectIsRejectedAtTheMarginBoundary) {
   EXPECT_TRUE(p.plan(wide_cyl, {}, 0.0).empty());
 }
 
+TEST(MaxGraspWidth, FootprintWidthAcrossTheClosingAxis) {
+  const gm::Object b = bottle(1, 0.4, 0.0, 0.0);                           // 0.097 x 0.067 at yaw 0
+  EXPECT_NEAR(gm::footprintWidthAcross(b, kPi / 2.0), b.size.y(), 1e-12);  // across short side
+  EXPECT_NEAR(gm::footprintWidthAcross(b, 0.0), b.size.x(), 1e-12);        // across long side
+  // 30 deg off the short side: |sx sin 30| + |sy cos 30|.
+  EXPECT_NEAR(gm::footprintWidthAcross(b, kPi / 2.0 + deg(30.0)),
+              b.size.x() * std::sin(deg(30.0)) + b.size.y() * std::cos(deg(30.0)), 1e-12);
+  // Cylinder: the diameter at any yaw.
+  EXPECT_NEAR(gm::footprintWidthAcross(ball(2, 0.6, 0.1), deg(73.0)), 0.075, 1e-12);
+}
+
+TEST(MaxGraspWidth, DefaultIs85MillimetresAndD04ObjectsPass) {
+  EXPECT_DOUBLE_EQ(gm::GraspPlannerConfig{}.max_grasp_width, 0.085);
+  const gm::GraspPlanner p;
+  for (const auto& c : p.evaluate(bottle(1, 0.38, -0.08, deg(20.0)), {}, 0.0)) {
+    EXPECT_NE(c.rejection, gm::Rejection::kExceedsMaxGraspWidth);
+  }
+}
+
+TEST(MaxGraspWidth, RejectsCandidateWiderThanTheLimitEvenIfItFitsTheOpening) {
+  // Opening check relaxed (0.09 - 0 = 0.09) so only the max_grasp_width safety check can fire.
+  gm::GraspPlannerConfig cfg;
+  cfg.width_margin = 0.0;
+  const gm::GraspPlanner p(cfg);
+  gm::Object cyl = ball(1, 0.6, 0.1);
+  cyl.size = {0.088, 0.088, 0.12};  // fits the 0.09 opening, exceeds 0.085
+  EXPECT_TRUE(p.plan(cyl, {}, 0.0).empty());
+  for (const auto& c : p.evaluate(cyl, {}, 0.0)) {
+    EXPECT_EQ(c.rejection, gm::Rejection::kExceedsMaxGraspWidth);
+  }
+  // Exactly at the limit is accepted (the check is "exceeds").
+  cyl.size = {0.085, 0.085, 0.12};
+  EXPECT_EQ(p.plan(cyl, {}, 0.0).size(), cfg.cylinder_yaw_count);
+}
+
+TEST(MaxGraspWidth, IsAParameter) {
+  gm::GraspPlannerConfig cfg;
+  cfg.max_grasp_width = 0.06;  // narrower than the bottle's 0.067 short side
+  const gm::GraspPlanner p(cfg);
+  const auto all = p.evaluate(bottle(1, 0.38, -0.08, 0.0), {}, 0.0);
+  ASSERT_EQ(all.size(), 2U);
+  for (const auto& c : all) EXPECT_EQ(c.rejection, gm::Rejection::kExceedsMaxGraspWidth);
+}
+
 // ================================ neighbour rejection ========================================
 
 TEST(NeighbourRejection, BallTouchingTheFingerLineRejectsThoseYaws) {
@@ -286,10 +330,15 @@ TEST(Planner, InvalidConfigThrows) {
   c = {};
   c.max_opening = 0.0;
   EXPECT_THROW(gm::GraspPlanner{c}, std::invalid_argument);
+  c = {};
+  c.max_grasp_width = 0.0;
+  EXPECT_THROW(gm::GraspPlanner{c}, std::invalid_argument);
 }
 
 TEST(Planner, RejectionReasonStrings) {
   EXPECT_STREQ(gm::toString(gm::Rejection::kTooWide), "object wider than gripper opening");
   EXPECT_STREQ(gm::toString(gm::Rejection::kFingerCollision),
                "finger would hit a neighbouring object");
+  EXPECT_STREQ(gm::toString(gm::Rejection::kExceedsMaxGraspWidth),
+               "footprint across the fingers exceeds max_grasp_width");
 }

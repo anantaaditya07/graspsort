@@ -36,14 +36,22 @@ set -euo pipefail
 #                                                                     axis at y +0.00785 in mesh frame;
 #                                                                     cylinder r = mean radius (exact at
 #                                                                     mid height, where it is grasped).
-# mustard_bottle box       0.300      0.0972 x 0.0666 x 0.1913         YCB 006 measured full mass is
+# mustard_bottle box       0.300      0.0958 x 0.0582 x 0.1913         YCB 006 measured full mass is
 #                                                                     0.603 kg. Chosen 0.300 kg (a half
 #                                                                     used bottle): the attach joint was
 #                                                                     validated with 0.1 kg (D-03), so
-#                                                                     stay within ~3x of that. Box = OBJ
-#                                                                     vertex bbox x -0.063938..0.033260,
-#                                                                     y -0.056809..0.009812,
-#                                                                     z -0.003153..0.188148.
+#                                                                     stay within ~3x of that.
+#                                                                     D-14: the scanned body is rotated
+#                                                                     -24.446 deg about z inside the OBJ
+#                                                                     frame (cv::minAreaRect of all OBJ
+#                                                                     vertices: centre -0.015157,
+#                                                                     -0.023064, 0.0959 x 0.0582). The
+#                                                                     visual is rotated back so the body's
+#                                                                     long side is the model x axis, and
+#                                                                     the box is the body's own footprint
+#                                                                     (not the axis-aligned bbox of the
+#                                                                     rotated body, 0.0972 x 0.0666).
+#                                                                     OBJ z range -0.003153..0.188148.
 # ------------------------------------------------------------------------------------------------
 BALL_MASS="0.160"
 BALL_RADIUS="0.0375"
@@ -57,12 +65,14 @@ CUP_MESH_BOTTOM_Y="0.00785"
 CUP_MESH_BOTTOM_Z="-0.0726"
 
 BOTTLE_MASS="0.300"
-BOTTLE_SIZE_X="0.0972"
-BOTTLE_SIZE_Y="0.0666"
+BOTTLE_SIZE_X="0.0958"
+BOTTLE_SIZE_Y="0.0582"
 BOTTLE_SIZE_Z="0.1913"
-# Mesh-frame bottom centre of the OBJ bounding box (moved to the model origin).
-BOTTLE_MESH_BOTTOM_X="-0.015339"
-BOTTLE_MESH_BOTTOM_Y="-0.0234985"
+# Visual pose that puts the body centre on the model z axis with its long side along model x
+# (D-14): yaw = +24.446 deg; xy = -(R(yaw) * body centre). Lowest OBJ vertex z (bottom).
+BOTTLE_VISUAL_X="0.004253"
+BOTTLE_VISUAL_Y="0.027269"
+BOTTLE_VISUAL_YAW="0.426670"
 BOTTLE_MESH_BOTTOM_Z="-0.003153"
 
 # ODE contact for all three models (osrf cricket_ball/plastic_cup values, reused for the bottle).
@@ -77,7 +87,7 @@ TORSIONAL_SURFACE_RADIUS="0.01"
 BALL_ANGULAR_DECAY="0.005"
 
 # Bump when the patch logic below changes (forces a re-patch of every model).
-PATCH_REV="1"
+PATCH_REV="2"
 
 # ------------------------------------------------------------------------------------------------
 # PINNED SOURCES
@@ -383,7 +393,7 @@ install_mustard_bottle() {
   local name="mustard_bottle" recipe stage zip inertia hz off
   recipe="rev=${PATCH_REV} fuel=${BOTTLE_ZIP_SHA256} m=${BOTTLE_MASS}"
   recipe+=" box=${BOTTLE_SIZE_X},${BOTTLE_SIZE_Y},${BOTTLE_SIZE_Z}"
-  recipe+=" bottom=${BOTTLE_MESH_BOTTOM_X},${BOTTLE_MESH_BOTTOM_Y},${BOTTLE_MESH_BOTTOM_Z}"
+  recipe+=" visual=${BOTTLE_VISUAL_X},${BOTTLE_VISUAL_Y},${BOTTLE_VISUAL_YAW},${BOTTLE_MESH_BOTTOM_Z}"
   recipe+=" contact=${CONTACT_KP},${CONTACT_KD},${CONTACT_MAX_VEL},${CONTACT_MIN_DEPTH},${FRICTION_MU}"
   recipe+=",${TORSIONAL_COEFF},${TORSIONAL_SURFACE_RADIUS}"
   if up_to_date "${name}" "${recipe}"; then
@@ -428,7 +438,8 @@ EOF
 </model>
 EOF
   hz="$(half "${BOTTLE_SIZE_Z}")"
-  off="$(mesh_offset "${BOTTLE_MESH_BOTTOM_X}" "${BOTTLE_MESH_BOTTOM_Y}" "${BOTTLE_MESH_BOTTOM_Z}" "${hz}")"
+  off="$(mesh_offset "0" "0" "${BOTTLE_MESH_BOTTOM_Z}" "${hz}")"
+  off="${BOTTLE_VISUAL_X} ${BOTTLE_VISUAL_Y} ${off##* }"
   inertia="$(inertia_box "${BOTTLE_MASS}" "${BOTTLE_SIZE_X}" "${BOTTLE_SIZE_Y}" "${BOTTLE_SIZE_Z}")"
   cat >"${stage}/model.sdf" <<EOF
 <?xml version="1.0" ?>
@@ -448,7 +459,7 @@ $(inertial_xml "${BOTTLE_MASS}" "${inertia}")
 $(surface_xml)
       </collision>
       <visual name="visual">
-        <pose>${off} 0 0 0</pose>
+        <pose>${off} 0 0 ${BOTTLE_VISUAL_YAW}</pose>
         <geometry>
           <mesh>
             <uri>model://${name}/meshes/textured.obj</uri>
@@ -474,10 +485,11 @@ Licence:  Creative Commons Attribution 4.0 International (CC BY 4.0),
 Changes made by GraspSort (docs/DECISIONS.md D-08):
 - model.config rewritten (the original pointed at a missing mustard_bottle.sdf)
 - model.sdf rewritten: hard-coded model pose (1 2 3 -1 0 0) removed; Z-up OBJ used instead of
-  the Y-up DAE; visual offset so the mesh bounding-box bottom centre is the model origin
+  the Y-up DAE; visual rotated by ${BOTTLE_VISUAL_YAW} rad about z and offset so the scanned
+  body is centred on the model origin (bottom) with its long side along model x (D-14)
 - mass 0.000612 -> ${BOTTLE_MASS} kg (YCB full bottle 0.603 kg; lighter value chosen, see the
   script table), inertia = solid box ${BOTTLE_SIZE_X} x ${BOTTLE_SIZE_Y} x ${BOTTLE_SIZE_Z} m
-- mesh collision -> box primitive fitted to the mesh bounding box
+- mesh collision -> box primitive = the body's own footprint (minAreaRect) x height
 - textured.mtl: added Ka/Kd/Ks (map_Kd alone renders black in Gazebo Classic)
 Original model.config, model.sdf and textured.mtl are kept in orig/. Thumbnails and the DAE
 copy are not installed.

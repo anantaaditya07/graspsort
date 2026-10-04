@@ -282,6 +282,29 @@ TEST(Footprint, CupFootprintIsSquareSoYawIsMeaningless) {
   EXPECT_NEAR(f->height, 0.13, 1e-6);
 }
 
+TEST(Footprint, HeightFractionCutLimitsTheRectangleButNotTheHeight) {
+  // D-14 parameter: a narrow "neck" above 60% of the height is excluded from the rectangle when
+  // max_height_fraction = 0.6, but the height still comes from all points.
+  std::vector<Eigen::Vector3d> pts =
+      boxSurface({0.4, 0.1}, 0.0, 0.096, 0.056, 0.12, 0.004);  // on the 4 mm grid
+  for (double z = kTableZ + 0.12; z <= kTableZ + 0.19 + 1e-9; z += 0.004) {
+    for (double a : {-0.08, 0.08}) {  // neck points far outside the body along y
+      pts.emplace_back(0.4, 0.1 + a, z);
+    }
+  }
+  const auto f_all = gp::footprintFromWorldPoints(pts, kTableZ, gp::FootprintConfig{});
+  ASSERT_TRUE(f_all.has_value());
+  EXPECT_GT(f_all->size_x, 0.11);  // the neck outliers stretch the rectangle (body 0.096)
+  gp::FootprintConfig cut;
+  cut.max_height_fraction = 0.6;
+  const auto f_cut = gp::footprintFromWorldPoints(pts, kTableZ, cut);
+  ASSERT_TRUE(f_cut.has_value());
+  EXPECT_NEAR(f_cut->size_x, 0.096, 0.002);
+  EXPECT_NEAR(f_cut->size_y, 0.056, 0.002);
+  EXPECT_NEAR(f_cut->height, 0.19, 0.002);
+  EXPECT_DOUBLE_EQ(gp::FootprintConfig{}.max_height_fraction, 1.0);  // off by default (D-14)
+}
+
 TEST(Footprint, TooFewPointsGivesNothing) {
   const std::vector<Eigen::Vector3d> two{{0.4, 0.0, 0.8}, {0.41, 0.0, 0.8}};
   EXPECT_FALSE(gp::footprintFromWorldPoints(two, kTableZ).has_value());

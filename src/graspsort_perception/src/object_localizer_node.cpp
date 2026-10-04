@@ -79,6 +79,8 @@ class ObjectLocalizerNode : public rclcpp::Node {
         declare_parameter<double>("footprint.depth_band", lc.footprint.depth_band);
     lc.footprint.table_clearance =
         declare_parameter<double>("footprint.table_clearance", lc.footprint.table_clearance);
+    lc.footprint.max_height_fraction = declare_parameter<double>("footprint.max_height_fraction",
+                                                                 lc.footprint.max_height_fraction);
     lc.footprint.min_points =
         toSize(declare_parameter<std::int64_t>("footprint.min_points",
                                                static_cast<std::int64_t>(lc.footprint.min_points)),
