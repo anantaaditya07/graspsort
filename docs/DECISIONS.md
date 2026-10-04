@@ -490,6 +490,26 @@ Found by subagent B while reaching 5/5 + 5/5 (docs/CHECKLIST.md Phase 4); all ar
 
 **Final (accepted 2026-10-04, user):** accepted as is.
 
+## D-17 Evaluation scenario (Phase 6)  - ACCEPTED (user, 2026-10-04; deviation from architecture 8)
+
+**PDF 8:** clutter sweep with 3, 5 and 7 objects, minimum spacing 2 cm vs 8 cm; randomised layouts through the Gazebo
+spawn service with a fixed seed per run.
+
+**User (Phase 6 prompt):**
+- 2 and 4 objects, minimum spacing 8 cm vs 3 cm, 10 trials per configuration (40 trials).
+- Random positions **and** random bottle yaw.
+
+The smaller counts follow from D-13: only 2 detectable classes, with 2 objects each in the reference world.
+
+**Interpretation (main agent):**
+- **Spacing:** the minimum **gap between object footprints**, i.e. centre distance minus both circumscribed
+  footprint radii, which matches the PDF's intent of clutter around the fingers.
+- **Object mix:** 2 objects = 1 ball + 1 bottle; 4 objects = 2 balls + 2 bottles.
+- **Positions:** uniform within the reachable, camera-visible object area of world_layout.yaml, away from the bins.
+- **Seeds:** fixed per trial (base seed + trial index).
+- **Spawning:** objects are deleted and spawned with unique names (D-06).
+- **Ground truth:** used only by the evaluation scripts.
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)
