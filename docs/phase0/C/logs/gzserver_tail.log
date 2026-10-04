@@ -1,0 +1,22 @@
+m[Msg] Connected to gazebo master @ http://127.0.0.1:11353
+[Msg] Publicized address: 10.209.1.97
+[Msg] Loading world file [/home/adityachavali/graspsort/docs/phase0/C/harness/yolo_check.world]
+[Wrn] [Event.cc:61] Warning: Deleting a connection right after creation. Make sure to save the ConnectionPtr from a Connect call
+[INFO] [1791095767.229404294] [camera.cam]: Publishing camera info to [/camera/color/camera_info]
+[INFO] [1791095767.229937768] [camera.cam]: Publishing depth camera info to [/camera/depth/camera_info]
+[INFO] [1791095767.230112952] [camera.cam]: Publishing pointcloud to [/camera/depth/points]
+[INFO] [1791095767.234019863] [camera_top.cam]: Publishing camera info to [/camera_top/color/camera_info]
+[INFO] [1791095767.234208579] [camera_top.cam]: Publishing depth camera info to [/camera_top/depth/camera_info]
+[INFO] [1791095767.234316557] [camera_top.cam]: Publishing pointcloud to [/camera_top/depth/points]
+[INFO] [1791095767.239081936] [camera_near.cam]: Publishing camera info to [/camera_near/color/camera_info]
+[INFO] [1791095767.239330215] [camera_near.cam]: Publishing depth camera info to [/camera_near/depth/camera_info]
+[INFO] [1791095767.239501727] [camera_near.cam]: Publishing pointcloud to [/camera_near/depth/points]
+[INFO] [1791095767.244825142] [camera_top_near.cam]: Publishing camera info to [/camera_top_near/color/camera_info]
+[INFO] [1791095767.245166355] [camera_top_near.cam]: Publishing depth camera info to [/camera_top_near/depth/camera_info]
+[INFO] [1791095767.245333863] [camera_top_near.cam]: Publishing pointcloud to [/camera_top_near/depth/points]
+[INFO] [1791095767.258945469] [gazebo.gazebo_ros_state]: Publishing states of gazebo models at [/gazebo/model_states]
+[INFO] [1791095767.259159523] [gazebo.gazebo_ros_state]: Publishing states of gazebo links at [/gazebo/link_states]
+[WARN] [1791096213.278247015] [gazebo]: New subscription discovered on topic '/clock', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY_QOS_POLICY
+[WARN] [1791096226.074584093] [gazebo]: New subscription discovered on topic '/clock', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY_QOS_POLICY
+[Wrn] [Publisher.cc:135] Queue limit reached for topic /gazebo/yolo_check/pose/local/info, deleting message. This warning is printed only once.
+[Wrn] [Publisher.cc:135] Queue limit reached for topic /gazebo/yolo_check/physics/contacts, deleting message. This warning is printed only once.

@@ -1,0 +1,279 @@
+[INFO] [launch]: All log files can be found below /home/adityachavali/.ros/log/2026-10-04-11-46-46-240557-adityachavali-249745
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [move_group-1]: process started with pid [249748]
+[move_group-1] [WARN] [1791094606.543451645] [move_group.move_group]: Falling back to using the the move_group node namespace (deprecated behavior).
+[move_group-1] [INFO] [1791094606.545503487] [moveit_rdf_loader.rdf_loader]: Loaded robot model in 0 seconds
+[move_group-1] [INFO] [1791094606.545523686] [moveit_robot_model.robot_model]: Loading robot model 'ur'...
+[move_group-1] [INFO] [1791094606.545530832] [moveit_robot_model.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[move_group-1] [INFO] [1791094606.580016646] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-1] [INFO] [1791094606.580098252] [moveit.ros_planning_interface.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-1] [INFO] [1791094606.580316190] [moveit_ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-1] [INFO] [1791094606.580542789] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-1] [INFO] [1791094606.580550249] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting planning scene monitor
+[move_group-1] [INFO] [1791094606.581026094] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-1] [INFO] [1791094606.581031392] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-1] [INFO] [1791094606.581209301] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-1] [INFO] [1791094606.581380090] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-1] [WARN] [1791094606.581453369] [moveit.ros.occupancy_map_monitor.middleware_handle]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-1] [ERROR] [1791094606.581460811] [moveit.ros.occupancy_map_monitor.middleware_handle]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-1] [INFO] [1791094606.583157978] [moveit.ros_planning_interface.moveit_cpp]: Loading planning pipeline 'move_group'
+[move_group-1] [INFO] [1791094606.594062103] [moveit.ros_planning.planning_pipeline]: Using planning interface 'OMPL'
+[move_group-1] [INFO] [1791094606.595092272] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.path_tolerance' was not set. Using default value: 0.100000
+[move_group-1] [INFO] [1791094606.595101147] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.resample_dt' was not set. Using default value: 0.100000
+[move_group-1] [INFO] [1791094606.595104390] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.min_angle_change' was not set. Using default value: 0.001000
+[move_group-1] [INFO] [1791094606.595112586] [moveit_ros.fix_workspace_bounds]: Param 'move_group.default_workspace_bounds' was not set. Using default value: 10.000000
+[move_group-1] [INFO] [1791094606.595120944] [moveit_ros.fix_start_state_bounds]: Param 'move_group.start_state_max_bounds_error' was set to 0.100000
+[move_group-1] [INFO] [1791094606.595124099] [moveit_ros.fix_start_state_bounds]: Param 'move_group.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-1] [INFO] [1791094606.595130897] [moveit_ros.fix_start_state_collision]: Param 'move_group.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-1] [INFO] [1791094606.595133301] [moveit_ros.fix_start_state_collision]: Param 'move_group.jiggle_fraction' was not set. Using default value: 0.020000
+[move_group-1] [INFO] [1791094606.595135835] [moveit_ros.fix_start_state_collision]: Param 'move_group.max_sampling_attempts' was not set. Using default value: 100
+[move_group-1] [INFO] [1791094606.595142212] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Add Time Optimal Parameterization'
+[move_group-1] [INFO] [1791094606.595144413] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Workspace Bounds'
+[move_group-1] [INFO] [1791094606.595146259] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Bounds'
+[move_group-1] [INFO] [1791094606.595147857] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State In Collision'
+[move_group-1] [INFO] [1791094606.595149504] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Path Constraints'
+[move_group-1] [INFO] [1791094606.602338499] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for scaled_joint_trajectory_controller
+[move_group-1] [INFO] [1791094606.603059384] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for joint_trajectory_controller
+[move_group-1] [INFO] [1791094606.603141292] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094606.603155943] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094606.603275031] [moveit_ros.trajectory_execution_manager]: Trajectory execution is not managing controllers
+[move_group-1] [INFO] [1791094606.603281734] [move_group.move_group]: MoveGroup debug mode is ON
+[move_group-1] [INFO] [1791094606.612654108] [move_group.move_group]: 
+[move_group-1] 
+[move_group-1] ********************************************************
+[move_group-1] * MoveGroup using: 
+[move_group-1] *     - ApplyPlanningSceneService
+[move_group-1] *     - ClearOctomapService
+[move_group-1] *     - CartesianPathService
+[move_group-1] *     - ExecuteTrajectoryAction
+[move_group-1] *     - GetPlanningSceneService
+[move_group-1] *     - KinematicsService
+[move_group-1] *     - MoveAction
+[move_group-1] *     - MotionPlanService
+[move_group-1] *     - QueryPlannersService
+[move_group-1] *     - StateValidationService
+[move_group-1] ********************************************************
+[move_group-1] 
+[move_group-1] [INFO] [1791094606.612674408] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[move_group-1] [INFO] [1791094606.612682452] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context initialization complete
+[move_group-1] [96mLoading 'move_group/ApplyPlanningSceneService'...
+[move_group-1] [0m[96mLoading 'move_group/ClearOctomapService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupCartesianPathService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupGetPlanningSceneService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupKinematicsService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupMoveAction'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupPlanService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupQueryPlannersService'...
+[move_group-1] [0m[96mLoading 'move_group/MoveGroupStateValidationService'...
+[move_group-1] [0m[92m
+[move_group-1] You can start planning now!
+[move_group-1] 
+[move_group-1] [INFO] [1791094639.969310396] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094639.969436332] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094639.969489588] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094639.969506517] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094639.969516639] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094639.972443339] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094639.997662136] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094639.997697915] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094639.997764908] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094639.997822321] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094639.997866471] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094639.997889834] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094639.998058598] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094639.998570391] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094639.998594377] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094643.398781016] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094643.398959880] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094643.408149060] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094658.620220400] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094658.620359026] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094658.620439690] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094658.621073535] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094658.662744045] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094658.665815620] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094658.665911956] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094658.665969053] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094658.665980245] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094658.665986486] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094658.666512817] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094658.708261647] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094658.708312438] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094658.708400265] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094658.708496796] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094658.708547490] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094658.708573402] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094658.708721667] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094658.709405513] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094658.709431532] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094661.359578143] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094661.359680023] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094661.368659274] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094663.090964410] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094663.091095030] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094663.091163128] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094663.091721146] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094668.100723917] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094668.104599546] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094668.104708236] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094668.104775024] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094668.104793918] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094668.104801611] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094668.105223861] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094673.122159615] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094673.122219538] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094673.122302623] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094673.127901097] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094673.128012627] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094673.128042733] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094673.128195072] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094673.129107038] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094673.129154315] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094678.129218209] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094678.129441124] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094678.138213354] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094689.428055888] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094689.428211002] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094689.428287433] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094689.429021017] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094689.495817720] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094689.498478550] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094689.498529832] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094689.498559155] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094689.498569486] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094689.498575063] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094689.498967388] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094689.575246766] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094689.575273869] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094689.575325295] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094689.575390295] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094689.575439104] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094689.575468968] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094689.575592312] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094689.576396655] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094689.576409759] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094696.326414339] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094696.326621841] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094696.335652751] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094698.166346967] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094698.166474524] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094698.166539113] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094698.167105816] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094698.210278327] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094698.215424610] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094698.215520441] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094698.215567291] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094698.215583701] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094698.215590419] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094698.216038374] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094703.226039246] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094703.226073534] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094703.226116610] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094703.226336776] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094703.226397082] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094703.226421270] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094703.226553524] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094703.227451566] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094703.227473449] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094708.727436007] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094708.727526704] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094708.736344784] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094710.474018414] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094710.474200407] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094710.474302391] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094710.475015668] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [ERROR] [1791094710.525022961] [moveit.ros_planning.planning_pipeline]: Computed path is not valid. Invalid states at index locations: [ 31 32 ] out of 63. Explanations follow in command line. Contacts are published on /display_contacts
+[move_group-1] [INFO] [1791094710.525147063] [moveit_collision_detection_fcl.collision_common]: Found a contact between 'wrist_3_link' (type 'Robot link') and 'forearm_link' (type 'Robot link'), which constitutes a collision. Contact information is not stored.
+[move_group-1] [INFO] [1791094710.525152447] [moveit_collision_detection_fcl.collision_common]: Collision checking is considered complete (collision was found and 0 contacts are stored)
+[move_group-1] [INFO] [1791094710.533363986] [moveit_collision_detection_fcl.collision_common]: Found a contact between 'wrist_3_link' (type 'Robot link') and 'forearm_link' (type 'Robot link'), which constitutes a collision. Contact information is not stored.
+[move_group-1] [INFO] [1791094710.533376590] [moveit_collision_detection_fcl.collision_common]: Collision checking is considered complete (collision was found and 0 contacts are stored)
+[move_group-1] [ERROR] [1791094710.533427674] [moveit.ros_planning.planning_pipeline]: Completed listing of explanations for invalid states.
+[move_group-1] [INFO] [1791094710.533639927] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was found but it seems to be invalid (possibly due to postprocessing). Not executing.
+[move_group-1] [INFO] [1791094710.536636061] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094710.536768854] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094710.536852054] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094710.536871847] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094710.536882572] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094710.537505830] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094710.598405609] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094710.598437192] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094710.598490756] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094710.598649620] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094710.598742394] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094710.598765968] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094710.598883461] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094710.599539206] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094710.599551992] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094717.299669219] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094717.299877679] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094717.308924434] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094719.014673516] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094719.014819725] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094719.014892518] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094719.015441594] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094724.030321336] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094724.035626139] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094724.035746871] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094724.041249885] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094724.041272498] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094724.041278807] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094724.041645135] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094724.061415529] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094724.061457317] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094724.061514336] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094724.061576026] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094724.061687019] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094724.061710741] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094724.061839174] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094724.062661105] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094724.062681849] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094728.762616724] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094728.762712205] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094728.771709710] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094730.467274792] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094730.467478969] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094730.467560242] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094730.468358982] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094730.526787819] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094730.530366868] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094730.530488209] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094730.530549598] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094730.530563698] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094730.530569807] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094730.531184987] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094730.594011704] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094730.594086991] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094730.594219215] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094730.594409461] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094730.594490673] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094730.594535053] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094730.594743140] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094730.595737142] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094730.595773112] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094735.295858638] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094735.295969986] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094735.304683472] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[move_group-1] [INFO] [1791094737.011782061] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094737.011886707] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094737.011933511] [moveit_move_group_default_capabilities.move_action_capability]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-1] [INFO] [1791094737.012324129] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094737.070574401] [moveit_move_group_default_capabilities.move_action_capability]: Motion plan was computed successfully.
+[move_group-1] [INFO] [1791094737.075298390] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-1] [INFO] [1791094737.075438197] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-1] [INFO] [1791094737.075504852] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-1] [WARN] [1791094737.075520581] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-1] [INFO] [1791094737.075527416] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-1] [INFO] [1791094737.075977410] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-1] [INFO] [1791094737.124444105] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094737.124484898] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094737.124547759] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-1] [INFO] [1791094737.124630362] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-1] [INFO] [1791094737.124691621] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094737.124704750] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-1] [INFO] [1791094737.124807746] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-1] [INFO] [1791094737.125304057] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-1] [INFO] [1791094737.125326173] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[move_group-1] [INFO] [1791094739.825582493] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-1] [INFO] [1791094739.825672754] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-1] [INFO] [1791094739.834834820] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.

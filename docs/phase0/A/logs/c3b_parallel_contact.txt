@@ -1,0 +1,24 @@
+== move arm to tool-down pose
+result error_code=0 (0=SUCCESSFUL) error_string="Goal successfully reached!"
+max |error| = 0.00004 rad -> PASS
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.024 (wrist_1_joint)
+== spawn pedestal + cube
+Successfully spawned entity [pedestal]
+Successfully spawned entity [cube]
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.04
+status=4 position=0.0409 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0400 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.645497 -0.541003 0.02 1.00754 -1.5708 0
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0400 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.645497 -0.541001 0.019994 -0.684404 -1.57067 1.69195
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0400 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.645497 -0.541003 0.02 1.00754 -1.5708 0
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.645497 -0.541006 0.019996 2.45727 -1.57067 -1.44972
+== cleanup
+done

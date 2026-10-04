@@ -1,0 +1,4 @@
+knuckle=0.0000: left pad [ 0.0532 -0.0008  0.1148] right pad [-0.0532  0.      0.1148] | pad separation x=106.4 mm | pad z=114.8 mm
+knuckle=0.7929: left pad [ 0.0112 -0.0008  0.1283] right pad [-0.0112  0.      0.1283] | pad separation x=22.4 mm | pad z=128.3 mm
+tool0 -> robotiq_85_base_link: xyz=(0.0000,0.0000,0.0110)
+tool0 -> gripper_tcp (as defined in scratch xacro): z=0.1600

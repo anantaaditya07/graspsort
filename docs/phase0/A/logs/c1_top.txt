@@ -1,0 +1,15 @@
+top - 11:46:34 up 2 days,  1:47,  1 user,  load average: 1.63, 1.65, 1.29
+Tasks: 443 total,   1 running, 442 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.2 us,  0.6 sy,  0.0 ni, 98.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15701.4 total,   3666.7 free,   5212.3 used,   6822.4 buff/cache
+MiB Swap:   7721.0 total,   7694.7 free,     26.2 used.   8456.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 249156 adityac+  20   0 8967308 279976 148588 S  46.7   1.7   0:26.50 gzserver
+ 241544 adityac+  20   0 1450.4g 991700 194148 S   6.7   6.2  11:25.67 brave
+ 249690 adityac+  20   0   13368   4440   3404 R   6.7   0.0   0:00.01 top
+      1 root      20   0  168092  12428   7324 S   0.0   0.1   0:10.00 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.23 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_wo+
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+

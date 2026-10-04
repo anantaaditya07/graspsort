@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!-- Phase 0 / subagent C harness world: ground, table (top at 0.75 m), two fixed RGB-D cameras.
+     camera (oblique, 50 deg pitch, 1.0 m from table centre) -> /camera/...
+     camera_top (straight down, 0.95 m above table top)     -> /camera_top/...
+     camera_near (oblique, 50 deg pitch, 0.7 m)              -> /camera_near/...
+     camera_top_near (straight down, 0.65 m above table)     -> /camera_top_near/... -->
+<sdf version="1.6">
+  <world name="yolo_check">
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.5 0.5 0.5 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+    <light name="ceiling" type="point">
+      <pose>0 0 2.6 0 0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation><range>10</range><constant>0.6</constant><linear>0.05</linear><quadratic>0.0</quadratic></attenuation>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- fill light from the camera side (typical lab: several ceiling/wall lights) -->
+    <light name="fill" type="directional">
+      <pose>-2 0 3 0 0 0</pose>
+      <diffuse>0.6 0.6 0.6 1</diffuse>
+      <specular>0.05 0.05 0.05 1</specular>
+      <direction>0.8 0.2 -0.6</direction>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros><namespace>/gazebo</namespace></ros>
+      <update_rate>10.0</update_rate>
+    </plugin>
+
+    <model name="table">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="top_c"><pose>0 0 0.725 0 0 0</pose><geometry><box><size>1.0 0.8 0.05</size></box></geometry></collision>
+        <visual name="top_v"><pose>0 0 0.725 0 0 0</pose><geometry><box><size>1.0 0.8 0.05</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material></visual>
+        <visual name="leg"><pose>0 0 0.35 0 0 0</pose><geometry><box><size>0.8 0.6 0.7</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Grey</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="camera_oblique">
+      <static>true</static>
+      <!-- 1.0 m from table centre along the optical axis: x=-0.643, z=0.75+0.766 -->
+      <pose>-0.643 0 1.516 0 0.8727 0</pose>
+      <link name="camera_link">
+        <sensor name="rgbd" type="depth">
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <camera>
+            <horizontal_fov>1.2112</horizontal_fov>
+            <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+            <clip><near>0.1</near><far>5.0</far></clip>
+          </camera>
+          <plugin name="cam" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/camera</namespace>
+              <remapping>color/depth/image_raw:=depth/image_raw</remapping>
+              <remapping>color/depth/camera_info:=depth/camera_info</remapping>
+              <remapping>color/points:=depth/points</remapping>
+            </ros>
+            <camera_name>color</camera_name>
+            <frame_name>camera_color_optical_frame</frame_name>
+            <min_depth>0.1</min_depth>
+            <max_depth>5.0</max_depth>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+
+    <model name="camera_top">
+      <static>true</static>
+      <pose>0 0 1.70 0 1.5708 0</pose>
+      <link name="camera_link">
+        <sensor name="rgbd" type="depth">
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <camera>
+            <horizontal_fov>1.2112</horizontal_fov>
+            <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+            <clip><near>0.1</near><far>5.0</far></clip>
+          </camera>
+          <plugin name="cam" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/camera_top</namespace>
+              <remapping>color/depth/image_raw:=depth/image_raw</remapping>
+              <remapping>color/depth/camera_info:=depth/camera_info</remapping>
+              <remapping>color/points:=depth/points</remapping>
+            </ros>
+            <camera_name>color</camera_name>
+            <frame_name>camera_top_color_optical_frame</frame_name>
+            <min_depth>0.1</min_depth>
+            <max_depth>5.0</max_depth>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+
+    <model name="camera_near">
+      <static>true</static>
+      <!-- 0.7 m from table centre along the optical axis: x=-0.450, z=0.75+0.536 -->
+      <pose>-0.450 0 1.286 0 0.8727 0</pose>
+      <link name="camera_link">
+        <sensor name="rgbd" type="depth">
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <camera>
+            <horizontal_fov>1.2112</horizontal_fov>
+            <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+            <clip><near>0.1</near><far>5.0</far></clip>
+          </camera>
+          <plugin name="cam" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/camera_near</namespace>
+              <remapping>color/depth/image_raw:=depth/image_raw</remapping>
+              <remapping>color/depth/camera_info:=depth/camera_info</remapping>
+              <remapping>color/points:=depth/points</remapping>
+            </ros>
+            <camera_name>color</camera_name>
+            <frame_name>camera_near_color_optical_frame</frame_name>
+            <min_depth>0.1</min_depth>
+            <max_depth>5.0</max_depth>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+
+    <model name="camera_top_near">
+      <static>true</static>
+      <pose>0 0 1.40 0 1.5708 0</pose>
+      <link name="camera_link">
+        <sensor name="rgbd" type="depth">
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <camera>
+            <horizontal_fov>1.2112</horizontal_fov>
+            <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+            <clip><near>0.1</near><far>5.0</far></clip>
+          </camera>
+          <plugin name="cam" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/camera_top_near</namespace>
+              <remapping>color/depth/image_raw:=depth/image_raw</remapping>
+              <remapping>color/depth/camera_info:=depth/camera_info</remapping>
+              <remapping>color/points:=depth/points</remapping>
+            </ros>
+            <camera_name>color</camera_name>
+            <frame_name>camera_top_near_color_optical_frame</frame_name>
+            <min_depth>0.1</min_depth>
+            <max_depth>5.0</max_depth>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+  </world>
+</sdf>

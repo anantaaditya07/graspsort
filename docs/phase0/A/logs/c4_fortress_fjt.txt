@@ -1,0 +1,6 @@
+goal accepted: True
+result error_code=0 (0=SUCCESSFUL) error_string="Goal successfully reached!"
+wall time for 8 s trajectory: 8.10 s
+final joint error [rad]: shoulder_pan_joint=0.00000 shoulder_lift_joint=0.00000 elbow_joint=0.00000 wrist_1_joint=0.00000 wrist_2_joint=0.00000 wrist_3_joint=0.00000
+max |error| = 0.00000 rad -> PASS
+wrote 4299 samples to c4_fortress_fjt.csv

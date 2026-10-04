@@ -1,0 +1,54 @@
+######## Robotiq close target 0.30, pedestal lowered 30 mm (PED_Z=-0.03, CUBE_Z=0.0405)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.04 -0 -0 -0
+== close to 0.30
+status=4 position=0.3000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.3000 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.5537 0.1333 0.04 -0 -0 -0
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.3000 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.5537 0.1333 0.04 -0 -0 -0
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.3000 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.5537 0.1333 0.04 -0 -0 -0
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.5537 0.1333 0.04 -0 -0 -0
+######## Robotiq close target 0.46, pedestal lowered 30 mm (PED_Z=-0.03, CUBE_Z=0.0405)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.04 -0 -0 -0
+== close to 0.46
+status=4 position=0.4538 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.4517 max_mimic_dev=0.0196 max|vel|=0.739 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.567119 0.133336 0.046041 -0.000108 -0.385292 -5.2e-05
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.4600 max_mimic_dev=0.0988 max|vel|=20.229 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.400095 0.175527 0.02 -0.431972 1.5708 0
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.4600 max_mimic_dev=0.0000 max|vel|=0.044 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.400095 0.175527 0.02 -0.431966 1.5708 0
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.036 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.400098 0.175525 0.019995 2.20456 1.57062 2.63652
+######## Robotiq close target 0.7929, pedestal lowered 30 mm (PED_Z=-0.03, CUBE_Z=0.0405)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.036 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.04 -0 -0 -0
+== close to 0.7929
+status=4 position=0.7945 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.7929 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.682503 -0.069518 0.02 -1.5708 0 0.769669
+  js_health over 1.0s (99 msgs): robotiq_85_left_knuckle_joint=+0.7929 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.682502 -0.069518 0.019999 -1.5708 -4.4e-05 0.769669
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.7929 max_mimic_dev=0.0000 max|vel|=0.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.682502 -0.069518 0.019999 -1.5708 -4.4e-05 0.769669
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.036 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.682502 -0.069518 0.019999 -1.5708 -4.4e-05 0.769669

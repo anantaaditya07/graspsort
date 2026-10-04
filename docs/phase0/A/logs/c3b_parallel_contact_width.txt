@@ -1,0 +1,54 @@
+######## close target 0.0245 (cube contact at q=0.0250)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.0245
+status=4 position=0.0245 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0245 max_mimic_dev=0.0000 max|vel|=0.022 (wrist_1_joint)
+  cube pose: 0.5537 0.1333 0.07 -0 -0 -0
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0245 max_mimic_dev=0.0000 max|vel|=0.022 (wrist_1_joint)
+  cube pose: 0.5537 0.1333 0.07 -0 -0 -0
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0245 max_mimic_dev=0.0000 max|vel|=0.022 (wrist_1_joint)
+  cube pose: 0.5537 0.1333 0.07 -0 -0 -0
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.5537 0.1333 0.07 -0 -0 -0
+######## close target 0.0255 (cube contact at q=0.0250)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.0255
+status=4 position=0.0250 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0252 max_mimic_dev=0.0004 max|vel|=0.073 (wrist_3_joint)
+  cube pose: 0.553891 0.13344 0.070027 8.8e-05 -0.001778 -0.001621
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0251 max_mimic_dev=0.0004 max|vel|=0.120 (wrist_3_joint)
+  cube pose: 0.553899 0.133568 0.070031 -8.8e-05 -0.002244 -0.005484
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0252 max_mimic_dev=0.0004 max|vel|=0.112 (wrist_3_joint)
+  cube pose: 0.553888 0.133982 0.070025 8.7e-05 -0.001684 -0.001001
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.553974 0.133851 0.07 -0 0 -0.006979
+######## close target 0.0270 (cube contact at q=0.0250)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.0270
+status=4 position=0.0250 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0251 max_mimic_dev=0.0006 max|vel|=0.415 (wrist_3_joint)
+  cube pose: 0.55407 0.137404 0.071211 -0.062901 -0.00093 -0.016654
+  js_health over 1.0s (101 msgs): gripper_left_finger_joint=+0.0250 max_mimic_dev=0.0005 max|vel|=0.228 (wrist_3_joint)
+  cube pose: 0.554301 0.143096 0.071258 -0.064456 -0.001037 -0.036785
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0251 max_mimic_dev=0.0007 max|vel|=0.388 (wrist_3_joint)
+  cube pose: 0.554136 0.149562 0.071479 -0.076857 -0.001667 -0.01665
+== open again
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): gripper_left_finger_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.023 (wrist_1_joint)
+  cube pose: 0.554106 0.148418 0.069997 8.1e-05 8.2e-05 -0.017919

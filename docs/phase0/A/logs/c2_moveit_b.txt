@@ -1,0 +1,7 @@
+target tool0 in base_link: p=(0.4645,-0.1562,0.4097) q=(-0.2332,0.9724,0.0006,0.0000)
+plan_only: MoveItErrorCodes.val = 1 (SUCCESS), planning_time = 0.036 s
+goal accepted: True
+MoveItErrorCodes.val = 1 (SUCCESS)
+planning_time = 0.000 s; plan+execute wall = 2.71 s; trajectory points = 28
+final tool0 error (FK of measured /joint_states): position 0.71 mm, orientation 0.392 deg
+PASS

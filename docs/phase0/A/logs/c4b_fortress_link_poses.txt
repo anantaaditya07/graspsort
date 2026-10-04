@@ -1,0 +1,15 @@
+status=4 position=-0.0000 reached_goal=True stalled=False
+  q=0.0 robotiq_85_left_finger_tip_link pose:     [0.068568 0.342227 1.079290]
+  q=0.0 robotiq_85_right_finger_tip_link pose:     [-0.066949 0.342226 1.079510]
+  q=0.0 robotiq_85_left_inner_knuckle_link pose:     [0.013510 0.305320 1.079380]
+  q=0.0 robotiq_85_right_knuckle_link pose:     [-0.029792 0.298805 1.079450]
+status=4 position=-0.0000 reached_goal=False stalled=True
+  q=0.7 robotiq_85_left_finger_tip_link pose:     [0.068568 0.342227 1.079290]
+  q=0.7 robotiq_85_right_finger_tip_link pose:     [-0.066949 0.342226 1.079510]
+  q=0.7 robotiq_85_left_inner_knuckle_link pose:     [0.013510 0.305320 1.079380]
+  q=0.7 robotiq_85_right_knuckle_link pose:     [-0.029792 0.298805 1.079450]
+status=4 position=-0.0000 reached_goal=False stalled=True
+  q=0.7929 robotiq_85_left_finger_tip_link pose:     [0.068568 0.342227 1.079290]
+  q=0.7929 robotiq_85_right_finger_tip_link pose:     [-0.066949 0.342226 1.079510]
+  q=0.7929 robotiq_85_left_inner_knuckle_link pose:     [0.013510 0.305320 1.079380]
+  q=0.7929 robotiq_85_right_knuckle_link pose:     [-0.029792 0.298805 1.079450]

@@ -1,0 +1,40 @@
+== move arm to tool-down pose
+result error_code=0 (0=SUCCESSFUL) error_string="Goal successfully reached!"
+max |error| = 0.00004 rad -> PASS
+== open
+status=4 position=0.0001 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+Successfully spawned entity [pedestal]
+Successfully spawned entity [cube]
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.7929
+status=4 position=0.8015 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.7826 max_mimic_dev=0.2526 max|vel|=59.607 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.12049 0.250677 0.019995 -1.5707 -0.000138 -1.20294
+  js_health over 1.0s (99 msgs): robotiq_85_left_knuckle_joint=+0.7966 max_mimic_dev=0.2271 max|vel|=56.854 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.1205 0.250675 0.02 -1.5708 0 -1.20294
+  js_health over 1.0s (98 msgs): robotiq_85_left_knuckle_joint=+0.8235 max_mimic_dev=0.2249 max|vel|=61.250 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.12049 0.250677 0.019995 -1.57069 -0.000138 -1.20295
+== open again
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-adityachavali-graspsort/b1f9bd71-1b1a-4b44-834a-7b7601ea7da7/scratchpad/A/harness/gripper_cmd.py", line 11, in <module>
+    rf = f.result().get_result_async(); rclpy.spin_until_future_complete(n, rf)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 256, in spin_until_future_complete
+    executor.spin_until_future_complete(future, timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 337, in spin_until_future_complete
+    self.spin_once_until_future_complete(future, timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 819, in spin_once_until_future_complete
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 801, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 784, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 685, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+open: action did not return within 15 s
+  js_health over 1.0s (98 msgs): robotiq_85_left_knuckle_joint=-0.1542 max_mimic_dev=0.4752 max|vel|=32.913 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.1205 0.250675 0.02 -1.5708 0 -1.20301
+== cleanup
+done

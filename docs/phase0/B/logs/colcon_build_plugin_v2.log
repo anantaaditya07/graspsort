@@ -1,0 +1,8 @@
+Starting >>> b_attach_plugin
+Consolidate compiler generated dependencies of target graspsort_attach
+[ 50%] Building CXX object CMakeFiles/graspsort_attach.dir/src/attach_plugin.cpp.o
+[100%] Linking CXX shared library libgraspsort_attach.so
+[100%] Built target graspsort_attach
+Finished <<< b_attach_plugin [14.9s]
+
+Summary: 1 package finished [15.2s]

@@ -1,0 +1,40 @@
+[gzserver-1] [INFO] [1791095108.554098394] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095108.554149773] [resource_manager]: Initialize hardware 'ur' 
+[gzserver-1] [INFO] [1791095108.554288857] [resource_manager]: Successful initialization of hardware 'ur'
+[gzserver-1] [INFO] [1791095108.554380338] [resource_manager]: 'configure' hardware 'ur' 
+[gzserver-1] [INFO] [1791095108.554389086] [resource_manager]: Successful 'configure' of hardware 'ur'
+[gzserver-1] [INFO] [1791095108.554398615] [resource_manager]: 'activate' hardware 'ur' 
+[gzserver-1] [INFO] [1791095108.554403541] [resource_manager]: Successful 'activate' of hardware 'ur'
+[gzserver-1] [INFO] [1791095108.554489039] [gazebo_ros2_control]: Loading controller_manager
+[gzserver-1] [WARN] [1791095108.564240210] [gazebo_ros2_control]:  Desired controller update period (0.002 s) is slower than the gazebo simulation period (0.001 s).
+[gzserver-1] [INFO] [1791095108.564432227] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[INFO] [spawn_entity.py-3]: process has finished cleanly [pid 254316]
+[INFO] [spawner-4]: process started with pid [254453]
+[INFO] [spawner-5]: process started with pid [254455]
+[gzserver-1] [INFO] [1791095109.069715326] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-4] [INFO] [1791095109.093067454] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gzserver-1] [INFO] [1791095109.093792678] [controller_manager]: Loading controller 'joint_trajectory_controller'
+[gzserver-1] [WARN] [1791095109.111731725] [joint_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[gzserver-1] [INFO] [1791095109.112844013] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-1] [INFO] [1791095109.113182787] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-5] [INFO] [1791095109.124767746] [spawner_joint_trajectory_controller]: Loaded joint_trajectory_controller
+[spawner-4] [INFO] [1791095109.125356765] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[gzserver-1] [INFO] [1791095109.125529255] [controller_manager]: Configuring controller 'joint_trajectory_controller'
+[gzserver-1] [INFO] [1791095109.125845573] [joint_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-1] [INFO] [1791095109.125910947] [joint_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-1] [INFO] [1791095109.125984902] [joint_trajectory_controller]: Using 'splines' interpolation method.
+[gzserver-1] [INFO] [1791095109.127119543] [joint_trajectory_controller]: Controller state will be published at 100.00 Hz.
+[gzserver-1] [INFO] [1791095109.130280438] [joint_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[spawner-5] [INFO] [1791095109.140915605] [spawner_joint_trajectory_controller]: Configured and activated joint_trajectory_controller
+[INFO] [spawner-4]: process has finished cleanly [pid 254453]
+[INFO] [spawner-5]: process has finished cleanly [pid 254455]
+[gzserver-1] [Msg] Waiting for master.
+[gzserver-1] [Msg] Connected to gazebo master @ http://127.0.0.1:11352
+[gzserver-1] [Msg] Publicized address: 10.209.1.97
+[gzserver-1] [Msg] Loading world file [/tmp/claude-1000/-home-adityachavali-graspsort/b1f9bd71-1b1a-4b44-834a-7b7601ea7da7/scratchpad/B/attach_test_custom.world]
+[gzserver-1] [INFO] [1791095137.574687075] [graspsort_attach]: attached ur::wrist_3_link__box::link
+[gzserver-1] [INFO] [1791095141.984376594] [graspsort_attach]: detached ur::wrist_3_link__box::link
+[gzserver-1] [INFO] [1791095173.924558586] [graspsort_attach]: attached ur::wrist_3_link__box::link
+[gzserver-1] [INFO] [1791095178.237328769] [graspsort_attach]: detached ur::wrist_3_link__box::link
+[gzserver-1] [INFO] [1791095182.476515867] [graspsort_attach]: attached ur::wrist_3_link__box::link
+This event loop is already running

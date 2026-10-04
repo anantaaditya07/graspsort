@@ -1,0 +1,8 @@
+# Used for both /attach and /detach.
+string parent_model  # e.g. "ur" (gripper / arm model)
+string parent_link   # e.g. "wrist_3_link" (gripper finger link)
+string child_model   # object model name
+string child_link    # object link name ("link")
+---
+bool success
+string message

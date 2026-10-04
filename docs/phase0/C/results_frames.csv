@@ -1,0 +1,481 @@
+viewpoint,tag,model,intended_class,gt_box,gt_area_px,top_class_iou50,top_conf,matched_classes_iou50,all_dets_ge_0.25
+oblique,plastic_cup_p0_y0,plastic_cup,cup,297 187 334 248,1842,cup,0.227,cup:0.227,
+oblique,plastic_cup_p0_y1,plastic_cup,cup,303 189 339 251,1852,cup,0.341,cup:0.341,cup:0.341
+oblique,plastic_cup_p1_y0,plastic_cup,cup,244 140 277 198,1614,cup,0.158,cup:0.158,
+oblique,plastic_cup_p1_y1,plastic_cup,cup,249 142 282 200,1626,none,0.000,,
+oblique,plastic_cup_p2_y0,plastic_cup,cup,226 244 268 309,2204,cup,0.512,cup:0.512,cup:0.512
+oblique,plastic_cup_p2_y1,plastic_cup,cup,232 247 273 312,2195,cup,0.311,cup:0.311,cup:0.311
+oblique,plastic_cup_p3_y0,plastic_cup,cup,355 140 388 198,1614,cup,0.119,cup:0.119;mouse:0.052,
+oblique,plastic_cup_p3_y1,plastic_cup,cup,360 142 393 200,1631,cup,0.076,cup:0.076,
+oblique,plastic_cup_p4_y0,plastic_cup,cup,377 232 419 296,2145,cup,0.749,cup:0.749,cup:0.749
+oblique,plastic_cup_p4_y1,plastic_cup,cup,383 235 426 299,2157,cup,0.839,cup:0.839,cup:0.839
+oblique,pitcher_base_p0_y0,pitcher_base,cup,261 137 337 261,7472,cup,0.511,cup:0.511,cup:0.511
+oblique,pitcher_base_p0_y1,pitcher_base,cup,297 141 373 265,7403,mouse,0.212,mouse:0.212;cup:0.087,
+oblique,pitcher_base_p1_y0,pitcher_base,cup,208 91 277 209,6402,cup,0.702,cup:0.702,cup:0.702
+oblique,pitcher_base_p1_y1,pitcher_base,cup,238 95 305 212,6458,cup,0.375,cup:0.375,cup:0.375
+oblique,pitcher_base_p2_y0,pitcher_base,cup,177 194 267 326,9084,mouse,0.491,mouse:0.491;cup:0.183,mouse:0.491
+oblique,pitcher_base_p2_y1,pitcher_base,cup,215 199 302 331,9414,cup,0.266,cup:0.266;sports ball:0.057,cup:0.266
+oblique,pitcher_base_p3_y0,pitcher_base,cup,324 91 397 209,6709,cup,0.614,cup:0.614,cup:0.614
+oblique,pitcher_base_p3_y1,pitcher_base,cup,360 95 429 212,6397,cup,0.210,cup:0.210,
+oblique,pitcher_base_p4_y0,pitcher_base,cup,341 181 435 312,9281,cup,0.700,cup:0.700,cup:0.7
+oblique,pitcher_base_p4_y1,pitcher_base,cup,383 186 474 316,8801,cup,0.307,cup:0.307,cup:0.307
+oblique,mustard_bottle_p0_y0,mustard_bottle,bottle,315 176 347 260,2255,bottle,0.439,bottle:0.439,bottle:0.439
+oblique,mustard_bottle_p0_y1,mustard_bottle,bottle,298 161 345 238,2877,bottle,0.731,bottle:0.731,bottle:0.731
+oblique,mustard_bottle_p1_y0,mustard_bottle,bottle,259 126 292 208,2178,bottle,0.548,bottle:0.548,bottle:0.548
+oblique,mustard_bottle_p1_y1,mustard_bottle,bottle,246 115 291 189,2545,bottle,0.723,bottle:0.723,bottle:0.723
+oblique,mustard_bottle_p2_y0,mustard_bottle,bottle,244 238 286 324,2913,bottle,0.296,bottle:0.296,bottle:0.296
+oblique,mustard_bottle_p2_y1,mustard_bottle,bottle,229 220 285 297,3302,bottle,0.550,bottle:0.550,bottle:0.55
+oblique,mustard_bottle_p3_y0,mustard_bottle,bottle,368 126 401 208,1879,bottle,0.647,bottle:0.647,bottle:0.647
+oblique,mustard_bottle_p3_y1,mustard_bottle,bottle,352 115 397 189,2540,bottle,0.686,bottle:0.686,bottle:0.686
+oblique,mustard_bottle_p4_y0,mustard_bottle,bottle,392 225 436 310,2366,bottle,0.456,bottle:0.456,bottle:0.456
+oblique,mustard_bottle_p4_y1,mustard_bottle,bottle,373 207 429 284,3224,bottle,0.341,bottle:0.341,bottle:0.341
+oblique,beer_p0_y0,beer,bottle,289 138 350 258,6350,bottle,0.621,bottle:0.621,bottle:0.621;dining table:0.333
+oblique,beer_p0_y1,beer,bottle,289 138 350 258,6357,bottle,0.156,bottle:0.156,
+oblique,beer_p1_y0,beer,bottle,232 93 291 206,5521,bottle,0.625,bottle:0.625,bottle:0.625
+oblique,beer_p1_y1,beer,bottle,232 93 291 206,5527,bottle,0.347,bottle:0.347,bottle:0.347
+oblique,beer_p2_y0,beer,bottle,209 194 286 321,7565,bottle,0.409,bottle:0.409;parking meter:0.140,bottle:0.409
+oblique,beer_p2_y1,beer,bottle,209 194 286 321,7554,parking meter,0.298,parking meter:0.298;bottle:0.076,parking meter:0.298
+oblique,beer_p3_y0,beer,bottle,348 93 407 206,5521,bottle,0.722,bottle:0.722,bottle:0.722
+oblique,beer_p3_y1,beer,bottle,348 93 407 206,5517,bottle,0.535,bottle:0.535,bottle:0.535
+oblique,beer_p4_y0,beer,bottle,368 182 446 308,7399,bottle,0.519,bottle:0.519,bottle:0.519
+oblique,beer_p4_y1,beer,bottle,368 182 446 308,7401,parking meter,0.216,parking meter:0.216;bottle:0.148,
+oblique,coke_can_p0_y0,coke_can,can,304 189 336 248,1723,bottle,0.108,bottle:0.108,
+oblique,coke_can_p0_y1,coke_can,can,303 189 336 247,1720,bottle,0.207,bottle:0.207,
+oblique,coke_can_p1_y0,coke_can,can,251 142 282 197,1504,bottle,0.278,bottle:0.278,bottle:0.278
+oblique,coke_can_p1_y1,coke_can,can,250 142 282 197,1506,bottle,0.382,bottle:0.382,bottle:0.382
+oblique,coke_can_p2_y0,coke_can,can,234 248 274 309,2012,cup,0.158,cup:0.158;mouse:0.056,
+oblique,coke_can_p2_y1,coke_can,can,234 247 274 309,2016,cup,0.114,cup:0.114;bottle:0.061,
+oblique,coke_can_p3_y0,coke_can,can,357 142 389 197,1514,bottle,0.087,bottle:0.087;cell phone:0.082,
+oblique,coke_can_p3_y1,coke_can,can,357 142 389 197,1506,bottle,0.192,bottle:0.192,
+oblique,coke_can_p4_y0,coke_can,can,379 235 420 296,1978,cup,0.134,cup:0.134;bottle:0.061,
+oblique,coke_can_p4_y1,coke_can,can,379 234 420 295,1972,cup,0.228,cup:0.228;bottle:0.161,
+oblique,master_chef_can_p0_y0,master_chef_can,can,293 176 345 257,3644,cup,0.477,cup:0.477,cup:0.477
+oblique,master_chef_can_p0_y1,master_chef_can,can,294 176 346 256,3625,bottle,0.262,bottle:0.262,bottle:0.262
+oblique,master_chef_can_p1_y0,master_chef_can,can,240 130 289 205,3135,bottle,0.426,bottle:0.426,bottle:0.426
+oblique,master_chef_can_p1_y1,master_chef_can,can,241 130 290 205,3121,bottle,0.608,bottle:0.608,bottle:0.608
+oblique,master_chef_can_p2_y0,master_chef_can,can,220 233 283 320,4386,cup,0.231,cup:0.231;bottle:0.170,
+oblique,master_chef_can_p2_y1,master_chef_can,can,222 232 284 319,4356,bottle,0.217,bottle:0.217,
+oblique,master_chef_can_p3_y0,master_chef_can,can,349 130 399 205,3145,bottle,0.389,bottle:0.389,bottle:0.389
+oblique,master_chef_can_p3_y1,master_chef_can,can,350 130 400 205,3127,bottle,0.646,bottle:0.646,bottle:0.646
+oblique,master_chef_can_p4_y0,master_chef_can,can,370 221 433 306,4254,cup,0.203,cup:0.203;bottle:0.175,
+oblique,master_chef_can_p4_y1,master_chef_can,can,371 220 434 305,4238,bottle,0.633,bottle:0.633,bottle:0.633
+oblique,potted_meat_can_p0_y0,potted_meat_can,can,318 207 348 268,1640,bottle,0.306,bottle:0.306;cell phone:0.142,bottle:0.306
+oblique,potted_meat_can_p0_y1,potted_meat_can,can,304 187 353 238,1950,cell phone,0.586,cell phone:0.586,cell phone:0.586
+oblique,potted_meat_can_p1_y0,potted_meat_can,can,264 159 290 215,1327,bottle,0.111,bottle:0.111;cell phone:0.095,
+oblique,potted_meat_can_p1_y1,potted_meat_can,can,253 142 297 190,1692,cell phone,0.064,cell phone:0.064,
+oblique,potted_meat_can_p2_y0,potted_meat_can,can,250 266 283 334,2049,cell phone,0.244,cell phone:0.244;remote:0.162;bottle:0.150,
+oblique,potted_meat_can_p2_y1,potted_meat_can,can,238 240 293 297,2347,cell phone,0.660,cell phone:0.660,cell phone:0.66
+oblique,potted_meat_can_p3_y0,potted_meat_can,can,370 159 401 215,1450,bottle,0.164,bottle:0.164;cell phone:0.081,
+oblique,potted_meat_can_p3_y1,potted_meat_can,can,358 142 402 190,1653,cell phone,0.122,cell phone:0.122,
+oblique,potted_meat_can_p4_y0,potted_meat_can,can,395 253 436 320,2188,cell phone,0.085,cell phone:0.085,
+oblique,potted_meat_can_p4_y1,potted_meat_can,can,380 229 434 284,2195,cell phone,0.071,cell phone:0.071;kite:0.058,
+oblique,cracker_box_p0_y0,cracker_box,box,282 160 373 254,8086,book,0.263,book:0.263,book:0.263;bed:0.254
+oblique,cracker_box_p0_y1,cracker_box,box,293 130 358 261,6339,kite,0.116,kite:0.116;book:0.077,bed:0.33
+oblique,cracker_box_p1_y0,cracker_box,box,225 112 308 203,7132,book,0.069,book:0.069,
+oblique,cracker_box_p1_y1,cracker_box,box,240 88 296 209,4878,book,0.060,book:0.060;cell phone:0.055,
+oblique,cracker_box_p2_y0,cracker_box,box,199 220 306 317,9498,book,0.298,book:0.298,book:0.298
+oblique,cracker_box_p2_y1,cracker_box,box,220 183 291 326,6356,remote,0.196,remote:0.196;cell phone:0.114,
+oblique,cracker_box_p3_y0,cracker_box,box,343 112 428 203,7115,book,0.402,book:0.402,book:0.402
+oblique,cracker_box_p3_y1,cracker_box,box,347 88 415 209,6035,book,0.100,book:0.100,
+oblique,cracker_box_p4_y0,cracker_box,box,362 207 473 303,9415,book,0.441,book:0.441,book:0.441
+oblique,cracker_box_p4_y1,cracker_box,box,366 171 456 312,8470,kite,0.149,kite:0.149,
+oblique,cardboard_box_p0_y0,cardboard_box,box,134 0 505 300,94448,vase,0.065,vase:0.065,
+oblique,cardboard_box_p0_y1,cardboard_box,box,117 0 555 319,96324,dining table,0.171,dining table:0.171;chair:0.134;umbrella:0.112;bed:0.108;laptop:0.077,
+oblique,cardboard_box_p1_y0,cardboard_box,box,70 0 381 228,62600,cup,0.052,cup:0.052,
+oblique,cardboard_box_p1_y1,cardboard_box,box,80 0 444 243,64692,chair,0.051,chair:0.051,bed:0.289
+oblique,cardboard_box_p2_y0,cardboard_box,box,0 5 412 393,139478,bench,0.165,bench:0.165;laptop:0.107;dining table:0.056,
+oblique,cardboard_box_p2_y1,cardboard_box,box,0 0 491 419,148218,umbrella,0.209,umbrella:0.209;bench:0.196,
+oblique,cardboard_box_p3_y0,cardboard_box,box,258 0 569 228,62600,none,0.000,,
+oblique,cardboard_box_p3_y1,cardboard_box,box,215 0 602 242,66710,umbrella,0.094,umbrella:0.094,
+oblique,cardboard_box_p4_y0,cardboard_box,box,265 0 639 372,126543,suitcase,0.119,suitcase:0.119;bench:0.077,
+oblique,cardboard_box_p4_y1,cardboard_box,box,202 0 639 397,123861,umbrella,0.175,umbrella:0.175;laptop:0.099;dining table:0.092,
+oblique,cricket_ball_p0_y0,cricket_ball,ball,302 211 337 245,996,sports ball,0.744,sports ball:0.744,sports ball:0.744
+oblique,cricket_ball_p0_y1,cricket_ball,ball,302 211 337 245,997,sports ball,0.734,sports ball:0.734,sports ball:0.734
+oblique,cricket_ball_p1_y0,cricket_ball,ball,252 163 283 195,837,sports ball,0.777,sports ball:0.777,sports ball:0.777
+oblique,cricket_ball_p1_y1,cricket_ball,ball,252 163 283 195,835,sports ball,0.778,sports ball:0.778,sports ball:0.778
+oblique,cricket_ball_p2_y0,cricket_ball,ball,237 268 275 307,1243,sports ball,0.829,sports ball:0.829,sports ball:0.829
+oblique,cricket_ball_p2_y1,cricket_ball,ball,237 268 275 307,1244,sports ball,0.830,sports ball:0.830,sports ball:0.83
+oblique,cricket_ball_p3_y0,cricket_ball,ball,356 163 387 195,837,sports ball,0.636,sports ball:0.636,sports ball:0.636
+oblique,cricket_ball_p3_y1,cricket_ball,ball,356 163 387 195,836,sports ball,0.638,sports ball:0.638,sports ball:0.638
+oblique,cricket_ball_p4_y0,cricket_ball,ball,378 256 416 293,1196,sports ball,0.811,sports ball:0.811,sports ball:0.811
+oblique,cricket_ball_p4_y1,cricket_ball,ball,378 256 416 293,1194,sports ball,0.812,sports ball:0.812,sports ball:0.812
+oblique,robocup_spl_ball_p0_y0,robocup_spl_ball,ball,305 215 334 244,732,orange,0.764,orange:0.764,orange:0.764
+oblique,robocup_spl_ball_p0_y1,robocup_spl_ball,ball,305 215 334 244,732,orange,0.763,orange:0.763,orange:0.763
+oblique,robocup_spl_ball_p1_y0,robocup_spl_ball,ball,254 167 281 194,622,sports ball,0.510,sports ball:0.510;orange:0.452,sports ball:0.51;orange:0.452
+oblique,robocup_spl_ball_p1_y1,robocup_spl_ball,ball,254 167 281 194,622,sports ball,0.489,sports ball:0.489;orange:0.457,sports ball:0.489;orange:0.457
+oblique,robocup_spl_ball_p2_y0,robocup_spl_ball,ball,240 272 273 306,928,orange,0.675,orange:0.675,orange:0.675
+oblique,robocup_spl_ball_p2_y1,robocup_spl_ball,ball,240 272 273 306,927,orange,0.682,orange:0.682,orange:0.682
+oblique,robocup_spl_ball_p3_y0,robocup_spl_ball,ball,358 167 385 194,622,orange,0.603,orange:0.603,orange:0.603
+oblique,robocup_spl_ball_p3_y1,robocup_spl_ball,ball,358 167 385 194,622,orange,0.605,orange:0.605,orange:0.605
+oblique,robocup_spl_ball_p4_y0,robocup_spl_ball,ball,380 260 413 292,891,orange,0.835,orange:0.835,orange:0.835
+oblique,robocup_spl_ball_p4_y1,robocup_spl_ball,ball,380 260 413 292,892,orange,0.832,orange:0.832,orange:0.832
+oblique,robocup_3Dsim_ball_p0_y0,robocup_3Dsim_ball,ball,301 209 338 245,1090,sports ball,0.465,sports ball:0.465;mouse:0.152,sports ball:0.465
+oblique,robocup_3Dsim_ball_p0_y1,robocup_3Dsim_ball,ball,301 209 338 245,1108,sports ball,0.220,sports ball:0.220;mouse:0.067,
+oblique,robocup_3Dsim_ball_p1_y0,robocup_3Dsim_ball,ball,251 162 284 195,912,sports ball,0.287,sports ball:0.287,sports ball:0.287
+oblique,robocup_3Dsim_ball_p1_y1,robocup_3Dsim_ball,ball,251 162 284 195,928,sports ball,0.225,sports ball:0.225;clock:0.121,
+oblique,robocup_3Dsim_ball_p2_y0,robocup_3Dsim_ball,ball,235 266 276 307,1355,sports ball,0.726,sports ball:0.726;mouse:0.390,sports ball:0.726;mouse:0.39
+oblique,robocup_3Dsim_ball_p2_y1,robocup_3Dsim_ball,ball,235 266 276 307,1391,sports ball,0.649,sports ball:0.649;mouse:0.279,sports ball:0.649;mouse:0.279
+oblique,robocup_3Dsim_ball_p3_y0,robocup_3Dsim_ball,ball,355 162 388 195,923,sports ball,0.259,sports ball:0.259,sports ball:0.259
+oblique,robocup_3Dsim_ball_p3_y1,robocup_3Dsim_ball,ball,355 162 388 195,919,sports ball,0.400,sports ball:0.400;mouse:0.070,sports ball:0.4
+oblique,robocup_3Dsim_ball_p4_y0,robocup_3Dsim_ball,ball,377 254 417 294,1308,sports ball,0.247,sports ball:0.247;vase:0.247;mouse:0.083,
+oblique,robocup_3Dsim_ball_p4_y1,robocup_3Dsim_ball,ball,377 254 417 294,1315,sports ball,0.461,sports ball:0.461;mouse:0.107,sports ball:0.461
+oblique_near,plastic_cup_p0_y0,plastic_cup,cup,286 161 341 252,3999,cup,0.620,cup:0.620,cup:0.62
+oblique_near,plastic_cup_p0_y1,plastic_cup,cup,294 165 350 256,4034,cup,0.741,cup:0.741,cup:0.741
+oblique_near,plastic_cup_p1_y0,plastic_cup,cup,212 99 261 182,3306,cup,0.205,cup:0.205;mouse:0.069,
+oblique_near,plastic_cup_p1_y1,plastic_cup,cup,218 101 267 185,3330,cup,0.481,cup:0.481,cup:0.481
+oblique_near,plastic_cup_p2_y0,plastic_cup,cup,170 247 242 345,5278,mouse,0.400,mouse:0.400,mouse:0.4
+oblique_near,plastic_cup_p2_y1,plastic_cup,cup,179 252 250 350,5327,cup,0.275,cup:0.275,cup:0.275
+oblique_near,plastic_cup_p3_y0,plastic_cup,cup,369 99 417 182,3292,cup,0.809,cup:0.809,cup:0.809
+oblique_near,plastic_cup_p3_y1,plastic_cup,cup,376 101 425 185,3326,cup,0.643,cup:0.643,cup:0.643
+oblique_near,plastic_cup_p4_y0,plastic_cup,cup,405 227 476 324,5049,cup,0.543,cup:0.543,cup:0.543
+oblique_near,plastic_cup_p4_y1,plastic_cup,cup,414 232 487 329,5190,cup,0.377,cup:0.377,cup:0.377
+oblique_near,pitcher_base_p0_y0,pitcher_base,cup,229 81 348 272,17486,cup,0.829,cup:0.829,cup:0.829;dining table:0.32
+oblique_near,pitcher_base_p0_y1,pitcher_base,cup,284 86 405 277,17531,cup,0.479,cup:0.479,cup:0.479
+oblique_near,pitcher_base_p1_y0,pitcher_base,cup,152 23 260 197,13915,cup,0.381,cup:0.381,cup:0.381
+oblique_near,pitcher_base_p1_y1,pitcher_base,cup,197 27 298 201,14402,cup,0.243,cup:0.243,
+oblique_near,pitcher_base_p2_y0,pitcher_base,cup,71 163 241 373,24966,cup,0.394,cup:0.394,cup:0.394
+oblique_near,pitcher_base_p2_y1,pitcher_base,cup,137 171 289 381,26819,cup,0.643,cup:0.643,cup:0.643
+oblique_near,pitcher_base_p3_y0,pitcher_base,cup,325 23 436 197,14626,cup,0.336,cup:0.336,cup:0.336
+oblique_near,pitcher_base_p3_y1,pitcher_base,cup,375 26 484 201,14036,cup,0.116,cup:0.116;vase:0.092,
+oblique_near,pitcher_base_p4_y0,pitcher_base,cup,353 144 519 350,24798,cup,0.741,cup:0.741,cup:0.741
+oblique_near,pitcher_base_p4_y1,pitcher_base,cup,414 151 587 357,23995,mouse,0.117,mouse:0.117;toilet:0.077,
+oblique_near,mustard_bottle_p0_y0,mustard_bottle,bottle,313 141 361 270,5041,bottle,0.507,bottle:0.507,bottle:0.507
+oblique_near,mustard_bottle_p0_y1,mustard_bottle,bottle,288 120 357 237,6294,bottle,0.622,bottle:0.622,bottle:0.622;dining table:0.264
+oblique_near,mustard_bottle_p1_y0,mustard_bottle,bottle,232 74 282 195,4676,bottle,0.814,bottle:0.814,bottle:0.814
+oblique_near,mustard_bottle_p1_y1,mustard_bottle,bottle,215 58 280 171,5320,bottle,0.795,bottle:0.795,bottle:0.795;dining table:0.551
+oblique_near,mustard_bottle_p2_y0,mustard_bottle,bottle,196 237 270 370,7462,vase,0.395,vase:0.395;bottle:0.097,vase:0.395
+oblique_near,mustard_bottle_p2_y1,mustard_bottle,bottle,177 207 268 326,7854,bottle,0.605,bottle:0.605,bottle:0.605
+oblique_near,mustard_bottle_p3_y0,mustard_bottle,bottle,386 74 437 195,3908,bottle,0.689,bottle:0.689,bottle:0.689
+oblique_near,mustard_bottle_p3_y1,mustard_bottle,bottle,364 58 429 171,5293,bottle,0.775,bottle:0.775,bottle:0.775;dining table:0.594
+oblique_near,mustard_bottle_p4_y0,mustard_bottle,bottle,429 215 506 347,5937,banana,0.474,banana:0.474,banana:0.474
+oblique_near,mustard_bottle_p4_y1,mustard_bottle,bottle,397 187 490 306,7622,bottle,0.558,bottle:0.558,bottle:0.558
+oblique_near,beer_p0_y0,beer,bottle,272 83 367 267,14687,cup,0.490,cup:0.490;bottle:0.179,dining table:0.692;cup:0.49
+oblique_near,beer_p0_y1,beer,bottle,272 83 367 267,14697,cup,0.491,cup:0.491,dining table:0.597;cup:0.491
+oblique_near,beer_p1_y0,beer,bottle,189 25 281 193,11874,bottle,0.420,bottle:0.420,dining table:0.503;bottle:0.42
+oblique_near,beer_p1_y1,beer,bottle,189 25 281 193,11899,bottle,0.347,bottle:0.347,dining table:0.379;bottle:0.347
+oblique_near,beer_p2_y0,beer,bottle,129 165 269 365,19892,vase,0.434,vase:0.434,vase:0.434;dining table:0.359
+oblique_near,beer_p2_y1,beer,bottle,129 165 269 365,19878,vase,0.551,vase:0.551,vase:0.551
+oblique_near,beer_p3_y0,beer,bottle,358 25 450 193,11875,bottle,0.421,bottle:0.421,dining table:0.584;bottle:0.421
+oblique_near,beer_p3_y1,beer,bottle,358 25 450 193,11896,bottle,0.287,bottle:0.287;cup:0.122,dining table:0.472;bottle:0.287
+oblique_near,beer_p4_y0,beer,bottle,391 146 533 343,19147,cup,0.203,cup:0.203;vase:0.189;bottle:0.177,dining table:0.474
+oblique_near,beer_p4_y1,beer,bottle,391 146 533 343,19152,vase,0.424,vase:0.424,vase:0.424;dining table:0.369
+oblique_near,coke_can_p0_y0,coke_can,can,296 165 344 252,3730,cup,0.207,cup:0.207;bottle:0.125,
+oblique_near,coke_can_p0_y1,coke_can,can,295 164 344 251,3735,bottle,0.216,bottle:0.216;cup:0.155,
+oblique_near,coke_can_p1_y0,coke_can,can,221 101 268 181,3084,cup,0.199,cup:0.199;bottle:0.165,
+oblique_near,coke_can_p1_y1,coke_can,can,221 100 268 180,3081,bottle,0.379,bottle:0.379,bottle:0.379
+oblique_near,coke_can_p2_y0,coke_can,can,184 252 252 346,4854,cup,0.532,cup:0.532,cup:0.532
+oblique_near,coke_can_p2_y1,coke_can,can,184 251 252 345,4841,cup,0.504,cup:0.504,cup:0.504
+oblique_near,coke_can_p3_y0,coke_can,can,371 101 419 181,3099,cup,0.356,cup:0.356;bottle:0.264,cup:0.356;bottle:0.264
+oblique_near,coke_can_p3_y1,coke_can,can,371 100 418 180,3083,bottle,0.461,bottle:0.461;cup:0.114,bottle:0.461
+oblique_near,coke_can_p4_y0,coke_can,can,408 232 477 325,4726,cup,0.426,cup:0.426,cup:0.426
+oblique_near,coke_can_p4_y1,coke_can,can,408 231 476 324,4707,cup,0.288,cup:0.288;bottle:0.246,cup:0.288
+oblique_near,master_chef_can_p0_y0,master_chef_can,can,280 146 358 265,7926,bottle,0.409,bottle:0.409,bottle:0.409
+oblique_near,master_chef_can_p0_y1,master_chef_can,can,281 145 360 264,7894,bottle,0.726,bottle:0.726,bottle:0.726;dining table:0.289
+oblique_near,master_chef_can_p1_y0,master_chef_can,can,205 85 278 192,6387,bottle,0.420,bottle:0.420,bottle:0.42;dining table:0.316
+oblique_near,master_chef_can_p1_y1,master_chef_can,can,206 84 279 191,6360,bottle,0.544,bottle:0.544,bottle:0.544;dining table:0.31
+oblique_near,master_chef_can_p2_y0,master_chef_can,can,159 229 265 362,10674,bottle,0.661,bottle:0.661,bottle:0.661;dining table:0.49
+oblique_near,master_chef_can_p2_y1,master_chef_can,can,161 228 266 361,10612,bottle,0.732,bottle:0.732,bottle:0.732;dining table:0.43
+oblique_near,master_chef_can_p3_y0,master_chef_can,can,360 85 434 192,6398,bottle,0.539,bottle:0.539,bottle:0.539;dining table:0.324
+oblique_near,master_chef_can_p3_y1,master_chef_can,can,361 84 435 191,6360,bottle,0.653,bottle:0.653,bottle:0.653;dining table:0.41
+oblique_near,master_chef_can_p4_y0,master_chef_can,can,394 210 500 340,10240,cup,0.365,cup:0.365;bottle:0.350,cup:0.365;bottle:0.35;dining table:0.308
+oblique_near,master_chef_can_p4_y1,master_chef_can,can,396 209 501 339,10209,bottle,0.763,bottle:0.763,bottle:0.763;dining table:0.277
+oblique_near,potted_meat_can_p0_y0,potted_meat_can,can,318 192 363 282,3549,bottle,0.358,bottle:0.358;remote:0.159,bottle:0.358
+oblique_near,potted_meat_can_p0_y1,potted_meat_can,can,297 163 368 238,4043,cell phone,0.213,cell phone:0.213,
+oblique_near,potted_meat_can_p1_y0,potted_meat_can,can,240 127 278 205,2691,bottle,0.153,bottle:0.153,
+oblique_near,potted_meat_can_p1_y1,potted_meat_can,can,226 105 289 171,3309,none,0.000,,
+oblique_near,potted_meat_can_p2_y0,potted_meat_can,can,208 280 265 386,5186,remote,0.150,remote:0.150;cell phone:0.067,
+oblique_near,potted_meat_can_p2_y1,potted_meat_can,can,194 240 280 326,5362,sports ball,0.072,sports ball:0.072;mouse:0.066;cell phone:0.058,
+oblique_near,potted_meat_can_p3_y0,potted_meat_can,can,389 127 437 205,2992,bottle,0.168,bottle:0.168,
+oblique_near,potted_meat_can_p3_y1,potted_meat_can,can,372 105 435 171,3202,bottle,0.070,bottle:0.070,
+oblique_near,potted_meat_can_p4_y0,potted_meat_can,can,431 260 504 362,5561,cell phone,0.116,cell phone:0.116;sports ball:0.079;mouse:0.078,
+oblique_near,potted_meat_can_p4_y1,potted_meat_can,can,408 223 493 306,4848,cell phone,0.081,cell phone:0.081,
+oblique_near,cracker_box_p0_y0,cracker_box,box,259 115 404 261,19004,book,0.366,book:0.366,dining table:0.484;book:0.366
+oblique_near,cracker_box_p0_y1,cracker_box,box,280 75 381 271,14394,book,0.137,book:0.137,
+oblique_near,cracker_box_p1_y0,cracker_box,box,178 52 304 189,15500,book,0.143,book:0.143,
+oblique_near,cracker_box_p1_y1,cracker_box,box,205 22 287 197,9802,book,0.055,book:0.055,
+oblique_near,cracker_box_p2_y0,cracker_box,box,112 206 299 358,24692,book,0.434,book:0.434,book:0.434;dining table:0.324
+oblique_near,cracker_box_p2_y1,cracker_box,box,159 149 277 372,14739,remote,0.373,remote:0.373,remote:0.373
+oblique_near,cracker_box_p3_y0,cracker_box,box,351 52 482 189,15543,book,0.224,book:0.224,dining table:0.286
+oblique_near,cracker_box_p3_y1,cracker_box,box,356 22 462 197,13161,none,0.000,,
+oblique_near,cracker_box_p4_y0,cracker_box,box,382 185 580 336,24351,book,0.252,book:0.252,dining table:0.397;book:0.252
+oblique_near,cracker_box_p4_y1,cracker_box,box,387 132 551 350,22437,book,0.176,book:0.176;umbrella:0.060,
+oblique_near,cardboard_box_p0_y0,cardboard_box,box,0 0 639 342,205982,none,0.000,,
+oblique_near,cardboard_box_p0_y1,cardboard_box,box,0 0 639 379,177613,couch,0.107,couch:0.107,bed:0.609
+oblique_near,cardboard_box_p1_y0,cardboard_box,box,0 0 429 221,90212,chair,0.124,chair:0.124,
+oblique_near,cardboard_box_p1_y1,cardboard_box,box,0 0 494 245,88720,couch,0.071,couch:0.071,bed:0.616
+oblique_near,cardboard_box_p2_y0,cardboard_box,box,0 0 639 307,182067,none,0.000,,
+oblique_near,cardboard_box_p2_y1,cardboard_box,box,0 0 639 479,250591,bed,0.143,bed:0.143,
+oblique_near,cardboard_box_p3_y0,cardboard_box,box,210 0 639 221,90212,chair,0.086,chair:0.086,
+oblique_near,cardboard_box_p3_y1,cardboard_box,box,185 0 639 245,79993,none,0.000,,bed:0.345
+oblique_near,cardboard_box_p4_y0,cardboard_box,box,124 0 639 479,222763,dining table,0.101,dining table:0.101;toilet:0.057,
+oblique_near,cardboard_box_p4_y1,cardboard_box,box,131 0 639 479,192764,chair,0.384,chair:0.384;knife:0.107,chair:0.384
+oblique_near,cricket_ball_p0_y0,cricket_ball,ball,294 197 345 248,2100,sports ball,0.687,sports ball:0.687,sports ball:0.687
+oblique_near,cricket_ball_p0_y1,cricket_ball,ball,294 197 345 248,2095,sports ball,0.682,sports ball:0.682,sports ball:0.682
+oblique_near,cricket_ball_p1_y0,cricket_ball,ball,225 133 269 178,1648,sports ball,0.510,sports ball:0.510,sports ball:0.51
+oblique_near,cricket_ball_p1_y1,cricket_ball,ball,225 133 269 178,1644,sports ball,0.515,sports ball:0.515,sports ball:0.515
+oblique_near,cricket_ball_p2_y0,cricket_ball,ball,192 283 253 343,2955,sports ball,0.877,sports ball:0.877,sports ball:0.877
+oblique_near,cricket_ball_p2_y1,cricket_ball,ball,192 283 253 343,2954,sports ball,0.875,sports ball:0.875,sports ball:0.875
+oblique_near,cricket_ball_p3_y0,cricket_ball,ball,370 133 414 178,1648,sports ball,0.626,sports ball:0.626,sports ball:0.626
+oblique_near,cricket_ball_p3_y1,cricket_ball,ball,370 133 414 178,1645,sports ball,0.619,sports ball:0.619,sports ball:0.619
+oblique_near,cricket_ball_p4_y0,cricket_ball,ball,407 264 466 321,2774,sports ball,0.654,sports ball:0.654,sports ball:0.654
+oblique_near,cricket_ball_p4_y1,cricket_ball,ball,407 263 466 321,2777,sports ball,0.665,sports ball:0.665,sports ball:0.665
+oblique_near,robocup_spl_ball_p0_y0,robocup_spl_ball,ball,298 203 341 247,1548,orange,0.738,orange:0.738,orange:0.738
+oblique_near,robocup_spl_ball_p0_y1,robocup_spl_ball,ball,298 203 341 247,1547,orange,0.753,orange:0.753,orange:0.753
+oblique_near,robocup_spl_ball_p1_y0,robocup_spl_ball,ball,228 139 267 177,1221,orange,0.553,orange:0.553,orange:0.553
+oblique_near,robocup_spl_ball_p1_y1,robocup_spl_ball,ball,228 139 267 177,1219,orange,0.576,orange:0.576,orange:0.576
+oblique_near,robocup_spl_ball_p2_y0,robocup_spl_ball,ball,197 289 249 340,2183,orange,0.474,orange:0.474,orange:0.474
+oblique_near,robocup_spl_ball_p2_y1,robocup_spl_ball,ball,197 289 249 340,2184,orange,0.460,orange:0.460,orange:0.46
+oblique_near,robocup_spl_ball_p3_y0,robocup_spl_ball,ball,372 139 411 177,1221,orange,0.598,orange:0.598,orange:0.598
+oblique_near,robocup_spl_ball_p3_y1,robocup_spl_ball,ball,372 139 411 177,1220,orange,0.604,orange:0.604,orange:0.604
+oblique_near,robocup_spl_ball_p4_y0,robocup_spl_ball,ball,410 270 461 319,2054,orange,0.825,orange:0.825,orange:0.825
+oblique_near,robocup_spl_ball_p4_y1,robocup_spl_ball,ball,410 270 461 319,2054,orange,0.824,orange:0.824,orange:0.824
+oblique_near,robocup_3Dsim_ball_p0_y0,robocup_3Dsim_ball,ball,293 195 346 248,2296,sports ball,0.381,sports ball:0.381,sports ball:0.381
+oblique_near,robocup_3Dsim_ball_p0_y1,robocup_3Dsim_ball,ball,293 195 346 248,2330,sports ball,0.316,sports ball:0.316;mouse:0.179,sports ball:0.316
+oblique_near,robocup_3Dsim_ball_p1_y0,robocup_3Dsim_ball,ball,223 131 270 178,1802,sports ball,0.574,sports ball:0.574,sports ball:0.574
+oblique_near,robocup_3Dsim_ball_p1_y1,robocup_3Dsim_ball,ball,223 131 270 178,1813,sports ball,0.613,sports ball:0.613,sports ball:0.613
+oblique_near,robocup_3Dsim_ball_p2_y0,robocup_3Dsim_ball,ball,190 280 254 344,3245,sports ball,0.549,sports ball:0.549,sports ball:0.549
+oblique_near,robocup_3Dsim_ball_p2_y1,robocup_3Dsim_ball,ball,190 280 254 343,3260,sports ball,0.513,sports ball:0.513,sports ball:0.513
+oblique_near,robocup_3Dsim_ball_p3_y0,robocup_3Dsim_ball,ball,368 131 416 178,1824,sports ball,0.423,sports ball:0.423;mouse:0.091,sports ball:0.423
+oblique_near,robocup_3Dsim_ball_p3_y1,robocup_3Dsim_ball,ball,369 131 415 178,1793,sports ball,0.387,sports ball:0.387,sports ball:0.387
+oblique_near,robocup_3Dsim_ball_p4_y0,robocup_3Dsim_ball,ball,406 261 468 322,3030,sports ball,0.200,sports ball:0.200,
+oblique_near,robocup_3Dsim_ball_p4_y1,robocup_3Dsim_ball,ball,406 261 468 321,3035,sports ball,0.309,sports ball:0.309;mouse:0.291,sports ball:0.309;mouse:0.291
+top,plastic_cup_p0_y0,plastic_cup,cup,295 219 335 260,814,clock,0.051,clock:0.051,
+top,plastic_cup_p0_y1,plastic_cup,cup,301 223 341 264,817,none,0.000,,
+top,plastic_cup_p1_y0,plastic_cup,cup,228 136 268 176,933,none,0.000,,
+top,plastic_cup_p1_y1,plastic_cup,cup,234 140 275 180,912,none,0.000,,
+top,plastic_cup_p2_y0,plastic_cup,cup,228 303 268 343,933,none,0.000,,
+top,plastic_cup_p2_y1,plastic_cup,cup,234 307 275 347,937,none,0.000,,
+top,plastic_cup_p3_y0,plastic_cup,cup,362 136 402 176,914,none,0.000,,
+top,plastic_cup_p3_y1,plastic_cup,cup,368 140 408 180,913,none,0.000,,
+top,plastic_cup_p4_y0,plastic_cup,cup,379 286 419 327,914,none,0.000,,
+top,plastic_cup_p4_y1,plastic_cup,cup,385 290 425 331,941,none,0.000,,
+top,pitcher_base_p0_y0,pitcher_base,cup,252 199 340 291,6255,scissors,0.280,scissors:0.280;mouse:0.234;frisbee:0.054,scissors:0.28
+top,pitcher_base_p0_y1,pitcher_base,cup,294 206 379 315,6260,scissors,0.104,scissors:0.104;sports ball:0.059,
+top,pitcher_base_p1_y0,pitcher_base,cup,177 106 270 198,6717,sports ball,0.172,sports ball:0.172;mouse:0.090,
+top,pitcher_base_p1_y1,pitcher_base,cup,217 112 302 224,6751,none,0.000,,
+top,pitcher_base_p2_y0,pitcher_base,cup,177 288 270 388,7510,mouse,0.220,mouse:0.220;sports ball:0.152,
+top,pitcher_base_p2_y1,pitcher_base,cup,217 299 302 408,6660,mouse,0.318,mouse:0.318;scissors:0.135,mouse:0.318
+top,pitcher_base_p3_y0,pitcher_base,cup,325 105 417 198,6736,sports ball,0.442,sports ball:0.442,sports ball:0.442
+top,pitcher_base_p3_y1,pitcher_base,cup,366 112 457 224,6885,none,0.000,,
+top,pitcher_base_p4_y0,pitcher_base,cup,343 271 437 368,6556,mouse,0.364,mouse:0.364;sports ball:0.346,mouse:0.364;sports ball:0.346
+top,pitcher_base_p4_y1,pitcher_base,cup,380 282 476 390,7475,sports ball,0.299,sports ball:0.299,sports ball:0.299
+top,mustard_bottle_p0_y0,mustard_bottle,bottle,315 222 350 273,1370,remote,0.133,remote:0.133;clock:0.056,
+top,mustard_bottle_p0_y1,mustard_bottle,bottle,296 208 348 240,1369,frisbee,0.391,frisbee:0.391,frisbee:0.391
+top,mustard_bottle_p1_y0,mustard_bottle,bottle,247 139 288 196,1859,none,0.000,,
+top,mustard_bottle_p1_y1,mustard_bottle,bottle,229 122 285 166,1990,none,0.000,,
+top,mustard_bottle_p2_y0,mustard_bottle,bottle,247 298 288 357,1647,toothbrush,0.067,toothbrush:0.067,
+top,mustard_bottle_p2_y1,mustard_bottle,bottle,229 286 286 326,1806,clock,0.079,clock:0.079;remote:0.069,
+top,mustard_bottle_p3_y0,mustard_bottle,bottle,374 139 418 196,1715,clock,0.148,clock:0.148,
+top,mustard_bottle_p3_y1,mustard_bottle,bottle,358 122 414 166,1973,none,0.000,,
+top,mustard_bottle_p4_y0,mustard_bottle,bottle,389 283 435 340,2070,clock,0.108,clock:0.108;sports ball:0.069,
+top,mustard_bottle_p4_y1,mustard_bottle,bottle,372 271 431 309,1761,frisbee,0.067,frisbee:0.067,
+top,beer_p0_y0,beer,bottle,285 205 354 274,3892,sports ball,0.084,sports ball:0.084,
+top,beer_p0_y1,beer,bottle,285 205 354 274,3896,none,0.000,,
+top,beer_p1_y0,beer,bottle,208 109 287 192,4972,sports ball,0.058,sports ball:0.058,
+top,beer_p1_y1,beer,bottle,208 109 287 192,4971,sports ball,0.063,sports ball:0.063,
+top,beer_p2_y0,beer,bottle,208 287 287 370,4973,sports ball,0.060,sports ball:0.060,
+top,beer_p2_y1,beer,bottle,208 287 287 370,4973,sports ball,0.070,sports ball:0.070,
+top,beer_p3_y0,beer,bottle,352 109 431 192,4972,sports ball,0.102,sports ball:0.102,
+top,beer_p3_y1,beer,bottle,352 109 431 192,4974,sports ball,0.180,sports ball:0.180,
+top,beer_p4_y0,beer,bottle,367 272 450 351,4973,mouse,0.082,mouse:0.082,
+top,beer_p4_y1,beer,bottle,367 272 450 351,4973,sports ball,0.051,sports ball:0.051,
+top,coke_can_p0_y0,coke_can,can,302 222 338 257,1034,frisbee,0.074,frisbee:0.074,
+top,coke_can_p0_y1,coke_can,can,302 221 337 257,1035,frisbee,0.067,frisbee:0.067,
+top,coke_can_p1_y0,coke_can,can,237 140 276 182,1301,frisbee,0.195,frisbee:0.195,
+top,coke_can_p1_y1,coke_can,can,236 139 276 181,1321,frisbee,0.117,frisbee:0.117,
+top,coke_can_p2_y0,coke_can,can,236 298 276 340,1304,none,0.000,,
+top,coke_can_p2_y1,coke_can,can,236 297 276 339,1312,frisbee,0.076,frisbee:0.076;sports ball:0.071,
+top,coke_can_p3_y0,coke_can,can,363 140 403 182,1318,frisbee,0.129,frisbee:0.129,
+top,coke_can_p3_y1,coke_can,can,363 139 403 181,1314,frisbee,0.072,frisbee:0.072,
+top,coke_can_p4_y0,coke_can,can,378 283 420 323,1315,none,0.000,,
+top,coke_can_p4_y1,coke_can,can,378 282 419 322,1302,none,0.000,,
+top,master_chef_can_p0_y0,master_chef_can,can,291 212 348 269,2657,clock,0.351,clock:0.351;frisbee:0.190,clock:0.351
+top,master_chef_can_p0_y1,master_chef_can,can,292 211 349 268,2656,clock,0.263,clock:0.263;frisbee:0.200,clock:0.263
+top,master_chef_can_p1_y0,master_chef_can,can,222 126 285 191,3133,clock,0.138,clock:0.138;frisbee:0.113,
+top,master_chef_can_p1_y1,master_chef_can,can,223 126 285 190,3115,frisbee,0.070,frisbee:0.070,
+top,master_chef_can_p2_y0,master_chef_can,can,222 290 285 354,3125,sports ball,0.237,sports ball:0.237;clock:0.083,
+top,master_chef_can_p2_y1,master_chef_can,can,223 289 285 353,3117,sports ball,0.069,sports ball:0.069;mouse:0.056,
+top,master_chef_can_p3_y0,master_chef_can,can,354 126 416 191,3124,clock,0.303,clock:0.303,clock:0.303
+top,master_chef_can_p3_y1,master_chef_can,can,355 126 417 190,3127,none,0.000,,
+top,master_chef_can_p4_y0,master_chef_can,can,368 275 433 337,3127,clock,0.178,clock:0.178;frisbee:0.162,
+top,master_chef_can_p4_y1,master_chef_can,can,370 274 434 336,3128,frisbee,0.082,frisbee:0.082,
+top,potted_meat_can_p0_y0,potted_meat_can,can,318 230 349 284,1553,remote,0.373,remote:0.373;cell phone:0.109,remote:0.373
+top,potted_meat_can_p0_y1,potted_meat_can,can,303 198 356 241,1542,toothbrush,0.060,toothbrush:0.060,
+top,potted_meat_can_p1_y0,potted_meat_can,can,254 150 286 205,1618,remote,0.241,remote:0.241;cell phone:0.222,
+top,potted_meat_can_p1_y1,potted_meat_can,can,239 118 293 166,1838,none,0.000,,
+top,potted_meat_can_p2_y0,potted_meat_can,can,254 306 286 364,1697,remote,0.068,remote:0.068;bottle:0.061,
+top,potted_meat_can_p2_y1,potted_meat_can,can,239 276 293 321,1606,frisbee,0.090,frisbee:0.090,
+top,potted_meat_can_p3_y0,potted_meat_can,can,378 150 413 205,1746,cell phone,0.143,cell phone:0.143;clock:0.098,
+top,potted_meat_can_p3_y1,potted_meat_can,can,365 118 420 166,1746,none,0.000,,
+top,potted_meat_can_p4_y0,potted_meat_can,can,393 291 429 348,1825,none,0.000,,
+top,potted_meat_can_p4_y1,potted_meat_can,can,379 261 436 305,1733,sports ball,0.055,sports ball:0.055,
+top,cracker_box_p0_y0,cracker_box,box,278 227 378 268,4068,cell phone,0.096,cell phone:0.096,
+top,cracker_box_p0_y1,cracker_box,box,288 175 361 279,4050,cell phone,0.190,cell phone:0.190;remote:0.189,
+top,cracker_box_p1_y0,cracker_box,box,203 135 306 188,5297,clock,0.051,clock:0.051,
+top,cracker_box_p1_y1,cracker_box,box,213 82 293 197,4656,none,0.000,,
+top,cracker_box_p2_y0,cracker_box,box,203 303 306 362,5738,suitcase,0.104,suitcase:0.104;cell phone:0.073,
+top,cracker_box_p2_y1,cracker_box,box,213 264 293 373,5433,book,0.070,book:0.070,
+top,cracker_box_p3_y0,cracker_box,box,346 135 453 188,5411,cell phone,0.118,cell phone:0.118,
+top,cracker_box_p3_y1,cracker_box,box,352 81 436 197,5989,cell phone,0.058,cell phone:0.058,
+top,cracker_box_p4_y0,cracker_box,box,360 288 472 343,5643,suitcase,0.161,suitcase:0.161,
+top,cracker_box_p4_y1,cracker_box,box,367 249 455 354,5243,cell phone,0.067,cell phone:0.067,
+top,cardboard_box_p0_y0,cardboard_box,box,135 9 504 470,170940,none,0.000,,
+top,cardboard_box_p0_y1,cardboard_box,box,34 0 605 479,169313,bench,0.050,bench:0.050,
+top,cardboard_box_p1_y0,cardboard_box,box,24 0 393 331,122840,none,0.000,,
+top,cardboard_box_p1_y1,cardboard_box,box,0 0 494 364,127813,umbrella,0.155,umbrella:0.155,
+top,cardboard_box_p2_y0,cardboard_box,box,24 148 393 479,122840,none,0.000,,
+top,cardboard_box_p2_y1,cardboard_box,box,0 115 494 479,127772,book,0.256,book:0.256,book:0.256
+top,cardboard_box_p3_y0,cardboard_box,box,246 0 615 331,122840,none,0.000,,
+top,cardboard_box_p3_y1,cardboard_box,box,145 0 639 364,127772,umbrella,0.163,umbrella:0.163;dining table:0.106,
+top,cardboard_box_p4_y0,cardboard_box,box,274 120 639 479,131760,none,0.000,,
+top,cardboard_box_p4_y1,cardboard_box,box,173 88 639 479,131962,none,0.000,,
+top,cricket_ball_p0_y0,cricket_ball,ball,301 221 338 258,1124,sports ball,0.374,sports ball:0.374,sports ball:0.374
+top,cricket_ball_p0_y1,cricket_ball,ball,301 221 338 258,1124,sports ball,0.387,sports ball:0.387,sports ball:0.387
+top,cricket_ball_p1_y0,cricket_ball,ball,240 145 277 182,1155,sports ball,0.405,sports ball:0.405,sports ball:0.405
+top,cricket_ball_p1_y1,cricket_ball,ball,240 145 277 182,1155,sports ball,0.420,sports ball:0.420,sports ball:0.42
+top,cricket_ball_p2_y0,cricket_ball,ball,240 297 277 334,1155,sports ball,0.616,sports ball:0.616,sports ball:0.616
+top,cricket_ball_p2_y1,cricket_ball,ball,240 297 277 334,1156,sports ball,0.623,sports ball:0.623,sports ball:0.623
+top,cricket_ball_p3_y0,cricket_ball,ball,362 145 399 182,1155,sports ball,0.721,sports ball:0.721,sports ball:0.721
+top,cricket_ball_p3_y1,cricket_ball,ball,362 145 399 182,1156,sports ball,0.718,sports ball:0.718,sports ball:0.718
+top,cricket_ball_p4_y0,cricket_ball,ball,377 282 414 319,1154,sports ball,0.181,sports ball:0.181,
+top,cricket_ball_p4_y1,cricket_ball,ball,377 282 414 319,1155,sports ball,0.189,sports ball:0.189,
+top,robocup_spl_ball_p0_y0,robocup_spl_ball,ball,304 224 335 255,840,orange,0.554,orange:0.554,orange:0.554
+top,robocup_spl_ball_p0_y1,robocup_spl_ball,ball,304 224 335 255,840,orange,0.554,orange:0.554,orange:0.554
+top,robocup_spl_ball_p1_y0,robocup_spl_ball,ball,243 148 275 180,859,sports ball,0.392,sports ball:0.392;orange:0.359,sports ball:0.392;orange:0.359
+top,robocup_spl_ball_p1_y1,robocup_spl_ball,ball,243 148 275 180,864,sports ball,0.401,sports ball:0.401;orange:0.383,sports ball:0.401;orange:0.383
+top,robocup_spl_ball_p2_y0,robocup_spl_ball,ball,243 299 275 331,861,sports ball,0.639,sports ball:0.639,sports ball:0.639
+top,robocup_spl_ball_p2_y1,robocup_spl_ball,ball,243 299 275 331,864,sports ball,0.642,sports ball:0.642,sports ball:0.642
+top,robocup_spl_ball_p3_y0,robocup_spl_ball,ball,364 148 396 180,859,orange,0.650,orange:0.650;sports ball:0.385,orange:0.65;sports ball:0.385
+top,robocup_spl_ball_p3_y1,robocup_spl_ball,ball,364 148 396 180,863,orange,0.658,orange:0.658;sports ball:0.392,orange:0.658;sports ball:0.392
+top,robocup_spl_ball_p4_y0,robocup_spl_ball,ball,379 284 411 316,860,sports ball,0.445,sports ball:0.445,sports ball:0.445
+top,robocup_spl_ball_p4_y1,robocup_spl_ball,ball,379 284 411 316,861,sports ball,0.432,sports ball:0.432,sports ball:0.432
+top,robocup_3Dsim_ball_p0_y0,robocup_3Dsim_ball,ball,300 221 339 259,1240,sports ball,0.721,sports ball:0.721,sports ball:0.721
+top,robocup_3Dsim_ball_p0_y1,robocup_3Dsim_ball,ball,300 220 339 259,1245,sports ball,0.769,sports ball:0.769,sports ball:0.769
+top,robocup_3Dsim_ball_p1_y0,robocup_3Dsim_ball,ball,239 144 278 182,1254,sports ball,0.724,sports ball:0.724,sports ball:0.724
+top,robocup_3Dsim_ball_p1_y1,robocup_3Dsim_ball,ball,239 144 278 183,1258,sports ball,0.714,sports ball:0.714,sports ball:0.714
+top,robocup_3Dsim_ball_p2_y0,robocup_3Dsim_ball,ball,239 296 278 336,1286,sports ball,0.799,sports ball:0.799,sports ball:0.799
+top,robocup_3Dsim_ball_p2_y1,robocup_3Dsim_ball,ball,239 296 278 335,1254,sports ball,0.711,sports ball:0.711,sports ball:0.711
+top,robocup_3Dsim_ball_p3_y0,robocup_3Dsim_ball,ball,361 144 400 182,1255,sports ball,0.740,sports ball:0.740,sports ball:0.74
+top,robocup_3Dsim_ball_p3_y1,robocup_3Dsim_ball,ball,361 144 400 183,1275,sports ball,0.767,sports ball:0.767,sports ball:0.767
+top,robocup_3Dsim_ball_p4_y0,robocup_3Dsim_ball,ball,376 281 415 320,1260,sports ball,0.264,sports ball:0.264,sports ball:0.264
+top,robocup_3Dsim_ball_p4_y1,robocup_3Dsim_ball,ball,376 281 415 320,1273,sports ball,0.652,sports ball:0.652,sports ball:0.652
+top_near,plastic_cup_p0_y0,plastic_cup,cup,281 208 344 271,2172,frisbee,0.168,frisbee:0.168,
+top_near,plastic_cup_p0_y1,plastic_cup,cup,291 214 354 278,2169,frisbee,0.223,frisbee:0.223;clock:0.054,
+top_near,plastic_cup_p1_y0,plastic_cup,cup,176 76 248 152,3625,none,0.000,,
+top_near,plastic_cup_p1_y1,plastic_cup,cup,185 83 256 157,3437,none,0.000,,
+top_near,plastic_cup_p2_y0,plastic_cup,cup,176 327 248 403,3615,sports ball,0.106,sports ball:0.106;mouse:0.077,
+top_near,plastic_cup_p2_y1,plastic_cup,cup,185 332 255 409,3600,sports ball,0.061,sports ball:0.061,
+top_near,plastic_cup_p3_y0,plastic_cup,cup,380 76 450 152,3479,none,0.000,,
+top_near,plastic_cup_p3_y1,plastic_cup,cup,388 83 459 157,3507,sports ball,0.062,sports ball:0.062,
+top_near,plastic_cup_p4_y0,plastic_cup,cup,402 306 476 377,3474,sports ball,0.104,sports ball:0.104,
+top_near,plastic_cup_p4_y1,plastic_cup,cup,410 311 486 383,3643,sports ball,0.128,sports ball:0.128,
+top_near,pitcher_base_p0_y0,pitcher_base,cup,205 171 355 328,18390,mouse,0.849,mouse:0.849,mouse:0.849
+top_near,pitcher_base_p0_y1,pitcher_base,cup,276 183 423 367,18403,mouse,0.302,mouse:0.302;toilet:0.205,mouse:0.302
+top_near,pitcher_base_p1_y0,pitcher_base,cup,76 14 247 179,21247,mouse,0.129,mouse:0.129,
+top_near,pitcher_base_p1_y1,pitcher_base,cup,143 22 290 215,21016,none,0.000,,
+top_near,pitcher_base_p2_y0,pitcher_base,cup,76 315 247 479,23151,person,0.127,person:0.127,
+top_near,pitcher_base_p2_y1,pitcher_base,cup,143 327 290 479,18214,mouse,0.469,mouse:0.469,mouse:0.469
+top_near,pitcher_base_p3_y0,pitcher_base,cup,328 13 489 179,21077,none,0.000,,
+top_near,pitcher_base_p3_y1,pitcher_base,cup,387 22 556 215,21597,none,0.000,,
+top_near,pitcher_base_p4_y0,pitcher_base,cup,356 289 522 462,20241,mouse,0.457,mouse:0.457,mouse:0.457
+top_near,pitcher_base_p4_y1,pitcher_base,cup,409 305 589 479,23947,mouse,0.170,mouse:0.170,
+top_near,mustard_bottle_p0_y0,mustard_bottle,bottle,313 212 368 293,3390,remote,0.176,remote:0.176;frisbee:0.153,
+top_near,mustard_bottle_p0_y1,mustard_bottle,bottle,282 189 364 241,3404,frisbee,0.430,frisbee:0.430,frisbee:0.43
+top_near,mustard_bottle_p1_y0,mustard_bottle,bottle,204 81 273 176,5102,sports ball,0.260,sports ball:0.260,sports ball:0.26
+top_near,mustard_bottle_p1_y1,mustard_bottle,bottle,178 51 270 132,5659,sports ball,0.114,sports ball:0.114,
+top_near,mustard_bottle_p2_y0,mustard_bottle,bottle,204 325 273 424,4339,remote,0.374,remote:0.374,remote:0.374
+top_near,mustard_bottle_p2_y1,mustard_bottle,bottle,178 307 270 378,4917,sports ball,0.393,sports ball:0.393;frisbee:0.166,sports ball:0.393
+top_near,mustard_bottle_p3_y0,mustard_bottle,bottle,399 81 477 176,4647,none,0.000,,
+top_near,mustard_bottle_p3_y1,mustard_bottle,bottle,375 51 468 132,5610,sports ball,0.093,sports ball:0.093,
+top_near,mustard_bottle_p4_y0,mustard_bottle,bottle,421 303 505 398,5961,sports ball,0.235,sports ball:0.235,
+top_near,mustard_bottle_p4_y1,mustard_bottle,bottle,397 286 495 351,4776,sports ball,0.415,sports ball:0.415,sports ball:0.415
+top_near,beer_p0_y0,beer,bottle,260 180 379 299,11432,sports ball,0.366,sports ball:0.366;mouse:0.166,sports ball:0.366
+top_near,beer_p0_y1,beer,bottle,260 180 379 299,11432,sports ball,0.168,sports ball:0.168;frisbee:0.111,
+top_near,beer_p1_y0,beer,bottle,128 15 272 171,15816,none,0.000,,
+top_near,beer_p1_y1,beer,bottle,128 15 272 171,15811,kite,0.264,kite:0.264,kite:0.264
+top_near,beer_p2_y0,beer,bottle,128 308 272 464,15816,toothbrush,0.123,toothbrush:0.123;mouse:0.086,
+top_near,beer_p2_y1,beer,bottle,128 308 272 464,15812,toothbrush,0.131,toothbrush:0.131,
+top_near,beer_p3_y0,beer,bottle,367 15 511 171,15816,cup,0.114,cup:0.114,
+top_near,beer_p3_y1,beer,bottle,367 15 511 171,15812,none,0.000,,
+top_near,beer_p4_y0,beer,bottle,388 287 544 431,15816,mouse,0.201,mouse:0.201;toothbrush:0.060,
+top_near,beer_p4_y1,beer,bottle,388 287 544 431,15812,mouse,0.118,mouse:0.118;toothbrush:0.102;vase:0.063,
+top_near,coke_can_p0_y0,coke_can,can,292 212 348 268,2495,frisbee,0.129,frisbee:0.129,
+top_near,coke_can_p0_y1,coke_can,can,292 211 347 266,2486,frisbee,0.056,frisbee:0.056,
+top_near,coke_can_p1_y0,coke_can,can,190 84 256 155,3469,none,0.000,,
+top_near,coke_can_p1_y1,coke_can,can,189 83 256 154,3502,sports ball,0.111,sports ball:0.111,
+top_near,coke_can_p2_y0,coke_can,can,190 325 256 396,3479,sports ball,0.450,sports ball:0.450,sports ball:0.45
+top_near,coke_can_p2_y1,coke_can,can,189 324 256 394,3485,sports ball,0.414,sports ball:0.414;mouse:0.087,sports ball:0.414
+top_near,coke_can_p3_y0,coke_can,can,383 84 450 155,3503,sports ball,0.081,sports ball:0.081;cup:0.051,
+top_near,coke_can_p3_y1,coke_can,can,383 83 449 154,3489,sports ball,0.110,sports ball:0.110;cup:0.079,
+top_near,coke_can_p4_y0,coke_can,can,405 304 476 370,3491,mouse,0.051,mouse:0.051,
+top_near,coke_can_p4_y1,coke_can,can,405 302 475 369,3466,sports ball,0.095,sports ball:0.095,
+top_near,master_chef_can_p0_y0,master_chef_can,can,273 195 365 286,6678,frisbee,0.381,frisbee:0.381,frisbee:0.381
+top_near,master_chef_can_p0_y1,master_chef_can,can,275 194 366 285,6676,frisbee,0.215,frisbee:0.215,
+top_near,master_chef_can_p1_y0,master_chef_can,can,165 60 269 168,8387,sports ball,0.260,sports ball:0.260,sports ball:0.26
+top_near,master_chef_can_p1_y1,master_chef_can,can,167 58 270 167,8383,sports ball,0.129,sports ball:0.129,
+top_near,master_chef_can_p2_y0,master_chef_can,can,165 313 269 422,8410,sports ball,0.780,sports ball:0.780,sports ball:0.78
+top_near,master_chef_can_p2_y1,master_chef_can,can,167 312 270 420,8383,sports ball,0.722,sports ball:0.722,sports ball:0.722
+top_near,master_chef_can_p3_y0,master_chef_can,can,369 60 473 168,8380,sports ball,0.219,sports ball:0.219,
+top_near,master_chef_can_p3_y1,master_chef_can,can,371 58 475 167,8414,sports ball,0.278,sports ball:0.278,sports ball:0.278
+top_near,master_chef_can_p4_y0,master_chef_can,can,391 291 500 395,8398,sports ball,0.689,sports ball:0.689,sports ball:0.689
+top_near,master_chef_can_p4_y1,master_chef_can,can,393 290 502 393,8403,sports ball,0.677,sports ball:0.677;mouse:0.292,sports ball:0.677;mouse:0.292
+top_near,potted_meat_can_p0_y0,potted_meat_can,can,317 225 365 307,3620,remote,0.560,remote:0.560,remote:0.56
+top_near,potted_meat_can_p0_y1,potted_meat_can,can,293 175 376 242,3608,remote,0.204,remote:0.204,
+top_near,potted_meat_can_p1_y0,potted_meat_can,can,220 103 271 190,3977,remote,0.259,remote:0.259,remote:0.259
+top_near,potted_meat_can_p1_y1,potted_meat_can,can,196 53 281 132,4674,kite,0.078,kite:0.078,
+top_near,potted_meat_can_p2_y0,potted_meat_can,can,220 336 271 429,4236,none,0.000,,
+top_near,potted_meat_can_p2_y1,potted_meat_can,can,196 293 281 364,3851,remote,0.218,remote:0.218,
+top_near,potted_meat_can_p3_y0,potted_meat_can,can,405 103 463 190,4382,remote,0.057,remote:0.057,
+top_near,potted_meat_can_p3_y1,potted_meat_can,can,385 53 474 133,4394,none,0.000,,
+top_near,potted_meat_can_p4_y0,potted_meat_can,can,426 315 487 405,4642,mouse,0.078,mouse:0.078,
+top_near,potted_meat_can_p4_y1,potted_meat_can,can,407 271 498 340,4342,sports ball,0.057,sports ball:0.057;mouse:0.055,
+top_near,cracker_box_p0_y0,cracker_box,box,249 219 418 288,11406,book,0.118,book:0.118;remote:0.114,
+top_near,cracker_box_p0_y1,cracker_box,box,266 130 391 307,11396,remote,0.197,remote:0.197;cell phone:0.066,
+top_near,cracker_box_p1_y0,cracker_box,box,123 64 300 165,16270,book,0.073,book:0.073,
+top_near,cracker_box_p1_y1,cracker_box,box,140 0 281 178,12648,none,0.000,,
+top_near,cracker_box_p2_y0,cracker_box,box,123 333 300 446,17974,book,0.078,book:0.078,
+top_near,cracker_box_p2_y1,cracker_box,box,140 274 281 464,16796,book,0.340,book:0.340;cell phone:0.068,book:0.34
+top_near,cracker_box_p3_y0,cracker_box,box,358 64 544 165,16654,book,0.170,book:0.170,
+top_near,cracker_box_p3_y1,cracker_box,box,367 0 517 178,17948,none,0.000,,
+top_near,cracker_box_p4_y0,cracker_box,box,379 311 576 414,17619,book,0.158,book:0.158,
+top_near,cracker_box_p4_y1,cracker_box,box,389 253 548 433,15957,book,0.184,book:0.184,
+top_near,cardboard_box_p0_y0,cardboard_box,box,0 0 639 479,307200,none,0.000,,
+top_near,cardboard_box_p0_y1,cardboard_box,box,0 0 639 479,307200,none,0.000,,
+top_near,cardboard_box_p1_y0,cardboard_box,box,0 0 504 470,237855,none,0.000,,
+top_near,cardboard_box_p1_y1,cardboard_box,box,0 0 639 419,175823,dining table,0.052,dining table:0.052,
+top_near,cardboard_box_p2_y0,cardboard_box,box,0 9 504 479,237855,none,0.000,,
+top_near,cardboard_box_p2_y1,cardboard_box,box,0 0 628 479,238836,none,0.000,,
+top_near,cardboard_box_p3_y0,cardboard_box,box,135 0 639 470,237855,none,0.000,,
+top_near,cardboard_box_p3_y1,cardboard_box,box,11 0 639 479,238837,dining table,0.060,dining table:0.060,
+top_near,cardboard_box_p4_y0,cardboard_box,box,204 0 639 479,209280,none,0.000,,
+top_near,cardboard_box_p4_y1,cardboard_box,box,0 22 639 479,199667,dining table,0.083,dining table:0.083,
+top_near,cricket_ball_p0_y0,cricket_ball,ball,292 212 347 267,2504,sports ball,0.950,sports ball:0.950,sports ball:0.95
+top_near,cricket_ball_p0_y1,cricket_ball,ball,292 212 347 267,2508,sports ball,0.949,sports ball:0.949,sports ball:0.949
+top_near,cricket_ball_p1_y0,cricket_ball,ball,200 97 257 155,2642,sports ball,0.857,sports ball:0.857,sports ball:0.857
+top_near,cricket_ball_p1_y1,cricket_ball,ball,200 97 257 155,2638,sports ball,0.858,sports ball:0.858,sports ball:0.858
+top_near,cricket_ball_p2_y0,cricket_ball,ball,200 324 257 382,2641,sports ball,0.961,sports ball:0.961,sports ball:0.961
+top_near,cricket_ball_p2_y1,cricket_ball,ball,200 324 257 382,2640,sports ball,0.961,sports ball:0.961,sports ball:0.961
+top_near,cricket_ball_p3_y0,cricket_ball,ball,382 97 439 155,2642,sports ball,0.625,sports ball:0.625,sports ball:0.625
+top_near,cricket_ball_p3_y1,cricket_ball,ball,382 97 439 155,2640,sports ball,0.619,sports ball:0.619,sports ball:0.619
+top_near,cricket_ball_p4_y0,cricket_ball,ball,404 302 462 359,2640,sports ball,0.942,sports ball:0.942,sports ball:0.942
+top_near,cricket_ball_p4_y1,cricket_ball,ball,404 302 462 359,2639,sports ball,0.940,sports ball:0.940,sports ball:0.94
+top_near,robocup_spl_ball_p0_y0,robocup_spl_ball,ball,296 216 343 263,1844,sports ball,0.621,sports ball:0.621,sports ball:0.621
+top_near,robocup_spl_ball_p0_y1,robocup_spl_ball,ball,296 216 343 263,1852,sports ball,0.642,sports ball:0.642,sports ball:0.642
+top_near,robocup_spl_ball_p1_y0,robocup_spl_ball,ball,205 103 254 151,1942,orange,0.430,orange:0.430;sports ball:0.230,orange:0.43
+top_near,robocup_spl_ball_p1_y1,robocup_spl_ball,ball,205 102 254 151,1947,orange,0.434,orange:0.434;sports ball:0.223,orange:0.434
+top_near,robocup_spl_ball_p2_y0,robocup_spl_ball,ball,205 328 254 376,1943,sports ball,0.522,sports ball:0.522;orange:0.380,sports ball:0.522;orange:0.38
+top_near,robocup_spl_ball_p2_y1,robocup_spl_ball,ball,205 328 254 377,1945,sports ball,0.517,sports ball:0.517,sports ball:0.517
+top_near,robocup_spl_ball_p3_y0,robocup_spl_ball,ball,385 103 434 151,1942,orange,0.480,orange:0.480,orange:0.48
+top_near,robocup_spl_ball_p3_y1,robocup_spl_ball,ball,385 102 434 151,1945,orange,0.474,orange:0.474,orange:0.474
+top_near,robocup_spl_ball_p4_y0,robocup_spl_ball,ball,408 305 457 354,1946,sports ball,0.660,sports ball:0.660;orange:0.376,sports ball:0.66;orange:0.376
+top_near,robocup_spl_ball_p4_y1,robocup_spl_ball,ball,408 305 457 354,1946,sports ball,0.667,sports ball:0.667;orange:0.368,sports ball:0.667;orange:0.368
+top_near,robocup_3Dsim_ball_p0_y0,robocup_3Dsim_ball,ball,290 211 349 268,2770,sports ball,0.318,sports ball:0.318,sports ball:0.318
+top_near,robocup_3Dsim_ball_p0_y1,robocup_3Dsim_ball,ball,290 210 349 269,2764,sports ball,0.437,sports ball:0.437,sports ball:0.437
+top_near,robocup_3Dsim_ball_p1_y0,robocup_3Dsim_ball,ball,198 95 258 155,2896,sports ball,0.727,sports ball:0.727,sports ball:0.727
+top_near,robocup_3Dsim_ball_p1_y1,robocup_3Dsim_ball,ball,198 96 258 155,2883,sports ball,0.711,sports ball:0.711,sports ball:0.711
+top_near,robocup_3Dsim_ball_p2_y0,robocup_3Dsim_ball,ball,198 323 258 384,2946,sports ball,0.443,sports ball:0.443;mouse:0.361,sports ball:0.443;mouse:0.361
+top_near,robocup_3Dsim_ball_p2_y1,robocup_3Dsim_ball,ball,198 323 258 384,2894,sports ball,0.451,sports ball:0.451;mouse:0.390,sports ball:0.451;mouse:0.39
+top_near,robocup_3Dsim_ball_p3_y0,robocup_3Dsim_ball,ball,381 95 441 155,2892,sports ball,0.215,sports ball:0.215,
+top_near,robocup_3Dsim_ball_p3_y1,robocup_3Dsim_ball,ball,381 96 441 155,2893,sports ball,0.401,sports ball:0.401,sports ball:0.401
+top_near,robocup_3Dsim_ball_p4_y0,robocup_3Dsim_ball,ball,403 301 464 361,2880,sports ball,0.539,sports ball:0.539,sports ball:0.539
+top_near,robocup_3Dsim_ball_p4_y1,robocup_3Dsim_ball,ball,404 301 464 361,2911,sports ball,0.628,sports ball:0.628,sports ball:0.628

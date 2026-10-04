@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- Phase 0 scratch - UR5e (Gazebo Classic, gazebo_ros2_control) + Robotiq 2F-85 on tool0. -->
+<!-- NOTE - never put colon+space in comments, gazebo_ros2_control 0.4 passes robot_description through the rcl YAML param parser -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+  <xacro:arg name="simulation_controllers" default=""/>
+  <xacro:arg name="initial_positions_file" default="$(find ur_description)/config/initial_positions.yaml"/>
+  <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/ur_to_robotiq_adapter.urdf.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_85_macro.urdf.xacro"/>
+
+  <link name="world"/>
+  <xacro:ur_robot name="ur" tf_prefix="" parent="world"
+    joint_limits_parameters_file="$(find ur_description)/config/ur5e/joint_limits.yaml"
+    kinematics_parameters_file="$(find ur_description)/config/ur5e/default_kinematics.yaml"
+    physical_parameters_file="$(find ur_description)/config/ur5e/physical_parameters.yaml"
+    visual_parameters_file="$(find ur_description)/config/ur5e/visual_parameters.yaml"
+    safety_limits="true" sim_gazebo="true" ur_type="ur5e"
+    initial_positions="${xacro.load_yaml(initial_positions_file)}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:ur_robot>
+
+  <!-- adapter + gripper on tool0 -->
+  <xacro:ur_to_robotiq prefix="" connected_to="tool0"/>
+  <xacro:robotiq_gripper name="RobotiqGripper" prefix="" parent="gripper_mount_link" include_ros2_control="false">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_gripper>
+
+  <!-- TCP candidate - between the finger pads when closed (pad centres measured at z 0.115 open and 0.128 closed in robotiq_85_base_link, see REPORT.md) -->
+  <link name="gripper_tcp"/>
+  <joint name="gripper_tcp_joint" type="fixed">
+    <parent link="robotiq_85_base_link"/>
+    <child link="gripper_tcp"/>
+    <origin xyz="0 0 0.1300" rpy="0 0 0"/>
+  </joint>
+
+  <!-- second ros2_control block for the gripper - GazeboSystem + gazebo_ros2_control mimic params -->
+  <ros2_control name="RobotiqGripperGazebo" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="robotiq_85_left_knuckle_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <xacro:macro name="mimic_j" params="j m">
+      <joint name="${j}">
+        <param name="mimic">robotiq_85_left_knuckle_joint</param>
+        <param name="multiplier">${m}</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </xacro:macro>
+    <xacro:mimic_j j="robotiq_85_right_knuckle_joint" m="-1"/>
+    <xacro:mimic_j j="robotiq_85_left_inner_knuckle_joint" m="1"/>
+    <xacro:mimic_j j="robotiq_85_right_inner_knuckle_joint" m="-1"/>
+    <xacro:mimic_j j="robotiq_85_left_finger_tip_joint" m="-1"/>
+    <xacro:mimic_j j="robotiq_85_right_finger_tip_joint" m="1"/>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(arg simulation_controllers)</parameters>
+    </plugin>
+  </gazebo>
+</robot>

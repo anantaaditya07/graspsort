@@ -1,0 +1,14 @@
+/clock
+/dynamic_joint_states
+/joint_state_broadcaster/transition_event
+/joint_states
+/joint_trajectory_controller/controller_state
+/joint_trajectory_controller/joint_trajectory
+/joint_trajectory_controller/state
+/joint_trajectory_controller/transition_event
+/parameter_events
+/performance_metrics
+/robot_description
+/rosout
+/tf
+/tf_static

@@ -1,0 +1,72 @@
+######## Robotiq close target 0.42 (40 mm cube contact predicted at q~0.44)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.42
+status=4 position=0.4122 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.4546 max_mimic_dev=2.1534 max|vel|=464.031 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.32627 -0.408212 0.02 1.5708 0 -0.107249
+  js_health over 1.0s (99 msgs): robotiq_85_left_knuckle_joint=+0.3701 max_mimic_dev=2.5146 max|vel|=331.652 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.32627 -0.40821 0.019992 1.57071 5e-06 -0.107248
+  js_health over 1.0s (99 msgs): robotiq_85_left_knuckle_joint=+0.9206 max_mimic_dev=1.8903 max|vel|=572.665 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 1.32627 -0.40821 0.019992 1.57071 5e-06 -0.107248
+== open again
+open: action did not return within 15 s
+  js_health over 1.0s (97 msgs): robotiq_85_left_knuckle_joint=-0.0652 max_mimic_dev=0.4752 max|vel|=32.913 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 1.32627 -0.40821 0.019992 1.57071 5e-06 -0.107248
+######## Robotiq close target 0.46 (40 mm cube contact predicted at q~0.44)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.035 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.46
+status=4 position=0.4612 reached_goal=True stalled=False
+  js_health over 1.0s (98 msgs): robotiq_85_left_knuckle_joint=+0.3183 max_mimic_dev=2.5598 max|vel|=487.549 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.751404 0.000193 0.019992 0.000102 -1e-06 -2.0143
+  js_health over 1.0s (98 msgs): robotiq_85_left_knuckle_joint=+0.4654 max_mimic_dev=2.2801 max|vel|=709.673 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.751404 0.000193 0.019992 0.000102 -1e-06 -2.01429
+  js_health over 1.0s (98 msgs): robotiq_85_left_knuckle_joint=+0.9817 max_mimic_dev=2.1620 max|vel|=558.070 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.751406 0.000192 0.02 0 0 -2.01429
+== open again
+open: action did not return within 15 s
+  js_health over 1.0s (95 msgs): robotiq_85_left_knuckle_joint=-0.0937 max_mimic_dev=0.3997 max|vel|=35.869 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.751407 0.000191 0.019998 -9.9e-05 1e-06 -2.01426
+######## Robotiq close target 0.50 (40 mm cube contact predicted at q~0.44)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.036 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.50
+status=4 position=0.5100 reached_goal=True stalled=False
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.4553 max_mimic_dev=2.0917 max|vel|=359.724 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.804948 0.193317 0.02 2.05073 1.5708 0
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.5018 max_mimic_dev=2.1880 max|vel|=528.433 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.804949 0.193319 0.019998 -0.158282 1.5707 -2.20901
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.3866 max_mimic_dev=3.1295 max|vel|=678.351 (robotiq_85_right_finger_tip_joint_mimic)
+  cube pose: 0.804949 0.193319 0.019998 -0.158282 1.5707 -2.20901
+== open again
+open: action did not return within 15 s
+  js_health over 1.0s (97 msgs): robotiq_85_left_knuckle_joint=-0.0672 max_mimic_dev=0.4692 max|vel|=32.720 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.804949 0.193319 0.019998 -0.158282 1.5707 -2.20901
+######## Robotiq close target 0.30 (no contact expected, pad gap ~55 mm vs 40 mm cube)
+== open
+status=4 position=0.0000 reached_goal=True stalled=False
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=+0.0000 max_mimic_dev=0.0000 max|vel|=0.036 (robotiq_85_left_finger_tip_joint_mimic)
+== spawn pedestal + cube
+  cube pose before close: 0.5537 0.1333 0.07 -0 -0 -0
+== close to 0.30
+status=4 position=0.3081 reached_goal=True stalled=False
+  js_health over 1.0s (99 msgs): robotiq_85_left_knuckle_joint=+0.5195 max_mimic_dev=1.5986 max|vel|=217.374 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.727553 0.098759 0.019992 5e-06 7.2e-05 0.22244
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.2105 max_mimic_dev=2.3017 max|vel|=311.041 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.727553 0.098759 0.019992 5e-06 7.2e-05 0.22244
+  js_health over 1.0s (100 msgs): robotiq_85_left_knuckle_joint=+0.2177 max_mimic_dev=1.0939 max|vel|=110.848 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.727553 0.098759 0.019992 5e-06 7.2e-05 0.22244
+== open again
+open: action did not return within 15 s
+  js_health over 1.0s (101 msgs): robotiq_85_left_knuckle_joint=-0.1566 max_mimic_dev=0.4752 max|vel|=32.913 (robotiq_85_left_finger_tip_joint_mimic)
+  cube pose: 0.727553 0.098759 0.019992 5e-06 7.2e-05 0.22244

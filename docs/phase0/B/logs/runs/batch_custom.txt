@@ -1,0 +1,4 @@
+main rc=1
+fast rc=0
+offset rc=0
+reattach rc=0

@@ -1,0 +1,4 @@
+[custom_prestress run1] spawn: True SpawnEntity: Successfully spawned entity [box]
+[custom_prestress run1] attach: True attached ur::wrist_3_link__box::link
+[custom_prestress run1] detach: True detached ur::wrist_3_link__box::link
+[custom_prestress run1] SUMMARY {'run': 1, 'traj_err': 0, 'rel_at_attach_xyz_mm': [0.0, -0.0, 27.0], 'rel_at_attach_rpy_deg': [180.0, 0.0, -90.0], 'samples_held': 420, 'rate_hz': 102.2, 'snap_mm': 0.027, 'snap_deg': 0.003, 'max_drift_mm': 0.093, 'max_drift_deg': 0.068, 'wrist_travel_m': 0.744, 'box_travel_m': 0.749, 'z_at_detach': 0.5733, 'z_after_1s': 0.4608, 'max_box_speed': 1.364, 'nan': False, 'sim_span': (5.6, 10.9), 'motion_end': 9.7}

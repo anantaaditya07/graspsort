@@ -1,0 +1,27 @@
+joint names with _mimic suffix on /joint_states: ['robotiq_85_left_finger_tip_joint_mimic', 'robotiq_85_left_inner_knuckle_joint_mimic', 'robotiq_85_right_finger_tip_joint_mimic', 'robotiq_85_right_inner_knuckle_joint_mimic', 'robotiq_85_right_knuckle_joint_mimic']
+target +0.700: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.7000 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    robotiq_85_right_knuckle_joint           pos=-0.7000 expected=-0.7000
+    robotiq_85_left_inner_knuckle_joint      pos=+0.7000 expected=+0.7000
+    robotiq_85_right_inner_knuckle_joint     pos=-0.7000 expected=-0.7000
+    robotiq_85_left_finger_tip_joint         pos=-0.7000 expected=-0.7000
+    robotiq_85_right_finger_tip_joint        pos=+0.7000 expected=+0.7000
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=-0.0001 wall=0.05s | driven err=0.0001 | max mimic dev=0.0000 -> OK
+    robotiq_85_right_knuckle_joint           pos=+0.0000 expected=+0.0001
+    robotiq_85_left_inner_knuckle_joint      pos=-0.0000 expected=-0.0001
+    robotiq_85_right_inner_knuckle_joint     pos=+0.0000 expected=+0.0001
+    robotiq_85_left_finger_tip_joint         pos=+0.0000 expected=+0.0001
+    robotiq_85_right_finger_tip_joint        pos=-0.0001 expected=-0.0001
+target +0.700: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.7000 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    robotiq_85_right_knuckle_joint           pos=-0.7000 expected=-0.7000
+    robotiq_85_left_inner_knuckle_joint      pos=+0.7000 expected=+0.7000
+    robotiq_85_right_inner_knuckle_joint     pos=-0.7000 expected=-0.7000
+    robotiq_85_left_finger_tip_joint         pos=-0.7000 expected=-0.7000
+    robotiq_85_right_finger_tip_joint        pos=+0.7000 expected=+0.7000
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=-0.0001 wall=0.05s | driven err=0.0001 | max mimic dev=0.0001 -> OK
+    robotiq_85_right_knuckle_joint           pos=+0.0000 expected=+0.0001
+    robotiq_85_left_inner_knuckle_joint      pos=-0.0000 expected=-0.0001
+    robotiq_85_right_inner_knuckle_joint     pos=+0.0000 expected=+0.0001
+    robotiq_85_left_finger_tip_joint         pos=-0.0000 expected=+0.0001
+    robotiq_85_right_finger_tip_joint        pos=-0.0001 expected=-0.0001
+wrote 146 samples to gripper_joint_states.csv
+OVERALL PASS

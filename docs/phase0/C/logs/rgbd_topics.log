@@ -1,0 +1,59 @@
+$ ros2 topic list -t
+/camera/color/camera_info [sensor_msgs/msg/CameraInfo]
+/camera/color/image_raw [sensor_msgs/msg/Image]
+/camera/depth/camera_info [sensor_msgs/msg/CameraInfo]
+/camera/depth/image_raw [sensor_msgs/msg/Image]
+/camera/depth/points [sensor_msgs/msg/PointCloud2]
+/camera_near/color/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_near/color/image_raw [sensor_msgs/msg/Image]
+/camera_near/depth/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_near/depth/image_raw [sensor_msgs/msg/Image]
+/camera_near/depth/points [sensor_msgs/msg/PointCloud2]
+/camera_top/color/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_top/color/image_raw [sensor_msgs/msg/Image]
+/camera_top/depth/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_top/depth/image_raw [sensor_msgs/msg/Image]
+/camera_top/depth/points [sensor_msgs/msg/PointCloud2]
+/camera_top_near/color/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_top_near/color/image_raw [sensor_msgs/msg/Image]
+/camera_top_near/depth/camera_info [sensor_msgs/msg/CameraInfo]
+/camera_top_near/depth/image_raw [sensor_msgs/msg/Image]
+/camera_top_near/depth/points [sensor_msgs/msg/PointCloud2]
+/clock [rosgraph_msgs/msg/Clock]
+/gazebo/link_states [gazebo_msgs/msg/LinkStates]
+/gazebo/model_states [gazebo_msgs/msg/ModelStates]
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/performance_metrics [gazebo_msgs/msg/PerformanceMetrics]
+/rosout [rcl_interfaces/msg/Log]
+
+$ ros2 topic info -v /camera/depth/image_raw
+Type: sensor_msgs/msg/Image
+
+Publisher count: 1
+
+Node name: cam
+Node namespace: /camera
+Topic type: sensor_msgs/msg/Image
+Endpoint type: PUBLISHER
+GID: 01.10.58.05.85.dd.b8.22.b3.2a.2d.7a.00.00.38.03.00.00.00.00.00.00.00.00
+QoS profile:
+  Reliability: RELIABLE
+  History (Depth): KEEP_LAST (5)
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 0
+
+$ timeout 12 ros2 topic hz /camera/color/image_raw
+average rate: 9.973
+	min: 0.075s max: 0.138s std dev: 0.00966s window: 93
+average rate: 9.982
+	min: 0.075s max: 0.138s std dev: 0.00953s window: 104
+$ timeout 12 ros2 topic hz /camera/depth/image_raw
+average rate: 9.978
+	min: 0.089s max: 0.113s std dev: 0.00386s window: 93
+average rate: 9.983
+	min: 0.089s max: 0.113s std dev: 0.00374s window: 104

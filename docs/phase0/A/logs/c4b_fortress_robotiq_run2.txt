@@ -1,0 +1,15 @@
+cmd 0.7: status=4 position=0.7095 reached_goal=True stalled=False
+cmd 0.0: status=4 position=0.0093 reached_goal=True stalled=False
+cmd 0.7: status=4 position=0.6907 reached_goal=True stalled=False
+cmd 0.0: status=4 position=0.0093 reached_goal=True stalled=False
+cmd 0.7929: status=4 position=0.7830 reached_goal=True stalled=False
+cmd 0.0: status=4 position=0.0099 reached_goal=True stalled=False
+cmd 0.4: status=4 position=0.3907 reached_goal=True stalled=False
+cmd 0.0: status=4 position=0.0093 reached_goal=True stalled=False
+ran ign model query
+cmd 0.7: status=4 position=-0.0000 reached_goal=False stalled=True
+cmd 0.0: status=4 position=-0.0000 reached_goal=True stalled=False
+cmd 0.7: status=4 position=-0.0000 reached_goal=False stalled=True
+cmd 0.0: status=4 position=-0.0000 reached_goal=True stalled=False
+result error_code=0 (0=SUCCESSFUL) error_string="Goal successfully reached!"
+max |error| = 0.00001 rad -> PASS

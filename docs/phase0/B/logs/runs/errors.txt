@@ -1,0 +1,5 @@
+detach(ur,wrist_3_link,box,link) -> success=False message="not attached: ur::wrist_3_link__box::link"
+attach(nope,wrist_3_link,box,link) -> success=False message="unknown model 'nope'"
+attach(ur,no_link,box,link) -> success=False message="unknown link 'no_link' in model 'ur'"
+attach(ur,wrist_3_link,ghost,link) -> success=False message="unknown model 'ghost'"
+attach(ur,wrist_3_link,ur,wrist_3_link) -> success=False message="parent and child are the same link"

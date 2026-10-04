@@ -1,0 +1,4 @@
+	min: 0.007s max: 0.013s std dev: 0.00025s window: 1001
+average rate: 99.828
+	min: 0.007s max: 0.013s std dev: 0.00024s window: 1101
+failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130

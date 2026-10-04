@@ -1,0 +1,1 @@
+200 attach/detach cycles, 400/400 successful calls, 0.9 s wall

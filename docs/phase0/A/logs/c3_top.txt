@@ -1,0 +1,12 @@
+top - 12:12:09 up 2 days,  2:13,  1 user,  load average: 3.93, 3.96, 3.48
+Tasks: 458 total,   2 running, 456 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 30.8 us,  2.8 sy,  0.0 ni, 65.7 id,  0.6 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  15701.4 total,   1299.6 free,   6008.5 used,   8393.3 buff/cache
+MiB Swap:   7721.0 total,   7667.7 free,     53.2 used.   6942.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 261044 adityac+  20   0 2796800 184120  55576 R 418.8   1.1   1:34.86 python
+ 254055 adityac+  20   0 1450.4g 794580 195976 S  68.8   4.9  10:42.44 brave
+ 257520 adityac+  20   0 9803404 582244 151472 S  62.5   3.6   4:54.83 gzserver
+ 258207 adityac+  20   0 9040176 337228 149004 S  50.0   2.1   2:21.09 gzserver
+ 258660 adityac+  20   0 9117104 306436 149168 S  31.2   1.9   1:30.80 gzserver

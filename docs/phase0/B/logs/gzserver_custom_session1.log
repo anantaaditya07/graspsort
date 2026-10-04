@@ -1,0 +1,157 @@
+[INFO] [launch]: All log files can be found below /home/adityachavali/.ros/log/2026-10-04-12-07-43-042072-adityachavali-258657
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gzserver-1]: process started with pid [258660]
+[INFO] [robot_state_publisher-2]: process started with pid [258662]
+[INFO] [spawn_entity.py-3]: process started with pid [258664]
+[robot_state_publisher-2] [INFO] [1791095863.307839914] [robot_state_publisher]: got segment base
+[robot_state_publisher-2] [INFO] [1791095863.307954237] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1791095863.307964982] [robot_state_publisher]: got segment base_link_inertia
+[robot_state_publisher-2] [INFO] [1791095863.307971351] [robot_state_publisher]: got segment flange
+[robot_state_publisher-2] [INFO] [1791095863.307976905] [robot_state_publisher]: got segment forearm_link
+[robot_state_publisher-2] [INFO] [1791095863.307982332] [robot_state_publisher]: got segment ft_frame
+[robot_state_publisher-2] [INFO] [1791095863.307987442] [robot_state_publisher]: got segment ground_plane
+[robot_state_publisher-2] [INFO] [1791095863.307992618] [robot_state_publisher]: got segment shoulder_link
+[robot_state_publisher-2] [INFO] [1791095863.307998285] [robot_state_publisher]: got segment tool0
+[robot_state_publisher-2] [INFO] [1791095863.308003723] [robot_state_publisher]: got segment upper_arm_link
+[robot_state_publisher-2] [INFO] [1791095863.308009005] [robot_state_publisher]: got segment world
+[robot_state_publisher-2] [INFO] [1791095863.308014293] [robot_state_publisher]: got segment wrist_1_link
+[robot_state_publisher-2] [INFO] [1791095863.308019398] [robot_state_publisher]: got segment wrist_2_link
+[robot_state_publisher-2] [INFO] [1791095863.308024489] [robot_state_publisher]: got segment wrist_3_link
+[gzserver-1] Gazebo multi-robot simulator, version 11.10.2
+[gzserver-1] Copyright (C) 2012 Open Source Robotics Foundation.
+[gzserver-1] Released under the Apache 2 License.
+[gzserver-1] http://gazebosim.org
+[gzserver-1] 
+[spawn_entity.py-3] [INFO] [1791095863.683409158] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-3] [INFO] [1791095863.683756021] [spawn_entity]: Loading entity published on topic robot_description
+[spawn_entity.py-3] [INFO] [1791095863.686090199] [spawn_entity]: Waiting for entity xml on robot_description
+[spawn_entity.py-3] [INFO] [1791095863.688278772] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-3] [INFO] [1791095863.688611219] [spawn_entity]: Waiting for service /spawn_entity
+[gzserver-1] [Wrn] [gazebo_ros_init.cpp:178] 
+[gzserver-1] #     # ####### ####### ###  #####  #######
+[gzserver-1] ##    # #     #    #     #  #     # #
+[gzserver-1] # #   # #     #    #     #  #       #
+[gzserver-1] #  #  # #     #    #     #  #       #####
+[gzserver-1] #   # # #     #    #     #  #       #
+[gzserver-1] #    ## #     #    #     #  #     # #
+[gzserver-1] #     # #######    #    ###  #####  #######
+[gzserver-1] 
+[gzserver-1] This version of Gazebo, now called Gazebo classic, reaches end-of-life
+[gzserver-1] in January 2025. Users are highly encouraged to migrate to the new Gazebo
+[gzserver-1] using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration?utm_source=gazebo_ros_pkgs&utm_medium=cli)
+      2 [gzserver-1] 
+[gzserver-1] [INFO] [1791095864.115149046] [gazebo.gazebo_ros_state]: Publishing states of gazebo models at [/gazebo/model_states]
+[gzserver-1] [INFO] [1791095864.115582673] [gazebo.gazebo_ros_state]: Publishing states of gazebo links at [/gazebo/link_states]
+[gzserver-1] [INFO] [1791095864.131751220] [graspsort_attach]: Attach plugin ready (joint type 'fixed', services /attach, /detach)
+[spawn_entity.py-3] [INFO] [1791095864.195761468] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-3] [INFO] [1791095864.421008763] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [ur]
+[gzserver-1] [INFO] [1791095864.458897412] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-1] [INFO] [1791095864.461299609] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-1] [INFO] [1791095864.461378961] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[gzserver-1] [INFO] [1791095864.462767100] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-1] [INFO] [1791095864.463334175] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-1] [INFO] [1791095864.463377948] [gazebo_ros2_control]: Loading parameter files /tmp/claude-1000/-home-adityachavali-graspsort/b1f9bd71-1b1a-4b44-834a-7b7601ea7da7/scratchpad/B/harness/controllers.yaml
+[gzserver-1] [INFO] [1791095864.472666435] [gazebo_ros2_control]: Loading joint: shoulder_pan_joint
+[gzserver-1] [INFO] [1791095864.472738754] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.472753229] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.472769777] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1791095864.472786782] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.472799692] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.472811753] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.472821413] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473053936] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473134955] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473147934] [gazebo_ros2_control]: Loading joint: shoulder_lift_joint
+[gzserver-1] [INFO] [1791095864.473156861] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.473165994] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473176990] [gazebo_ros2_control]: 			 found initial value: -1.570000
+[gzserver-1] [INFO] [1791095864.473188655] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473197067] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473206048] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.473214167] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473293881] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473347268] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473355302] [gazebo_ros2_control]: Loading joint: elbow_joint
+[gzserver-1] [INFO] [1791095864.473360933] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.473368094] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473375845] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1791095864.473385736] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473393713] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473403749] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.473412710] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473485521] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473550511] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473567011] [gazebo_ros2_control]: Loading joint: wrist_1_joint
+[gzserver-1] [INFO] [1791095864.473575835] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.473583794] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473592508] [gazebo_ros2_control]: 			 found initial value: -1.570000
+[gzserver-1] [INFO] [1791095864.473602085] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473610244] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473618238] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.473626170] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473699281] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473763879] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473775594] [gazebo_ros2_control]: Loading joint: wrist_2_joint
+[gzserver-1] [INFO] [1791095864.473784281] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.473792893] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473800897] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1791095864.473811083] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473854185] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473864506] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.473873298] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.473947333] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.473991088] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.473998790] [gazebo_ros2_control]: Loading joint: wrist_3_joint
+[gzserver-1] [INFO] [1791095864.474004340] [gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1791095864.474009912] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.474015137] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1791095864.474023011] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.474030742] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.474036319] [gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1791095864.474041246] [gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1791095864.474099260] [gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1791095864.474171590] [gazebo_ros2_control]: 		 effort
+[gzserver-1] [INFO] [1791095864.474335753] [resource_manager]: Initialize hardware 'ur' 
+[gzserver-1] [INFO] [1791095864.474630457] [resource_manager]: Successful initialization of hardware 'ur'
+[gzserver-1] [INFO] [1791095864.474780704] [resource_manager]: 'configure' hardware 'ur' 
+[gzserver-1] [INFO] [1791095864.474794870] [resource_manager]: Successful 'configure' of hardware 'ur'
+[gzserver-1] [INFO] [1791095864.474810178] [resource_manager]: 'activate' hardware 'ur' 
+[gzserver-1] [INFO] [1791095864.474818537] [resource_manager]: Successful 'activate' of hardware 'ur'
+[gzserver-1] [INFO] [1791095864.474947454] [gazebo_ros2_control]: Loading controller_manager
+[gzserver-1] [WARN] [1791095864.487766768] [gazebo_ros2_control]:  Desired controller update period (0.002 s) is slower than the gazebo simulation period (0.001 s).
+[gzserver-1] [INFO] [1791095864.487978970] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[INFO] [spawn_entity.py-3]: process has finished cleanly [pid 258664]
+[INFO] [spawner-4]: process started with pid [258840]
+[INFO] [spawner-5]: process started with pid [258842]
+[gzserver-1] [INFO] [1791095864.981889493] [controller_manager]: Loading controller 'joint_trajectory_controller'
+[gzserver-1] [WARN] [1791095864.995182814] [joint_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[gzserver-1] [INFO] [1791095864.997956993] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-5] [INFO] [1791095865.009145177] [spawner_joint_trajectory_controller]: Loaded joint_trajectory_controller
+[gzserver-1] [INFO] [1791095865.010285050] [controller_manager]: Configuring controller 'joint_trajectory_controller'
+[gzserver-1] [INFO] [1791095865.010769689] [joint_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-1] [INFO] [1791095865.010811579] [joint_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-1] [INFO] [1791095865.010857277] [joint_trajectory_controller]: Using 'splines' interpolation method.
+[gzserver-1] [INFO] [1791095865.011697585] [joint_trajectory_controller]: Controller state will be published at 100.00 Hz.
+[spawner-4] [INFO] [1791095865.016720584] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gzserver-1] [INFO] [1791095865.022433730] [joint_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[gzserver-1] [INFO] [1791095865.028521227] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-1] [INFO] [1791095865.028621987] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-5] [INFO] [1791095865.036815942] [spawner_joint_trajectory_controller]: Configured and activated joint_trajectory_controller
+[spawner-4] [INFO] [1791095865.040813908] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[INFO] [spawner-4]: process has finished cleanly [pid 258840]
+[INFO] [spawner-5]: process has finished cleanly [pid 258842]
+[gzserver-1] [Msg] Waiting for master.
+[gzserver-1] [Msg] Connected to gazebo master @ http://127.0.0.1:11352
+[gzserver-1] [Msg] Publicized address: 10.209.1.97
+[gzserver-1] [Msg] Loading world file [/tmp/claude-1000/-home-adityachavali-graspsort/b1f9bd71-1b1a-4b44-834a-7b7601ea7da7/scratchpad/B/attach_test_custom.world]
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+      2 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[INFO] [robot_state_publisher-2]: sending signal 'SIGINT' to process[robot_state_publisher-2]
+[INFO] [gzserver-1]: sending signal 'SIGINT' to process[gzserver-1]
+[robot_state_publisher-2] [INFO] [1791096578.775719651] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-2] [INFO] [1791096578.776171620] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-2] [INFO] [1791096578.777631433] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 258662]
+[INFO] [gzserver-1]: process has finished cleanly [pid 258660]
+      2 [gzserver-1] 
+[trimmed: 2426 'graspsort_attach: attached/detached ...' INFO lines removed]

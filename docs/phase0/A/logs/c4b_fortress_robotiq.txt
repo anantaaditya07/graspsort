@@ -1,0 +1,7 @@
+joint names with _mimic suffix on /joint_states: []
+target +0.700: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.7095 wall=0.25s | driven err=0.0004 | max mimic dev=0.0000 -> OK
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0093 wall=1.50s | driven err=0.0004 | max mimic dev=0.0000 -> OK
+target +0.700: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.6908 wall=1.50s | driven err=0.0004 | max mimic dev=0.0000 -> OK
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0092 wall=1.55s | driven err=0.0003 | max mimic dev=0.0000 -> OK
+wrote 594 samples to c4b_fortress_robotiq_js.csv
+OVERALL PASS

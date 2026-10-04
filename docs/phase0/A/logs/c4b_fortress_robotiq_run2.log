@@ -1,0 +1,240 @@
+[INFO] [launch]: All log files can be found below /home/adityachavali/.ros/log/2026-10-04-12-19-23-159479-adityachavali-263560
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [263562]
+[INFO] [ign gazebo-2]: process started with pid [263564]
+[INFO] [create-3]: process started with pid [263566]
+[INFO] [parameter_bridge-4]: process started with pid [263569]
+[INFO] [spawner-5]: process started with pid [263571]
+[INFO] [spawner-6]: process started with pid [263573]
+[INFO] [spawner-7]: process started with pid [263575]
+[robot_state_publisher-1] [INFO] [1791096563.663598765] [robot_state_publisher]: got segment base
+[robot_state_publisher-1] [INFO] [1791096563.663785682] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1791096563.663808390] [robot_state_publisher]: got segment base_link_inertia
+[robot_state_publisher-1] [INFO] [1791096563.663824992] [robot_state_publisher]: got segment flange
+[robot_state_publisher-1] [INFO] [1791096563.663839952] [robot_state_publisher]: got segment forearm_link
+[robot_state_publisher-1] [INFO] [1791096563.663854059] [robot_state_publisher]: got segment ft_frame
+[robot_state_publisher-1] [INFO] [1791096563.663867609] [robot_state_publisher]: got segment gripper_mount_link
+[robot_state_publisher-1] [INFO] [1791096563.663881589] [robot_state_publisher]: got segment robotiq_85_base_link
+[robot_state_publisher-1] [INFO] [1791096563.663896324] [robot_state_publisher]: got segment robotiq_85_left_finger_link
+[robot_state_publisher-1] [INFO] [1791096563.663910894] [robot_state_publisher]: got segment robotiq_85_left_finger_tip_link
+[robot_state_publisher-1] [INFO] [1791096563.663925159] [robot_state_publisher]: got segment robotiq_85_left_inner_knuckle_link
+[robot_state_publisher-1] [INFO] [1791096563.663939157] [robot_state_publisher]: got segment robotiq_85_left_knuckle_link
+[robot_state_publisher-1] [INFO] [1791096563.663952700] [robot_state_publisher]: got segment robotiq_85_right_finger_link
+[robot_state_publisher-1] [INFO] [1791096563.663965923] [robot_state_publisher]: got segment robotiq_85_right_finger_tip_link
+[robot_state_publisher-1] [INFO] [1791096563.663979412] [robot_state_publisher]: got segment robotiq_85_right_inner_knuckle_link
+[robot_state_publisher-1] [INFO] [1791096563.663992856] [robot_state_publisher]: got segment robotiq_85_right_knuckle_link
+[robot_state_publisher-1] [INFO] [1791096563.664006082] [robot_state_publisher]: got segment shoulder_link
+[robot_state_publisher-1] [INFO] [1791096563.664019455] [robot_state_publisher]: got segment tool0
+[robot_state_publisher-1] [INFO] [1791096563.664032863] [robot_state_publisher]: got segment upper_arm_link
+[robot_state_publisher-1] [INFO] [1791096563.664046340] [robot_state_publisher]: got segment ur_to_robotiq_link
+[robot_state_publisher-1] [INFO] [1791096563.664059417] [robot_state_publisher]: got segment world
+[robot_state_publisher-1] [INFO] [1791096563.664072827] [robot_state_publisher]: got segment wrist_1_link
+[robot_state_publisher-1] [INFO] [1791096563.664086075] [robot_state_publisher]: got segment wrist_2_link
+[robot_state_publisher-1] [INFO] [1791096563.664098970] [robot_state_publisher]: got segment wrist_3_link
+[create-3] [INFO] [1791096563.682743767] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-4] [INFO] [1791096563.686882784] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[spawner-7] [INFO] [1791096563.953989096] [spawner_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [INFO] [1791096563.954263461] [spawner_joint_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-5] [INFO] [1791096563.956924438] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[create-3] [INFO] [1791096564.053728085] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-3] [INFO] [1791096564.057033846] [ros_gz_sim]: Requested creation of entity.
+[create-3] [INFO] [1791096564.057099678] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-3]: process has finished cleanly [pid 263566]
+[ign gazebo-2] [INFO] [1791096565.896790770] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-2] [INFO] [1791096565.896830256] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-2] [INFO] [1791096565.907657056] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[ign gazebo-2] [INFO] [1791096565.908585359] [gz_ros2_control]: Received URDF from param server
+[ign gazebo-2] [INFO] [1791096565.910001501] [gz_ros2_control]: [gz_ros2_control] Fixed joint ['base_joint'] (Entity='58') is skipped.
+[ign gazebo-2] [INFO] [1791096565.913146666] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-2] [INFO] [1791096565.913205394] [gz_ros2_control]: Loading joint: shoulder_pan_joint
+[ign gazebo-2] [INFO] [1791096565.913216391] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913223854] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913243379] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791096565.913255944] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913261787] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913267046] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913272555] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913294414] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913307590] [gz_ros2_control]: Loading joint: shoulder_lift_joint
+[ign gazebo-2] [INFO] [1791096565.913313819] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913319199] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913324934] [gz_ros2_control]: 			 found initial value: -1.570000
+[ign gazebo-2] [INFO] [1791096565.913330958] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913336510] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913341541] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913346258] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913352940] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913363245] [gz_ros2_control]: Loading joint: elbow_joint
+[ign gazebo-2] [INFO] [1791096565.913369515] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913374600] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913379466] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791096565.913385514] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913391969] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913397834] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913402895] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913409214] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913428879] [gz_ros2_control]: Loading joint: wrist_1_joint
+[ign gazebo-2] [INFO] [1791096565.913434584] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913440279] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913445036] [gz_ros2_control]: 			 found initial value: -1.570000
+[ign gazebo-2] [INFO] [1791096565.913451121] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913456199] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913461061] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913467816] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913476967] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913490256] [gz_ros2_control]: Loading joint: wrist_2_joint
+[ign gazebo-2] [INFO] [1791096565.913498105] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913505503] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913512936] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791096565.913521707] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913526902] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913532380] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913537219] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913544926] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913555409] [gz_ros2_control]: Loading joint: wrist_3_joint
+[ign gazebo-2] [INFO] [1791096565.913560772] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.913565772] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913570305] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791096565.913575716] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913581652] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791096565.913586790] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.913591612] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.913597777] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.913703710] [resource_manager]: Initialize hardware 'ur' 
+[ign gazebo-2] [WARN] [1791096565.913743291] [gz_ros2_control]: The ign_ros2_control plugin got renamed to gz_ros2_control.
+[ign gazebo-2] Update the <ros2_control> tag and gazebo plugin to
+[ign gazebo-2] <hardware>
+[ign gazebo-2]   <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+[ign gazebo-2] </hardware>
+[ign gazebo-2] <gazebo>
+[ign gazebo-2]   <plugin filename="gz_ros2_control-system"name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+[ign gazebo-2]     ...
+[ign gazebo-2]   </plugin>
+[ign gazebo-2] </gazebo>
+[ign gazebo-2] [INFO] [1791096565.913827978] [resource_manager]: Successful initialization of hardware 'ur'
+[ign gazebo-2] [INFO] [1791096565.913879948] [resource_manager]: 'configure' hardware 'ur' 
+[ign gazebo-2] [INFO] [1791096565.913885853] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-2] [INFO] [1791096565.913897568] [resource_manager]: Successful 'configure' of hardware 'ur'
+[ign gazebo-2] [INFO] [1791096565.913905614] [resource_manager]: 'activate' hardware 'ur' 
+[ign gazebo-2] [INFO] [1791096565.913914105] [resource_manager]: Successful 'activate' of hardware 'ur'
+[ign gazebo-2] [INFO] [1791096565.914056210] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-2] [INFO] [1791096565.914075100] [gz_ros2_control]: Loading joint: robotiq_85_left_knuckle_joint
+[ign gazebo-2] [INFO] [1791096565.914082919] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914089516] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.914095998] [gz_ros2_control]: 			 found initial value: 0.792900
+[ign gazebo-2] [INFO] [1791096565.914104756] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791096565.914114311] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914119358] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791096565.914129538] [gz_ros2_control]: Loading joint: robotiq_85_right_knuckle_joint
+[ign gazebo-2] [INFO] [1791096565.914139324] [gz_ros2_control]: Joint 'robotiq_85_right_knuckle_joint'is mimicking joint 'robotiq_85_left_knuckle_joint' with multiplier: -1
+[ign gazebo-2] [INFO] [1791096565.914146148] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914150706] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914158343] [gz_ros2_control]: Loading joint: robotiq_85_left_inner_knuckle_joint
+[ign gazebo-2] [INFO] [1791096565.914165165] [gz_ros2_control]: Joint 'robotiq_85_left_inner_knuckle_joint'is mimicking joint 'robotiq_85_left_knuckle_joint' with multiplier: 1
+[ign gazebo-2] [INFO] [1791096565.914170180] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914173975] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914180451] [gz_ros2_control]: Loading joint: robotiq_85_right_inner_knuckle_joint
+[ign gazebo-2] [INFO] [1791096565.914186004] [gz_ros2_control]: Joint 'robotiq_85_right_inner_knuckle_joint'is mimicking joint 'robotiq_85_left_knuckle_joint' with multiplier: -1
+[ign gazebo-2] [INFO] [1791096565.914190319] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914194244] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914199999] [gz_ros2_control]: Loading joint: robotiq_85_left_finger_tip_joint
+[ign gazebo-2] [INFO] [1791096565.914205259] [gz_ros2_control]: Joint 'robotiq_85_left_finger_tip_joint'is mimicking joint 'robotiq_85_left_knuckle_joint' with multiplier: -1
+[ign gazebo-2] [INFO] [1791096565.914209715] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914213700] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914220371] [gz_ros2_control]: Loading joint: robotiq_85_right_finger_tip_joint
+[ign gazebo-2] [INFO] [1791096565.914225728] [gz_ros2_control]: Joint 'robotiq_85_right_finger_tip_joint'is mimicking joint 'robotiq_85_left_knuckle_joint' with multiplier: 1
+[ign gazebo-2] [INFO] [1791096565.914238180] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791096565.914246431] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791096565.914256644] [resource_manager]: Initialize hardware 'RobotiqGripperIgn' 
+[ign gazebo-2] [WARN] [1791096565.914265885] [gz_ros2_control]: The ign_ros2_control plugin got renamed to gz_ros2_control.
+[ign gazebo-2] Update the <ros2_control> tag and gazebo plugin to
+[ign gazebo-2] <hardware>
+[ign gazebo-2]   <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+[ign gazebo-2] </hardware>
+[ign gazebo-2] <gazebo>
+[ign gazebo-2]   <plugin filename="gz_ros2_control-system"name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+[ign gazebo-2]     ...
+[ign gazebo-2]   </plugin>
+[ign gazebo-2] </gazebo>
+[ign gazebo-2] [INFO] [1791096565.914272826] [resource_manager]: Successful initialization of hardware 'RobotiqGripperIgn'
+[ign gazebo-2] [INFO] [1791096565.914279442] [resource_manager]: 'configure' hardware 'RobotiqGripperIgn' 
+[ign gazebo-2] [INFO] [1791096565.914281717] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-2] [INFO] [1791096565.914288005] [resource_manager]: Successful 'configure' of hardware 'RobotiqGripperIgn'
+[ign gazebo-2] [INFO] [1791096565.914290951] [resource_manager]: 'activate' hardware 'RobotiqGripperIgn' 
+[ign gazebo-2] [INFO] [1791096565.914310229] [resource_manager]: Successful 'activate' of hardware 'RobotiqGripperIgn'
+[ign gazebo-2] [INFO] [1791096565.914313993] [gz_ros2_control]: Loading controller_manager
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mIgnition Gazebo Server v[0m[1;32m6.18.0[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mLoading SDF world file[[0m[1;32m/usr/share/ignition/ignition-gazebo6/worlds/empty.sdf[0m[1;32m].[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing entity system service on [[0m[1;32m/[0m[1;32mentity/system/add[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mCreate service on [[0m[1;32m/world/empty/create[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mRemove service on [[0m[1;32m/world/empty/remove[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPose service on [[0m[1;32m/world/empty/set_pose[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPose service on [[0m[1;32m/world/empty/set_pose_vector[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mLight configuration service on [[0m[1;32m/world/empty/light_config[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPhysics service on [[0m[1;32m/world/empty/set_physics[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mSphericalCoordinates service on [[0m[1;32m/world/empty/set_spherical_coordinates[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mEnable collision service on [[0m[1;32m/world/empty/enable_collision[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mDisable collision service on [[0m[1;32m/world/empty/disable_collision[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mMaterial service on [[0m[1;32m/world/empty/visual_config[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mMaterial service on [[0m[1;32m/world/empty/wheel_slip[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mLoaded level [[0m[1;32m3[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing world controls on [[0m[1;32m/world/empty[0m[1;32m/control], [[0m[1;32m/world/empty[0m[1;32m/control/state] and [[0m[1;32m/world/empty[0m[1;32m/playback/control][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing GUI information on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mgui/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mWorld [[0m[1;32mempty[0m[1;32m] initialized with [[0m[1;32m1ms[0m[1;32m] physics profile.[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing world SDF generation service on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mgenerate_world_sdf[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing world names on [[0m[1;32m/gazebo/worlds[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mResource path add service on [[0m[1;32m/gazebo/resource_paths/add[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mResource path get service on [[0m[1;32m/gazebo/resource_paths/get[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mResource path resolve service on [[0m[1;32m/gazebo/resource_paths/resolve[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mResource paths published on [[0m[1;32m/gazebo/resource_paths[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServer control service on [[0m[1;32m/server_control[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mFound no publishers on /stats, adding root stats topic[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mFound no publishers on /clock, adding root clock topic[0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing scene information on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mscene/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing graph information on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mscene/graph[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing full state on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mstate[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mServing full state (async) on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mstate_async[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPublishing scene information on [[0m[1;32m/world/empty/scene/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPublishing entity deletions on [[0m[1;32m/world/empty/scene/deletion[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPublishing state changes on [[0m[1;32m/world/empty/state[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [WARN] [1791096565.949403467] [gz_ros2_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[ign gazebo-2] [INFO] [1791096565.958386128] [controller_manager]: Loading controller 'gripper_controller'
+[ign gazebo-2] [INFO] [1791096565.967835530] [controller_manager]: Loading controller 'joint_trajectory_controller'
+[spawner-7] [INFO] [1791096565.968388402] [spawner_gripper_controller]: [94mLoaded [1mgripper_controller[0m
+[ign gazebo-2] [WARN] [1791096565.977621586] [joint_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[ign gazebo-2] [INFO] [1791096565.987784589] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-6] [INFO] [1791096565.988717613] [spawner_joint_trajectory_controller]: [94mLoaded [1mjoint_trajectory_controller[0m
+[ign gazebo-2] [INFO] [1791096565.998272091] [controller_manager]: Configuring controller 'gripper_controller'
+[ign gazebo-2] [INFO] [1791096565.998609797] [gripper_controller]: Action status changes will be monitored at 20.000000 Hz.
+[spawner-5] [INFO] [1791096565.999170326] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[ign gazebo-2] [INFO] [1791096566.007489509] [controller_manager]: Configuring controller 'joint_trajectory_controller'
+[ign gazebo-2] [INFO] [1791096566.007773919] [joint_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[ign gazebo-2] [INFO] [1791096566.007814785] [joint_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[ign gazebo-2] [INFO] [1791096566.007856976] [joint_trajectory_controller]: Using 'splines' interpolation method.
+[ign gazebo-2] [INFO] [1791096566.010676884] [joint_trajectory_controller]: Controller state will be published at 100.00 Hz.
+[ign gazebo-2] [INFO] [1791096566.015453473] [joint_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[ign gazebo-2] [INFO] [1791096566.017827000] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791096566.017922130] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-7] [INFO] [1791096566.049026828] [spawner_gripper_controller]: [92mConfigured and activated [1mgripper_controller[0m
+[spawner-6] [INFO] [1791096566.068063048] [spawner_joint_trajectory_controller]: [92mConfigured and activated [1mjoint_trajectory_controller[0m
+[spawner-5] [INFO] [1791096566.078273427] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-5]: process has finished cleanly [pid 263571]
+[INFO] [spawner-7]: process has finished cleanly [pid 263575]
+[INFO] [spawner-6]: process has finished cleanly [pid 263573]
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPublishing pose messages on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mpose/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [1;32m[Msg] [0m[1;32mPublishing dynamic pose messages on [[0m[1;32m/world/empty[0m[1;32m/[0m[1;32mdynamic_pose/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-2] [INFO] [1791096588.278054929] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096589.115158247] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096591.109893345] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096593.109816478] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096595.126672603] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096597.347218867] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096599.603348188] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096601.045626061] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096609.490070454] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096611.047759818] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096611.636653739] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096613.202374678] [gripper_controller]: Received & accepted new action goal
+[ign gazebo-2] [INFO] [1791096620.950188891] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-2] [INFO] [1791096620.950266319] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-2] [INFO] [1791096629.012854066] [joint_trajectory_controller]: Goal reached, success!

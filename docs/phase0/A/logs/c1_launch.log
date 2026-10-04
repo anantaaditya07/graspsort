@@ -1,0 +1,153 @@
+[INFO] [launch]: All log files can be found below /home/adityachavali/.ros/log/2026-10-04-11-45-24-963996-adityachavali-249139
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [249141]
+[INFO] [spawner-2]: process started with pid [249143]
+[INFO] [spawner-3]: process started with pid [249152]
+[INFO] [gzserver-4]: process started with pid [249156]
+[INFO] [spawn_entity.py-5]: process started with pid [249158]
+[robot_state_publisher-1] [INFO] [1791094525.438020078] [robot_state_publisher]: got segment base
+[robot_state_publisher-1] [INFO] [1791094525.438073428] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1791094525.438079524] [robot_state_publisher]: got segment base_link_inertia
+[robot_state_publisher-1] [INFO] [1791094525.438082955] [robot_state_publisher]: got segment flange
+[robot_state_publisher-1] [INFO] [1791094525.438086402] [robot_state_publisher]: got segment forearm_link
+[robot_state_publisher-1] [INFO] [1791094525.438091880] [robot_state_publisher]: got segment ft_frame
+[robot_state_publisher-1] [INFO] [1791094525.438095008] [robot_state_publisher]: got segment ground_plane
+[robot_state_publisher-1] [INFO] [1791094525.438098202] [robot_state_publisher]: got segment shoulder_link
+[robot_state_publisher-1] [INFO] [1791094525.438101767] [robot_state_publisher]: got segment tool0
+[robot_state_publisher-1] [INFO] [1791094525.438105145] [robot_state_publisher]: got segment upper_arm_link
+[robot_state_publisher-1] [INFO] [1791094525.438108391] [robot_state_publisher]: got segment world
+[robot_state_publisher-1] [INFO] [1791094525.438111649] [robot_state_publisher]: got segment wrist_1_link
+[robot_state_publisher-1] [INFO] [1791094525.438114897] [robot_state_publisher]: got segment wrist_2_link
+[robot_state_publisher-1] [INFO] [1791094525.438118104] [robot_state_publisher]: got segment wrist_3_link
+[spawner-2] [INFO] [1791094525.663442425] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-3] [INFO] [1791094525.674724235] [spawner_joint_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawn_entity.py-5] [INFO] [1791094525.727836587] [spawn_ur]: Spawn Entity started
+[spawn_entity.py-5] [INFO] [1791094525.728046118] [spawn_ur]: Loading entity published on topic robot_description
+[spawn_entity.py-5] [INFO] [1791094525.729061913] [spawn_ur]: Waiting for entity xml on robot_description
+[spawn_entity.py-5] [INFO] [1791094525.730810109] [spawn_ur]: Waiting for service /spawn_entity, timeout = 30
+[spawn_entity.py-5] [INFO] [1791094525.730983895] [spawn_ur]: Waiting for service /spawn_entity
+[spawn_entity.py-5] [INFO] [1791094526.234818554] [spawn_ur]: Calling service /spawn_entity
+[spawn_entity.py-5] [INFO] [1791094526.528096968] [spawn_ur]: Spawn status: SpawnEntity: Successfully spawned entity [ur]
+[gzserver-4] [INFO] [1791094526.549333467] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-4] [INFO] [1791094526.551208500] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-4] [INFO] [1791094526.551312336] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[gzserver-4] [INFO] [1791094526.552703095] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-4] [INFO] [1791094526.554968955] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-4] [INFO] [1791094526.554992297] [gazebo_ros2_control]: Loading parameter files /tmp/claude-1000/-home-adityachavali-graspsort/b1f9bd71-1b1a-4b44-834a-7b7601ea7da7/scratchpad/A/ws/install/ur_simulation_gazebo/share/ur_simulation_gazebo/config/ur_controllers.yaml
+[gzserver-4] [INFO] [1791094526.563187589] [gazebo_ros2_control]: Loading joint: shoulder_pan_joint
+[gzserver-4] [INFO] [1791094526.563208199] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563214278] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563220952] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-4] [INFO] [1791094526.563232794] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563237749] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563242212] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563252107] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563387986] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563428646] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563435379] [gazebo_ros2_control]: Loading joint: shoulder_lift_joint
+[gzserver-4] [INFO] [1791094526.563440645] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563445885] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563451545] [gazebo_ros2_control]: 			 found initial value: -1.570000
+[gzserver-4] [INFO] [1791094526.563457790] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563462694] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563467546] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563472316] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563511862] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563548276] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563554144] [gazebo_ros2_control]: Loading joint: elbow_joint
+[gzserver-4] [INFO] [1791094526.563559126] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563563852] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563568560] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-4] [INFO] [1791094526.563573988] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563578533] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563583823] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563588591] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563625678] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563660325] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563666676] [gazebo_ros2_control]: Loading joint: wrist_1_joint
+[gzserver-4] [INFO] [1791094526.563672077] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563679003] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563683315] [gazebo_ros2_control]: 			 found initial value: -1.570000
+[gzserver-4] [INFO] [1791094526.563688000] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563692068] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563696235] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563700352] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563734428] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563763282] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563768120] [gazebo_ros2_control]: Loading joint: wrist_2_joint
+[gzserver-4] [INFO] [1791094526.563772236] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563776014] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563779642] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-4] [INFO] [1791094526.563783834] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563787572] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563791351] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563795064] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563823955] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563866572] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563871309] [gazebo_ros2_control]: Loading joint: wrist_3_joint
+[gzserver-4] [INFO] [1791094526.563875269] [gazebo_ros2_control]: 	State:
+[gzserver-4] [INFO] [1791094526.563879108] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563882676] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-4] [INFO] [1791094526.563886913] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563891119] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563895165] [gazebo_ros2_control]: 	Command:
+[gzserver-4] [INFO] [1791094526.563898898] [gazebo_ros2_control]: 		 position
+[gzserver-4] [INFO] [1791094526.563926167] [gazebo_ros2_control]: 		 velocity
+[gzserver-4] [INFO] [1791094526.563953463] [gazebo_ros2_control]: 		 effort
+[gzserver-4] [INFO] [1791094526.563981978] [resource_manager]: Initialize hardware 'ur' 
+[gzserver-4] [INFO] [1791094526.564058253] [resource_manager]: Successful initialization of hardware 'ur'
+[gzserver-4] [INFO] [1791094526.564110490] [resource_manager]: 'configure' hardware 'ur' 
+[gzserver-4] [INFO] [1791094526.564116313] [resource_manager]: Successful 'configure' of hardware 'ur'
+[gzserver-4] [INFO] [1791094526.564122628] [resource_manager]: 'activate' hardware 'ur' 
+[gzserver-4] [INFO] [1791094526.564126162] [resource_manager]: Successful 'activate' of hardware 'ur'
+[gzserver-4] [INFO] [1791094526.564170978] [gazebo_ros2_control]: Loading controller_manager
+[gzserver-4] [WARN] [1791094526.576427749] [gazebo_ros2_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[gzserver-4] [INFO] [1791094526.576611200] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[gzserver-4] [INFO] [1791094526.666918471] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-2] [INFO] [1791094526.688846257] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[gzserver-4] [INFO] [1791094526.690030259] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-4] [INFO] [1791094526.690358289] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gzserver-4] [INFO] [1791094526.707629606] [controller_manager]: Loading controller 'joint_trajectory_controller'
+[gzserver-4] [WARN] [1791094526.718749121] [joint_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[spawner-3] [INFO] [1791094526.728993240] [spawner_joint_trajectory_controller]: [94mLoaded [1mjoint_trajectory_controller[0m
+[gzserver-4] [INFO] [1791094526.747733721] [controller_manager]: Configuring controller 'joint_trajectory_controller'
+[gzserver-4] [INFO] [1791094526.748332350] [joint_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-4] [INFO] [1791094526.748468047] [joint_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-4] [INFO] [1791094526.748575185] [joint_trajectory_controller]: Using 'splines' interpolation method.
+[spawner-2] [INFO] [1791094526.749340184] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[gzserver-4] [INFO] [1791094526.749929547] [joint_trajectory_controller]: Controller state will be published at 100.00 Hz.
+[gzserver-4] [INFO] [1791094526.754309518] [joint_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[INFO] [spawn_entity.py-5]: process has finished cleanly [pid 249158]
+[spawner-3] [INFO] [1791094526.789521704] [spawner_joint_trajectory_controller]: [92mConfigured and activated [1mjoint_trajectory_controller[0m
+[INFO] [spawner-2]: process has finished cleanly [pid 249143]
+[INFO] [spawner-3]: process has finished cleanly [pid 249152]
+[gzserver-4] [INFO] [1791094580.772392994] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094580.772564317] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094588.793284472] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094639.998418388] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094639.998466442] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094643.355386443] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094658.709129185] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094658.709206325] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094661.348350100] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094673.128886020] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094673.128953542] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094678.109348026] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094689.576104508] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094689.576151579] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094696.307796139] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094703.227087940] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094703.227156470] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094708.689327872] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094710.599410764] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094710.599457284] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094717.289562709] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094724.062340993] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094724.062424551] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094728.748405893] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094730.595393224] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094730.595499497] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094735.252594119] [joint_trajectory_controller]: Goal reached, success!
+[gzserver-4] [INFO] [1791094737.125132125] [joint_trajectory_controller]: Received new action goal
+[gzserver-4] [INFO] [1791094737.125185566] [joint_trajectory_controller]: Accepted new action goal
+[gzserver-4] [INFO] [1791094739.801320180] [joint_trajectory_controller]: Goal reached, success!

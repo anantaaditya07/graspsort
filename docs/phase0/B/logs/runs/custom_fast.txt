@@ -1,0 +1,8 @@
+[custom_fast075 run1] spawn: True SpawnEntity: Successfully spawned entity [box]
+[custom_fast075 run1] attach: True attached ur::wrist_3_link__box::link
+[custom_fast075 run1] detach: True detached ur::wrist_3_link__box::link
+[custom_fast075 run1] SUMMARY {'run': 1, 'traj_err': 0, 'samples_held': 270, 'rate_hz': 103.5, 'snap_mm': 0.032, 'snap_deg': 0.003, 'max_drift_mm': 0.093, 'max_drift_deg': 0.072, 'wrist_travel_m': 0.744, 'box_travel_m': 0.749, 'z_at_detach': 0.5733, 'z_after_1s': 0.4608, 'max_box_speed': 1.364, 'nan': False, 'sim_span': (36.4, 40.2), 'motion_end': 39.0}
+[custom_fast075 run2] spawn: True SpawnEntity: Successfully spawned entity [box]
+[custom_fast075 run2] attach: True attached ur::wrist_3_link__box::link
+[custom_fast075 run2] detach: True detached ur::wrist_3_link__box::link
+[custom_fast075 run2] SUMMARY {'run': 2, 'traj_err': 0, 'samples_held': 270, 'rate_hz': 103.5, 'snap_mm': 0.0, 'snap_deg': 0.0, 'max_drift_mm': 0.095, 'max_drift_deg': 0.079, 'wrist_travel_m': 0.744, 'box_travel_m': 0.749, 'z_at_detach': 0.5733, 'z_after_1s': 0.4608, 'max_box_speed': 1.371, 'nan': False, 'sim_span': (43.2, 47.0), 'motion_end': 45.8}

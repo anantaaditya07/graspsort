@@ -1,0 +1,11 @@
+joint names with _mimic suffix on /joint_states: ['gripper_right_finger_joint_mimic']
+target +0.040: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0400 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    gripper_right_finger_joint               pos=+0.0400 expected=+0.0400
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0000 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    gripper_right_finger_joint               pos=+0.0000 expected=-0.0000
+target +0.040: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0400 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    gripper_right_finger_joint               pos=+0.0400 expected=+0.0400
+target +0.000: status=4 (4=SUCCEEDED) reached_goal=True stalled=False pos=+0.0000 wall=0.05s | driven err=0.0000 | max mimic dev=0.0000 -> OK
+    gripper_right_finger_joint               pos=+0.0000 expected=-0.0000
+wrote 144 samples to c3b_parallel_joint_states.csv
+OVERALL PASS

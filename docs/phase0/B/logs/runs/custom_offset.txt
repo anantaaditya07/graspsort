@@ -1,0 +1,5 @@
+[custom_offset run1] spawn: True SpawnEntity: Successfully spawned entity [box]
+[custom_offset run1] attach: True attached ur::wrist_3_link__box::link
+[custom_offset run1] attach again (expect fail): False already attached: ur::wrist_3_link__box::link
+[custom_offset run1] detach: True detached ur::wrist_3_link__box::link
+[custom_offset run1] SUMMARY {'run': 1, 'traj_err': 0, 'samples_held': 420, 'rate_hz': 102.2, 'snap_mm': 0.0, 'snap_deg': 0.0, 'max_drift_mm': 0.122, 'max_drift_deg': 0.146, 'wrist_travel_m': 0.744, 'box_travel_m': 0.748, 'z_at_detach': 0.5782, 'z_after_1s': 0.4608, 'max_box_speed': 1.46, 'nan': False, 'sim_span': (54.2, 59.5), 'motion_end': 58.3}

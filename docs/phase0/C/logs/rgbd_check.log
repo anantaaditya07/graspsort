@@ -1,0 +1,30 @@
+$ python3 rgbd_check.py --ns /camera --secs 10 --points '0,0,0.75;0.2,0.15,0.75;-0.15,-0.1,0.75;0.1,-0.05,0.98'
+window: wall 10.0 s, sim 10.00 s (RTF 1.00)
+color: 100 msgs, 9.99 Hz wall, stamp span 9.90 s sim -> 10.00 Hz sim; expected 100 at 10 Hz sim -> lost 0; frame_id='camera_color_optical_frame'
+depth: 100 msgs, 9.99 Hz wall, stamp span 9.90 s sim -> 10.00 Hz sim; expected 100 at 10 Hz sim -> lost 0; frame_id='camera_color_optical_frame'
+info: 100 msgs, 9.99 Hz wall, stamp span 9.90 s sim -> 10.00 Hz sim; expected 100 at 10 Hz sim -> lost 0; frame_id='camera_color_optical_frame'
+dinfo: 100 msgs, 9.99 Hz wall, stamp span 9.90 s sim -> 10.00 Hz sim; expected 100 at 10 Hz sim -> lost 0; frame_id='camera_color_optical_frame'
+color: 640x480 encoding=rgb8
+depth: 640x480 encoding=32FC1 step=2560
+camera_info: K=[462.168, 0.0, 320.5, 0.0, 462.168, 240.5, 0.0, 0.0, 1.0] D=[0.0, 0.0, 0.0, 0.0, 0.0] model=plumb_bob
+same frame_id color/depth: True; color/depth stamps equal (last pair): False
+depth stats: min 0.697 max 3.501 nan 0 inf 0
+point [0.0, 0.0, 0.75]: optical (X,Y,Z)=(0.0000,-0.0002,1.0001) -> pixel (320.5,240.4); GT z-depth 1.0001 m, euclid 1.0001 m; measured depth[240,320]=0.9990 m; error -0.0011 m
+point [0.2, 0.15, 0.75]: optical (X,Y,Z)=(-0.1500,-0.1534,1.1287) -> pixel (259.1,177.7); GT z-depth 1.1287 m, euclid 1.1489 m; measured depth[178,259]=1.1256 m; error -0.0031 m
+point [-0.15, -0.1, 0.75]: optical (X,Y,Z)=(0.1000,0.1147,0.9037) -> pixel (371.6,299.2); GT z-depth 0.9037 m, euclid 0.9164 m; measured depth[299,372]=0.9024 m; error -0.0013 m
+point [0.1, -0.05, 0.98]: optical (X,Y,Z)=(0.0500,-0.2247,0.8882) -> pixel (346.5,123.6); GT z-depth 0.8882 m, euclid 0.9175 m; measured depth[124,347]=0.8853 m; error -0.0029 m
+$ python3 rgbd_check.py --ns /camera_top --secs 10 --points '0,0,0.75;0.2,0.15,0.75;-0.15,-0.1,0.75;0.1,-0.05,0.98'
+window: wall 10.0 s, sim 10.00 s (RTF 1.00)
+color: 99 msgs, 9.86 Hz wall, stamp span 9.92 s sim -> 9.88 Hz sim; expected 100 at 10 Hz sim -> lost 1; frame_id='camera_top_color_optical_frame'
+depth: 99 msgs, 9.86 Hz wall, stamp span 9.92 s sim -> 9.88 Hz sim; expected 100 at 10 Hz sim -> lost 1; frame_id='camera_top_color_optical_frame'
+info: 99 msgs, 9.86 Hz wall, stamp span 9.92 s sim -> 9.88 Hz sim; expected 100 at 10 Hz sim -> lost 1; frame_id='camera_top_color_optical_frame'
+dinfo: 99 msgs, 9.86 Hz wall, stamp span 9.92 s sim -> 9.88 Hz sim; expected 100 at 10 Hz sim -> lost 1; frame_id='camera_top_color_optical_frame'
+color: 640x480 encoding=rgb8
+depth: 640x480 encoding=32FC1 step=2560
+camera_info: K=[462.168, 0.0, 320.5, 0.0, 462.168, 240.5, 0.0, 0.0, 1.0] D=[0.0, 0.0, 0.0, 0.0, 0.0] model=plumb_bob
+same frame_id color/depth: True; color/depth stamps equal (last pair): True
+depth stats: min 0.720 max 1.700 nan 0 inf 0
+point [0.0, 0.0, 0.75]: optical (X,Y,Z)=(0.0000,-0.0000,0.9500) -> pixel (320.5,240.5); GT z-depth 0.9500 m, euclid 0.9500 m; measured depth[240,320]=0.9500 m; error +0.0000 m
+point [0.2, 0.15, 0.75]: optical (X,Y,Z)=(-0.1500,-0.2000,0.9500) -> pixel (247.5,143.2); GT z-depth 0.9500 m, euclid 0.9823 m; measured depth[143,248]=0.9500 m; error +0.0000 m
+point [-0.15, -0.1, 0.75]: optical (X,Y,Z)=(0.1000,0.1500,0.9500) -> pixel (369.1,313.5); GT z-depth 0.9500 m, euclid 0.9670 m; measured depth[313,369]=0.9500 m; error +0.0000 m
+point [0.1, -0.05, 0.98]: optical (X,Y,Z)=(0.0500,-0.1000,0.7200) -> pixel (352.6,176.3); GT z-depth 0.7200 m, euclid 0.7286 m; measured depth[176,353]=0.7200 m; error +0.0000 m
