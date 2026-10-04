@@ -64,6 +64,8 @@
       <joint_type>fixed</joint_type>
       <attach_service>/attach</attach_service>
       <detach_service>/detach</detach_service>
+      <!-- empty child_model = nearest model within this bounding-box gap (m), Phase 4 -->
+      <max_attach_distance>0.02</max_attach_distance>
     </plugin>
 
     <!-- Robot pedestal, 0.20 x 0.20 x 0.75 -->
