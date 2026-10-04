@@ -44,12 +44,12 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       joint error <= 0.00096 rad); gripper close/open SUCCEEDED (0.0400 / 0.0000);
       /camera/color 9.98 Hz rgb8, /camera/depth 9.98 Hz 32FC1, both frame camera_color_optical_frame
 - [x] Pilz LIN plan + execute 5 cm down/up from ready, within 0.1 mm (subagent C, not re-run in integration)
-- [ ] USER: RViz on a display: `ros2 launch graspsort_bringup sim.launch.py rviz:=true`, plan and
-      execute from the MotionPlanning panel (no display available headless)
-- [ ] USER: review D-09 and D-10
+- [x] USER: RViz MotionPlanning plan + execute verified by the user (2026-10-04)
+- [x] USER: D-09 and D-10 ACCEPTED (2026-10-04)
+
+**Status: Phase 1 DONE (2026-10-04).**
 
 **Done when:** the arm moves from the RViz MotionPlanning panel and from a script.
-The script part is done; the RViz part is waiting on the user.
 
 ## Phase 2 - Messages + ROS-free libraries
 - [ ] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action, AttachLink.srv (D-03)
