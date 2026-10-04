@@ -53,7 +53,7 @@ class ObjectDetectorNode : public rclcpp::Node {
     iou_threshold_ = static_cast<float>(declare_parameter<double>("iou_threshold", 0.45));
     const auto input_size = declare_parameter<int>("input_size", 640);
     const auto class_filter = declare_parameter<std::vector<std::string>>(
-        "class_filter", std::vector<std::string>{"cup", "bottle", "sports ball"});  // D-04
+        "class_filter", std::vector<std::string>{"bottle", "sports ball"});  // D-04, D-13
     const auto use_cuda = declare_parameter<bool>("use_cuda", false);
     publish_annotated_ = declare_parameter<bool>("publish_annotated", true);
     const auto threads = declare_parameter<int>("intra_op_num_threads", 4);

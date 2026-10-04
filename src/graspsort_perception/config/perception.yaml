@@ -8,7 +8,7 @@ object_detector_node:
     conf_threshold: 0.35          # D-04 pass rule
     iou_threshold: 0.45           # NMS IoU
     input_size: 640               # must match the ONNX input
-    class_filter: ["cup", "bottle", "sports ball"]  # D-04: COCO class names
+    class_filter: ["bottle", "sports ball"]  # D-04/D-13: COCO class names, no cup
     use_cuda: false
     publish_annotated: true       # detections/image, only when someone subscribes
     intra_op_num_threads: 4

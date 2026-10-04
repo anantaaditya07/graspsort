@@ -177,6 +177,8 @@ fine-tune.
 
 **Final (accepted 2026-10-04):** A, amended by the user: classes ball (cricket_ball), bottle (mustard_bottle), cup (plastic_cup, 0.70 accepted). The make_dataset.py + fine-tune to add can/box is an **optional stretch goal, not a Phase 3 requirement**.
 
+**Amended by D-13 (2026-10-04):** cups dropped (0 detections in the real world), so the classes are ball and bottle.
+
 ## D-05 Camera viewpoint: oblique instead of "fixed overhead"  - ACCEPTED (deviation from PDF)
 
 **PDF (1, 4):** "fixed overhead camera (no hand-eye loop)".
@@ -341,7 +343,7 @@ the 0.09 m gripper opening.
 **Recommendation:** B. It is a deviation from PDF 7.2 (centre and band), with every tunable kept as a
 parameter.
 
-## D-13 The plastic cup is not detected in the real world  - NEEDS DECISION
+## D-13 The plastic cup is not detected in the real world  - ACCEPTED
 
 **Finding (Phase 3, sim + object_detector_node, 100 frames, default world after the D-11 fix):**
 - Bottles: 2/frame, 100/100 frames, conf 0.64-0.74.
@@ -361,6 +363,15 @@ parameter.
 
 **Recommendation:** A now, so localizer verification continues on 4 objects, and B as the next step if you want
 3 classes. This reverses your earlier "fine-tune is optional" call, so it is your decision.
+
+**Final (accepted 2026-10-04, user):**
+- Drop cups now, and **also remove them from the world**: an undetected object is invisible to MoveIt (the
+  scene comes from perception only), so the arm could hit it.
+- Sort 2 classes, balls (`sports ball`) and bottles. `bin_cup` stays and is empty.
+- Detector class_filter is `[bottle, sports ball]`.
+- Stretch goal, time-boxed: try Google Scanned Objects mug models (option C; this approves GSO as a download
+  source for that experiment only).
+- `fetch_models.sh` still fetches plastic_cup (unused). It is harmless and kept for that experiment.
 
 ---
 

@@ -182,8 +182,6 @@
     <!-- Objects (D-04). Unique names; models from models_external (scripts/fetch_models.sh) -->
     <include><name>ball_1</name><uri>model://cricket_ball</uri><pose>0.60 -0.12 0.75 0 0 0</pose></include>
     <include><name>ball_2</name><uri>model://cricket_ball</uri><pose>0.60 0.12 0.75 0 0 0</pose></include>
-    <include><name>cup_1</name><uri>model://plastic_cup</uri><pose>0.48 -0.20 0.75 0 0 0</pose></include>
-    <include><name>cup_2</name><uri>model://plastic_cup</uri><pose>0.48 0.20 0.75 0 0 0</pose></include>
     <include><name>bottle_1</name><uri>model://mustard_bottle</uri><pose>0.38 -0.08 0.75 0 0 0</pose></include>
     <include><name>bottle_2</name><uri>model://mustard_bottle</uri><pose>0.38 0.10 0.75 0 0 0</pose></include>
   </world>

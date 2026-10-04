@@ -86,8 +86,10 @@
     # Initial object poses in the world file. Ground truth for evaluation ONLY. Never use
     # these for planning; the planning scene gets objects from perception only (CLAUDE.md).
     # Pose = model origin (bottom centre of the object), upright.
+    # No cups (D-13): YOLO cannot detect the plastic cup, and an undetected object would be
+    # invisible to MoveIt (scene from perception only). bin_cup stays and is empty.
     objects:
-      names: [ball_1, ball_2, cup_1, cup_2, bottle_1, bottle_2]
+      names: [ball_1, ball_2, bottle_1, bottle_2]
       ball_1:
         model: cricket_ball
         x: 0.60
@@ -98,18 +100,6 @@
         model: cricket_ball
         x: 0.60
         y: 0.12
-        z: 0.75
-        yaw: 0.0
-      cup_1:
-        model: plastic_cup
-        x: 0.48
-        y: -0.20
-        z: 0.75
-        yaw: 0.0
-      cup_2:
-        model: plastic_cup
-        x: 0.48
-        y: 0.20
         z: 0.75
         yaw: 0.0
       bottle_1:

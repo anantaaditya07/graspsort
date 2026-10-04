@@ -1,7 +1,7 @@
 """Config checks for graspsort_perception (no ROS graph needed).
 
 - every launch file under launch/ sets RMW_IMPLEMENTATION=rmw_cyclonedds_cpp (D-07)
-- perception.yaml's detector class_filter is exactly the D-04 COCO classes
+- perception.yaml's detector class_filter is exactly the D-04/D-13 COCO classes
 """
 import ast
 import os
@@ -12,7 +12,7 @@ SRC = os.environ.get('GRASPSORT_PERCEPTION_SRC',
                      os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 LAUNCH = os.path.join(SRC, 'launch')
 CONFIG = os.path.join(SRC, 'config', 'perception.yaml')
-D04_CLASSES = ['cup', 'bottle', 'sports ball']
+D04_CLASSES = ['bottle', 'sports ball']  # D-04 amended by D-13 (no cup)
 
 
 def _sets_cyclonedds(path):
@@ -43,5 +43,5 @@ def test_node_default_class_filter_matches_yaml():
     src = os.path.join(SRC, 'src', 'object_detector_node.cpp')
     with open(src, 'r', encoding='utf-8') as f:
         text = f.read()
-    assert '{"cup", "bottle", "sports ball"}' in text
+    assert '{"bottle", "sports ball"}' in text
     assert '"camera/color/image_raw"' in text

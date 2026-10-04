@@ -52,20 +52,29 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 **Done when:** the arm moves from the RViz MotionPlanning panel and from a script.
 
 ## Phase 2 - Messages + ROS-free libraries
-- [ ] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action, AttachLink.srv (D-03)
-- [ ] projection.hpp (back-projection, percentile depth, minAreaRect yaw, stability gating) + GoogleTests
-- [ ] grasp_planner.hpp (top-down candidates, width/neighbour filtering, ranking) + GoogleTests
-- [ ] bin_assignment.hpp + GoogleTests
+- [x] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action, AttachLink.srv (D-03)
+- [x] projection.hpp (back-projection, percentile depth, depth-band points, table-plane footprint via
+      minAreaRect, StabilityGate, TrackAssociator) + 37 GoogleTests
+- [x] grasp_planner.hpp (top-down candidates, width/neighbour filtering, ranking) + GoogleTests
+- [x] bin_assignment.hpp + GoogleTests (27 GoogleTests across grasp_planner and bin_assignment)
+
+**Status: Phase 2 DONE (2026-10-04).** All unit tests are green (workspace: 163 tests).
 
 **Done when:** all unit tests are green.
 
 ## Phase 3 - Perception
-- [ ] scripts/setup_ort.sh and export_yolo.py copied from SemNav (pinned ORT 1.20.1)
-- [ ] object_detector_node copied from SemNav with its tests; class_filter [cup, bottle, sports ball]
-      (D-04), image topic renamed
+- [x] scripts/setup_ort.sh and export_yolo.py copied from SemNav (pinned ORT 1.20.1)
+- [x] object_detector_node copied from SemNav with its tests; class_filter [bottle, sports ball]
+      (D-04, D-13), image topic /camera/color/image_raw. Sim: 10 fps, inference p50 34 ms, balls and
+      bottles 2/frame in 100/100 frames
+- [x] D-11 fixed: online Gazebo model database disabled (stale cached models had replaced ours)
+- [x] D-13: cups removed from the world (undetectable); 4 objects (2 balls, 2 bottles); bin_cup empty
+- [ ] D-12 decision (localizer method under the oblique camera), which blocks the localizer
 - [ ] object_localizer_node per 7.2 (frames from header, TF at the image stamp, fail loudly)
-- [ ] (Optional stretch, D-04) make_dataset.py + fine-tune to add can/box; not required for Phase 3
+- [ ] eval_localization.py: 3D error per object vs /gazebo/model_states
 - [ ] Verify CycloneDDS image transport under full load (D-07)
+- [ ] (Optional stretch, D-04) make_dataset.py + fine-tune to add can/box; not required for Phase 3
+- [ ] (Stretch, D-13, time-boxed) try Google Scanned Objects mug models as a detectable cup
 
 **Done when:** 3D pose error has been measured against ground truth.
 

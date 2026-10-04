@@ -34,7 +34,6 @@ BIN_NAMES = ['bin_cup', 'bin_bottle', 'bin_ball']
 OBJECT_MODELS = {
     'ball_1': 'cricket_ball', 'ball_2': 'cricket_ball',
     'bottle_1': 'mustard_bottle', 'bottle_2': 'mustard_bottle',
-    'cup_1': 'plastic_cup', 'cup_2': 'plastic_cup',
 }
 ARM_JOINTS = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint',
               'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
@@ -112,7 +111,7 @@ def test_objects_match_yaml(layout, world):
     _, _, includes = world
     objs = layout['objects']
     assert sorted(objs['names']) == sorted(OBJECT_MODELS)
-    assert sorted(includes) == sorted(OBJECT_MODELS), 'world objects must be exactly the six'
+    assert sorted(includes) == sorted(OBJECT_MODELS), 'world objects must be exactly OBJECT_MODELS (no cups, D-13)'
     for name in objs['names']:
         o = objs[name]
         assert o['model'] == OBJECT_MODELS[name]
