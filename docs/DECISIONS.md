@@ -465,6 +465,27 @@ ids; ground truth is evaluation-only). 7.3 and 7.5 also overlap on who attaches 
   This is why the pick code must freeze the scene before picking.
 - A placed object that perception still sees (e.g. in a bin) is re-added after unfreeze.
 
+## D-16 Phase 4 pick-and-place implementation choices  - NEEDS DECISION (non-blocking review)
+
+Found by subagent B while reaching 5/5 + 5/5 (docs/CHECKLIST.md Phase 4); all are parameters or local behaviour.
+- **Held object vs table:** while an object is attached, MoveIt may allow it to touch the table (allowed collision
+  matrix entry). The perceived box of a held object reached slightly into the table, so MoveIt saw the lift start
+  in collision and nudged the start state by 0.078. The entry is removed when the object is removed from the scene,
+  and during recovery.
+- **IK-seeded free moves:** free moves (OMPL) go to a joint goal from IK seeded with the current arm pose. A free move
+  is accepted only if the following straight-line move (approach or lower) also plans from its end pose. This fixed a
+  bin_cup sweep in the first failed trial. The node reads graspsort_bringup's kinematics.yaml, which its launch file
+  passes in.
+- **Parameter file key:** pick_place.yaml uses the `/**` key, because a node-name key silently overrode
+  `-p target_class:=...`.
+- **Values:** pregrasp_height 0.10 (PDF); squeeze 0.0005 (D-02); release_clearance 0.02; transport_clearance 0.05;
+  lift_height 0.15; retreat_height 0.10; velocity scaling 0.5 for free moves, 0.1 for straight-line moves; up to 3
+  grasp candidates (first plus 2 retries, 7.5).
+- **Limits of the test:** one fixed layout. The same ball_2 and bottle_2 were picked every time, with the bottle at
+  yaw 0. Phase 6 randomised layouts are the real test.
+
+**Recommendation:** accept as is.
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)

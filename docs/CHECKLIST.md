@@ -90,9 +90,22 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 **Done when:** 3D pose error has been measured against ground truth.
 
 ## Phase 4 - Scene manager + grasp attach, single pick
-- [ ] scene_manager_node per 7.3 (table and bins fixed, objects from perception only, freeze service)
-- [ ] Attach plugin per D-03, tested with the real finger link and MoveIt attachObject
-- [ ] Scripted single pick and place
+- [x] D-14 resolved (bottle asset aligned; yaw error median 4.0 deg); grasp_planner max_grasp_width
+      0.085 m + GoogleTests
+- [x] Attach plugin nearest-model mode (D-15): empty child_model = nearest object within 0.02 m;
+      live check passed
+- [x] scene_manager_node per 7.3: table/pedestal/bins fixed, objects from /objects_3d with timeouts,
+      attached objects untouched, /scene_manager/freeze (std_srvs/SetBool); 21 GoogleTests + pytests
+- [x] pick_place_test (MoveGroupInterface): freeze, open, OMPL pre-grasp, Pilz LIN approach, close
+      (width - squeeze), Gazebo attach + attachObject, LIN lift, OMPL above bin, LIN lower, open,
+      detach (both), remove, LIN retreat, ready, unfreeze; safe recovery on failure (tested); no
+      *_mimic joints sent to MoveIt (D-10); pick_place_geometry.hpp + 17 GoogleTests
+- [x] pick_place_trials.py (eval harness, Gazebo reset + /gazebo/model_states check)
+- [x] Verified by the main agent, headless, full stack: sports ball -> bin_ball 5/5 (11.5-12.3 s),
+      bottle -> bin_bottle 5/5 (13.0-19.8 s), planning 0.05-0.10 s per trial; workspace tests 241/241
+- [ ] USER: review D-16 (pick-and-place implementation choices)
+
+**Status: Phase 4 DONE (2026-10-04)** for its "done when" (5 in a row for each class).
 
 **Done when:** one object lands in a bin, 5 times in a row.
 

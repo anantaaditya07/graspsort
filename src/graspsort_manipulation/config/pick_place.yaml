@@ -1,0 +1,88 @@
+# pick_place_test parameters (Phase 4, architecture 7.5). Defaults equal the node's declared
+# defaults. Bin geometry (bins.size, bins.wall_thickness, bins.floor_thickness) comes from
+# graspsort_gazebo/config/world_layout.yaml, loaded first by launch/pick_place_test.launch.py;
+# bin poses come from the static TF frames bin_<class> published by graspsort_bringup.
+# Gripper geometry values must match graspsort_robot.urdf.xacro (D-02).
+# Key '/**' (not the node name): rcl applies node-name entries after wildcard ones, so with a
+# node-name key a command-line "-p target_class:=bottle" would be silently overridden.
+# robot_description_kinematics (IK for the free moves) is added by the launch file / harness from
+# graspsort_bringup/config/moveit/kinematics.yaml.
+/**:
+  ros__parameters:
+    target_class: "sports ball"       # "sports ball" | "bottle"
+    objects_topic: /objects_3d
+    object_wait_timeout: 30.0         # s, wait for a perceived object of target_class
+    collision_wait_timeout: 10.0      # s, extra wait for object_<id> in the planning scene
+    freeze_recheck_delay: 0.3         # s, after freezing, re-read /objects_3d (> one 10 Hz period)
+    scene_wait_timeout: 3.0           # s, wait for attach/detach to show in the planning scene
+    tf_timeout: 5.0                   # s
+    world_frame: world
+    base_frame: base_link             # "nearest object" is measured from this frame (xy)
+    arm_group: ur_manipulator
+    tcp_link: gripper_tcp
+    attach_link: gripper_tcp          # MoveIt attachObject link
+    touch_links: [gripper_base_link, gripper_left_finger_link, gripper_right_finger_link, gripper_tcp]
+    ready_state: ready                # SRDF named state at the end
+    object_id_prefix: object_         # scene manager collision ids: object_<ObjectPose.id>
+    support_ids: [table]              # held object may touch these (ACM) until it is removed
+    bin_classes: ["sports ball", "cup", "bottle"]
+    bin_names: [bin_ball, bin_cup, bin_bottle]
+
+    grasp:                            # grasp_planner.hpp (architecture 7.4, D-14)
+      cylinder_yaw_count: 8
+      finger_height_fraction: 0.6
+      max_opening: 0.09
+      width_margin: 0.01
+      max_grasp_width: 0.085
+      finger_thickness: 0.01
+      finger_width: 0.02
+      min_finger_clearance: 0.005
+      clearance_cap: 0.10
+      yaw_weight: 1.0
+      clearance_weight: 10.0
+      max_candidates: 3               # first candidate + 2 retries (architecture 7.5)
+
+    motion:                           # pick_place_geometry.hpp
+      pregrasp_height: 0.10           # TCP above the grasp (architecture 7.5)
+      lift_height: 0.15               # LIN lift of the TCP after the grasp
+      retreat_height: 0.10            # LIN retreat of the TCP after the release
+      min_fingertip_clearance: 0.01   # fingertips above the object's bottom (table)
+      max_fingertip_above_center: 0.0 # fingertips must reach at least the object's mid-height
+      release_clearance: 0.02         # held object's bottom above the bin floor at release
+      transport_clearance: 0.05       # held object's bottom above the bin rim, above-bin pose
+
+    gripper:                          # D-02
+      action: /gripper_controller/gripper_cmd
+      tcp_to_fingertip: 0.02          # URDF tcp_inset
+      open_width: 0.09                # 2 x open_half
+      max_close_position: 0.038       # never beyond (stroke 0.04 = fully closed)
+      squeeze: 0.0005                 # close to object width minus this (D-02, Phase 0 A)
+      max_effort: 50.0                # N
+      timeout: 10.0                   # s, action accept / result
+      settle_time: 0.3                # s, after each gripper action
+      open_tolerance: 0.003           # m, open accepted if the finger is within this of 0
+
+    planning:
+      ompl_pipeline: ompl
+      ompl_planner: RRTConnectkConfigDefault
+      lin_pipeline: pilz_industrial_motion_planner
+      lin_planner: LIN
+      planning_time: 5.0              # s per OMPL request
+      planning_attempts: 1
+      free_plan_retries: 2            # extra OMPL attempts per free move
+      free_velocity_scaling: 0.5
+      free_acceleration_scaling: 0.5
+      lin_velocity_scaling: 0.1
+      lin_acceleration_scaling: 0.1
+      goal_position_tolerance: 0.001  # m
+      goal_orientation_tolerance: 0.01  # rad
+      ik_timeout: 0.1                 # s, IK for the joint goal of each free move
+
+    services:
+      freeze: /scene_manager/freeze   # std_srvs/SetBool
+      attach: /attach                 # graspsort_msgs/AttachLink, child_model "" = nearest
+      detach: /detach
+      attach_parent_model: ur
+      attach_parent_link: gripper_left_finger_link
+      timeout: 10.0                   # s
+      get_planning_scene: /get_planning_scene
