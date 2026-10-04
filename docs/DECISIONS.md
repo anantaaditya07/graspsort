@@ -292,6 +292,76 @@ Seeds 0 and 1 gave identical sets of 20 pairs. The procedure is documented in th
 
 **Final (accepted 2026-10-04):** all of the above accepted by the user.
 
+## D-11 Gazebo silently used unpatched online model copies  - FIXED (INFO)
+
+**Symptom (Phase 3):** both cups were thrown off the table at spawn, before the arm moved.
+Phase 1 had measured drift only after the objects settled, so it missed this.
+
+**Root cause:** `~/.gazebo/models/` held **unpatched online copies** of `plastic_cup` and `cricket_ball`
+(downloaded 2026-10-04 16:43, while an interrupted Phase 1 subagent run had no models_external on its path).
+gzserver downloads from `models.gazebosim.org` by default, and that cache took priority over
+`graspsort_gazebo/models_external`.
+- With the cache present, the original osrf cup (inertia about 3x too large) was ejected.
+- A renamed copy of our patched cup stayed exactly in place, which proved the cache was the cause.
+
+**Fix:**
+- `sim.launch.py` sets `GAZEBO_MODEL_DATABASE_URI=''`, so a missing model fails loudly instead of being
+  fetched. A bringup test checks this.
+- The two stale cache folders were moved (not deleted) to the session scratchpad. `ground_plane` and `sun`
+  were left alone.
+- After the fix, all 6 objects stay at their spawn poses (probe of the world alone).
+
+## D-12 Localizer method under the oblique camera  - NEEDS DECISION (blocks object_localizer_node)
+
+**PDF 7.2:**
+- Depth: 20th-percentile depth in the central 50 % of the box.
+- Position: back-project the box centre, then push in by half the object depth.
+- Footprint and yaw: pixels within +/- 2 cm of the object depth, projected to the table, minAreaRect.
+
+**Finding (Phase 2, subagent A, noise-free depth rendered from the real camera pose):** with the 50 deg oblique
+camera (D-05), the +/- 2 cm band sees only the front face of an object.
+
+| | PDF method (2 cm band, push-in) | Band 0.10 m, footprint centre for x, y, z = table + height/2 |
+|---|---|---|
+| Bottle footprint | 0.067 x 0.049, **yaw wrong by 90 deg** | within 1.5 mm, 0.5 deg |
+| Cup footprint | 0.064 x 0.045 (true 0.065 x 0.065) | within 1.5 mm |
+| Bottle centre | 36-45 mm off | within 2 mm |
+| Cup centre | 19 mm off | within 2 mm |
+| Ball centre | under 1 mm | 5.4 mm |
+| Height | exact | exact |
+
+A 90 deg yaw error would make the grasp planner close across the bottle's 0.097 m side, which is wider than
+the 0.09 m gripper opening.
+
+**Options** (all three are parameter changes; projection.hpp supports each)
+- A. PDF method as written. It misses the 1.5 cm target for bottle and cup, and bottle yaw is wrong.
+- B. `depth_band` 0.10 m; position from the footprint centre (x, y), z = table height + height/2.
+- C. As B, but keep push-in for spherical objects (ball), set by a per-class parameter.
+
+**Recommendation:** B. It is a deviation from PDF 7.2 (centre and band), with every tunable kept as a
+parameter.
+
+## D-13 The plastic cup is not detected in the real world  - NEEDS DECISION
+
+**Finding (Phase 3, sim + object_detector_node, 100 frames, default world after the D-11 fix):**
+- Bottles: 2/frame, 100/100 frames, conf 0.64-0.74.
+- Balls: 2/frame, 100/100 frames, conf 0.44-0.83.
+- Cups: **0 frames.**
+- The same cup mesh re-coloured opaque white or opaque red is also 0/100. The osrf cup is a plain tapered
+  cylinder with no visible rim, so this is not a material problem.
+- Phase 0 C's 0.70 for plastic_cup was measured on a different, plain table and background, so D-04's cup
+  choice does not hold in this world.
+
+**Options**
+- A. Drop cups for now: sort ball and bottle (2 bins in use). Re-add cups if the fine-tune happens.
+- B. Make the D-04 fine-tune (make_dataset.py, auto-labelled from ground truth) a **required** Phase 3 step, so
+  cups (and optionally can/box) are detected.
+- C. Try other cup or mug models. Google Scanned Objects (CC BY 4.0) is a new download source and needs
+  approval. Phase 0 C's YCB pitcher_base (0.6 detection) is too wide for the 90 mm gripper.
+
+**Recommendation:** A now, so localizer verification continues on 4 objects, and B as the next step if you want
+3 classes. This reverses your earlier "fine-tune is optional" call, so it is your decision.
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)

@@ -176,6 +176,10 @@ def launch_setup(context):
 def generate_launch_description():
     return LaunchDescription([
         SetEnvironmentVariable('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'),
+        # Never fetch models from the online database (D-11): a fetched copy is cached in
+        # ~/.gazebo/models and shadows the patched models in graspsort_gazebo/models_external.
+        # With this empty, a missing model fails loudly (run scripts/fetch_models.sh).
+        SetEnvironmentVariable('GAZEBO_MODEL_DATABASE_URI', ''),
         DeclareLaunchArgument('gui', default_value='false', description='Start gzclient'),
         DeclareLaunchArgument('verbose', default_value='false', description='gzserver verbose'),
         DeclareLaunchArgument('world', default_value='',

@@ -5,6 +5,7 @@
   within the URDF limits; disabled-collision links exist
 - MoveIt planning config: OMPL default RRTConnect, Pilz pipeline, acceleration limits
 - every launch file under launch/ sets RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+- sim.launch.py disables the online Gazebo model database (D-11)
 - the static TF layout parser in sim.launch.py (and the real world_layout.yaml if present)
 
 Robot xacro under test: $GRASPSORT_ROBOT_XACRO if set, else graspsort_gazebo's
@@ -227,6 +228,17 @@ def test_every_launch_file_sets_cyclonedds():
     for f in files:
         assert _sets_cyclonedds(os.path.join(LAUNCH, f)), f
 
+
+
+def test_sim_launch_disables_online_model_database():
+    """D-11: gzserver must not download (unpatched) models that shadow models_external."""
+    tree = ast.parse(open(os.path.join(LAUNCH, 'sim.launch.py'), 'r', encoding='utf-8').read())
+    found = False
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and getattr(node.func, 'id', None) == 'SetEnvironmentVariable':
+            args = [a.value for a in node.args if isinstance(a, ast.Constant)]
+            found = found or args == ['GAZEBO_MODEL_DATABASE_URI', '']
+    assert found
 
 def _sim_launch_module():
     spec = importlib.util.spec_from_file_location('sim_launch', os.path.join(LAUNCH, 'sim.launch.py'))
