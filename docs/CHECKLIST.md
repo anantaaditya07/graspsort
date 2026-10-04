@@ -69,12 +69,22 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       bottles 2/frame in 100/100 frames
 - [x] D-11 fixed: online Gazebo model database disabled (stale cached models had replaced ours)
 - [x] D-13: cups removed from the world (undetectable); 4 objects (2 balls, 2 bottles); bin_cup empty
-- [ ] D-12 decision (localizer method under the oblique camera), which blocks the localizer
-- [ ] object_localizer_node per 7.2 (frames from header, TF at the image stamp, fail loudly)
-- [ ] eval_localization.py: 3D error per object vs /gazebo/model_states
-- [ ] Verify CycloneDDS image transport under full load (D-07)
+- [x] D-12 ACCEPTED: wide depth band (0.10 m) + table-plane footprint centre, z = table + h/2
+- [x] localizer.hpp (ROS-free: boxFromCenterSize, localizeBox, applyShape, ShapeTable) + GoogleTests on
+      rendered oblique depth images (renderer shared in test/oblique_render.hpp)
+- [x] object_localizer_node per 7.2/D-12: exact-stamp depth cache, TF at the image stamp (fails
+      loudly), nearest-neighbour tracks, stability gate; /objects_3d at 10 Hz; all tunables in
+      perception.yaml; table_height from world_layout.yaml via perception.launch.py
+- [x] eval_localization.py vs /gazebo/model_states (2 identical runs): 4/4 localized; balls
+      4.7 / 4.9 mm, bottles 11.8 / 13.1 mm; median 8.4 mm (target < 15 mm): PASS
+- [ ] D-14: bottle yaw wrong (-64.8 / -11.9 deg vs 0) and footprint undersized on the real mesh;
+      fix before Phase 4 bottle grasps
+- [x] CycloneDDS transport with sim + detector + localizer running: detector 10 fps, 0 dropped
+      (re-check with MoveIt in Phase 4)
 - [ ] (Optional stretch, D-04) make_dataset.py + fine-tune to add can/box; not required for Phase 3
 - [ ] (Stretch, D-13, time-boxed) try Google Scanned Objects mug models as a detectable cup
+
+**Status: Phase 3 DONE (2026-10-04)** for its "done when"; D-14 is open for Phase 4.
 
 **Done when:** 3D pose error has been measured against ground truth.
 

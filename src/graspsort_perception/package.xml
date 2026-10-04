@@ -3,7 +3,7 @@
 <package format="3">
   <name>graspsort_perception</name>
   <version>0.1.0</version>
-  <description>GraspSort perception: object_detector_node (YOLOv8 via ONNX Runtime, copied from SemNav) and header-only localizer geometry.</description>
+  <description>GraspSort perception: object_detector_node (YOLOv8 via ONNX Runtime, copied from SemNav) and object_localizer_node (detections + depth -> /objects_3d, D-12).</description>
   <maintainer email="anantaadityachavali@gmail.com">Ananta Aditya</maintainer>
   <license>Apache-2.0</license>
 
@@ -11,14 +11,21 @@
 
   <depend>cv_bridge</depend>
   <depend>eigen</depend>
+  <depend>geometry_msgs</depend>
+  <depend>graspsort_msgs</depend>
   <depend>libopencv-dev</depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
   <depend>vision_msgs</depend>
 
+  <exec_depend>gazebo_msgs</exec_depend>
+  <exec_depend>graspsort_gazebo</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclpy</exec_depend>
   <exec_depend>rmw_cyclonedds_cpp</exec_depend>
 
   <test_depend>ament_cmake_gtest</test_depend>

@@ -16,3 +16,38 @@ object_detector_node:
     detections_qos_depth: 5
     metrics_period: 5.0           # s between /metrics messages
     metrics_window: 200           # samples in the rolling p50/p95 window
+
+# object_localizer_node (architecture 7.2, method per D-12). table_height and world_frame are
+# set by perception.launch.py from graspsort_gazebo/config/world_layout.yaml (single source of
+# truth); the values here are only the fallback when the node is run on its own.
+object_localizer_node:
+  ros__parameters:
+    world_frame: world
+    table_height: 0.75               # m, world_layout.yaml table.z
+    depth:
+      central_fraction: 0.5          # 7.2: central 50% of the box
+      percentile: 0.20               # 7.2: 20th percentile (nearest surface)
+      min_depth: 0.1                 # m, camera clip near
+      max_depth: 5.0                 # m, camera clip far
+    footprint:
+      depth_band: 0.10               # m, D-12 (7.2 says 0.02; too narrow for the oblique camera)
+      table_clearance: 0.005         # m, points this close to the table plane are table
+      min_points: 3                  # minimum object points for a footprint
+    track:
+      max_association_distance: 0.05 # m, nearest-neighbour gate in 3D
+      max_missed_updates: 10         # frames without a match before a track is dropped
+    stability:
+      window_size: 10                # 7.2: average over N frames
+      min_samples: 10
+      max_position_stddev: 0.005     # m, publish only below this std-dev
+    shape_classes: ["bottle", "sports ball"]  # D-13
+    shape_types: [1, 0]              # ObjectPose.shape: 0 cylinder (ball as cylinder), 1 box
+    depth_cache_size: 10             # depth frames kept for stamp matching
+    stamp_tolerance: 0.0             # s, 0 = exact stamp match (one RGB-D sensor)
+    tf_timeout: 0.1                  # s
+    detections_topic: detections
+    depth_topic: camera/depth/image_raw
+    camera_info_topic: camera/depth/camera_info
+    objects_topic: objects_3d
+    detections_qos_depth: 5
+    objects_qos_depth: 10

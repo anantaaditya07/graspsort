@@ -11,10 +11,15 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(graspsort_msgs REQUIRED)
 find_package(OpenCV REQUIRED COMPONENTS core imgproc dnn)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(vision_msgs REQUIRED)
 
 # --- ONNX Runtime (pinned 1.20.1, fetched by scripts/setup_ort.sh; copied from SemNav) ---
@@ -56,7 +61,17 @@ target_compile_definitions(object_detector_node PRIVATE
 set_target_properties(object_detector_node PROPERTIES INSTALL_RPATH "$ORIGIN/..")
 install(TARGETS object_detector_node DESTINATION lib/${PROJECT_NAME})
 
+# object_localizer_node (architecture 7.2, D-12): detections + depth -> /objects_3d.
+add_executable(object_localizer_node src/object_localizer_node.cpp)
+target_include_directories(object_localizer_node PRIVATE include)
+target_include_directories(object_localizer_node SYSTEM PRIVATE ${EIGEN3_INCLUDE_DIR})
+target_link_libraries(object_localizer_node opencv_core opencv_imgproc)
+ament_target_dependencies(object_localizer_node cv_bridge geometry_msgs graspsort_msgs rclcpp
+  sensor_msgs tf2 tf2_ros vision_msgs)
+install(TARGETS object_localizer_node DESTINATION lib/${PROJECT_NAME})
+
 install(DIRECTORY config launch DESTINATION share/${PROJECT_NAME})
+install(PROGRAMS scripts/eval_localization.py DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
@@ -78,15 +93,12 @@ if(BUILD_TESTING)
     GRASPSORT_TEST_MODEL_PATH="${GRASPSORT_MODEL_PATH}")
 
   # Localizer geometry (architecture 7.2), header-only: Eigen + OpenCV core/imgproc.
-  # Re-run CMake when files are added to test/ so test_projection.cpp is picked up.
-  set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/test)
-  if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/test/test_projection.cpp)
-    find_package(Eigen3 REQUIRED)
-    ament_add_gtest(test_projection test/test_projection.cpp)
-    target_include_directories(test_projection PRIVATE include)
-    target_include_directories(test_projection SYSTEM PRIVATE ${EIGEN3_INCLUDE_DIR})
-    target_link_libraries(test_projection opencv_core opencv_imgproc)
-  endif()
+  foreach(t test_projection test_localizer)
+    ament_add_gtest(${t} test/${t}.cpp)
+    target_include_directories(${t} PRIVATE include)
+    target_include_directories(${t} SYSTEM PRIVATE ${EIGEN3_INCLUDE_DIR})
+    target_link_libraries(${t} opencv_core opencv_imgproc)
+  endforeach()
 
   # Launch sets CycloneDDS; perception.yaml class_filter matches D-04.
   ament_add_pytest_test(test_perception_config test/test_perception_config.py

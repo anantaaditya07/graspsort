@@ -313,7 +313,7 @@ gzserver downloads from `models.gazebosim.org` by default, and that cache took p
   were left alone.
 - After the fix, all 6 objects stay at their spawn poses (probe of the world alone).
 
-## D-12 Localizer method under the oblique camera  - NEEDS DECISION (blocks object_localizer_node)
+## D-12 Localizer method under the oblique camera  - ACCEPTED (deviation from PDF 7.2)
 
 **PDF 7.2:**
 - Depth: 20th-percentile depth in the central 50 % of the box.
@@ -342,6 +342,10 @@ the 0.09 m gripper opening.
 
 **Recommendation:** B. It is a deviation from PDF 7.2 (centre and band), with every tunable kept as a
 parameter.
+
+**Final (accepted 2026-10-04, user):** B. Wide depth band (`depth_band` 0.10 m); x and y from the table-plane
+footprint centre, z = table height + height/2. This deviates from PDF 7.2 (band width and centre method). All values
+are ROS parameters.
 
 ## D-13 The plastic cup is not detected in the real world  - ACCEPTED
 
@@ -372,6 +376,31 @@ parameter.
 - Stretch goal, time-boxed: try Google Scanned Objects mug models (option C; this approves GSO as a download
   source for that experiment only).
 - `fetch_models.sh` still fetches plastic_cup (unused). It is harmless and kept for that experiment.
+
+## D-14 Bottle footprint and yaw on the real mesh  - NEEDS DECISION (non-blocking for Phase 3, blocks good bottle grasps in Phase 4)
+
+**Finding (Phase 3 verification, real sim, 2 identical runs of eval_localization.py):**
+
+| object | 3D error | footprint (est.) | true footprint | yaw est. | yaw true |
+|---|---|---|---|---|---|
+| ball_1 / ball_2 | 4.7 / 4.9 mm | 0.074 / 0.072 diam. | 0.075 | n/a | n/a |
+| bottle_1 | 11.8 mm | 0.086 x 0.056 | 0.097 x 0.067 (collision box) | -64.8 deg | 0 |
+| bottle_2 | 13.1 mm | 0.070 x 0.058 | 0.097 x 0.067 | -11.9 deg | 0 |
+
+- Position meets the architecture 8 target: median 8.4 mm, under 15 mm.
+- **Bottle yaw misses the "boxes: median yaw error under 10 deg" target.**
+- Likely cause: the visual mesh is a real mustard bottle (tapered, with a narrow neck and cap), not the box used in
+  the synthetic tests. minAreaRect over the visible points of that irregular shape gives an undersized footprint
+  and an unstable long axis. The depth camera sees the visual mesh; the gripper hits the collision box.
+
+**Options (to decide before Phase 4 bottle grasps)**
+- A. Fit the footprint only to points in a height slice (e.g. the lower 60 % of the object, below the neck),
+  set by a parameter. This is the likely main fix.
+- B. Treat bottles as cylinders (yaw ignored; grasp across the measured short side). This loses the box
+  orientation.
+- C. Leave it and rely on Phase 4 grasp retries.
+
+**Recommendation:** A, measured with eval_localization.py (with yaw error added for boxes) before Phase 4.
 
 ---
 
