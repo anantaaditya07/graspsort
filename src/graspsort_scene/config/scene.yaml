@@ -1,0 +1,13 @@
+# GraspSort scene_manager parameters (architecture 7.3). Defaults equal the node's declared
+# defaults. The fixed geometry (world_frame, table, pedestal, bins) is NOT here: scene.launch.py
+# loads graspsort_gazebo/config/world_layout.yaml (single source of truth) before this file.
+scene_manager:
+  ros__parameters:
+    objects_topic: objects_3d      # graspsort_msgs/ObjectPoseArray, world frame
+    objects_qos_depth: 1
+    update_distance: 0.01          # m, re-apply an object that moved (or resized) more than this
+    update_yaw: 0.1                # rad, re-apply a box whose yaw changed more than this (mod pi)
+    remove_timeout: 2.0            # s, remove an object not perceived for longer than this
+    object_padding: 0.0            # m, added on every side of a perceived object's primitive
+    sync_period: 0.2               # s, scene sync step
+    scene_service_timeout: 2.0     # s, get_planning_scene call timeout

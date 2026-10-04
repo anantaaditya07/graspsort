@@ -442,6 +442,29 @@ grasp_planner safety check `max_grasp_width` (default 0.085 m).
   - The estimated bottle footprint is undersized along the view (0.063-0.075 vs 0.096 m), because the back half is
     hidden. It is safe for grasping: the closing axis follows the short side, and max_grasp_width guards it.
 
+## D-15 Phase 4 interfaces: grasp attach target, MoveIt attach, scene freeze  - ACCEPTED (user, 2026-10-04)
+
+**Gap:** the architecture does not say how the robot names the Gazebo model for /attach (it only knows perceived
+ids; ground truth is evaluation-only). 7.3 and 7.5 also overlap on who attaches the object in MoveIt.
+
+**Final (user):**
+- **Attach target:** `/attach` and `/detach` (AttachLink.srv, unchanged) with an empty `child_model` mean "the nearest
+  non-static model whose link bounding box is within `max_attach_distance` (SDF, 0.02 m) of the parent link". On
+  detach, an empty child means everything on that link. This is sim-side physics emulation; the robot never reads
+  ground truth. (commit b72eaf9)
+- **MoveIt attach:** the pick code calls MoveGroupInterface attachObject/detachObject on the scene manager's object
+  (`object_<track id>`), as 7.5 says. The scene manager has no attach services; it never removes or modifies an
+  attached object.
+- **Freeze:** `/scene_manager/freeze`, std_srvs/SetBool. No new message types.
+
+**Scene manager implementation choices (INFO):**
+- Only the table top is a collision object, not the legs: the leg inset is not in world_layout.yaml, and the arm cannot
+  reach under the table.
+- Extra parameter `update_yaw` (0.1 rad, boxes, modulo pi), besides `update_distance` (0.01 m).
+- A moved object gets a new track id from perception, so the old `object_<n>` stays until `remove_timeout` (2 s).
+  This is why the pick code must freeze the scene before picking.
+- A placed object that perception still sees (e.g. in a bin) is re-added after unfreeze.
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)
