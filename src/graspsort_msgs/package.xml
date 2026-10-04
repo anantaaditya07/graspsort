@@ -3,12 +3,14 @@
 <package format="3">
   <name>graspsort_msgs</name>
   <version>0.1.0</version>
-  <description>GraspSort interfaces. Phase 1 scope: AttachLink.srv for the Gazebo attach plugin (D-03).</description>
+  <description>GraspSort interfaces. ObjectPose, ObjectPoseArray, SortObjects action (architecture section 6) and AttachLink.srv (D-03).</description>
   <maintainer email="anantaadityachavali@gmail.com">Ananta Aditya</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
   <exec_depend>rosidl_default_runtime</exec_depend>
   <member_of_group>rosidl_interface_packages</member_of_group>
 

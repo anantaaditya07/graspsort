@@ -1,0 +1,9 @@
+# Sort the objects on the table into their class bins (architecture section 6).
+string[] classes                       # empty = all known classes
+---
+uint32 picked
+uint32 failed
+string[] failure_reasons
+---
+string current_object
+string stage                           # detect / plan_grasp / approach / grasp / transport / place
