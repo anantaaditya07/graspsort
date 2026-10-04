@@ -103,7 +103,7 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 - [x] pick_place_trials.py (eval harness, Gazebo reset + /gazebo/model_states check)
 - [x] Verified by the main agent, headless, full stack: sports ball -> bin_ball 5/5 (11.5-12.3 s),
       bottle -> bin_bottle 5/5 (13.0-19.8 s), planning 0.05-0.10 s per trial; workspace tests 241/241
-- [ ] USER: review D-16 (pick-and-place implementation choices)
+- [x] USER: D-14 (height band off by default) and D-16 ACCEPTED (2026-10-04)
 
 **Status: Phase 4 DONE (2026-10-04)** for its "done when" (5 in a row for each class).
 

@@ -377,7 +377,7 @@ are ROS parameters.
   source for that experiment only).
 - `fetch_models.sh` still fetches plastic_cup (unused). It is harmless and kept for that experiment.
 
-## D-14 Bottle footprint and yaw on the real mesh  - ACCEPTED (resolved by an asset fix; see Final)
+## D-14 Bottle footprint and yaw on the real mesh  - ACCEPTED
 
 **Finding (Phase 3 verification, real sim, 2 identical runs of eval_localization.py):**
 
@@ -442,6 +442,8 @@ grasp_planner safety check `max_grasp_width` (default 0.085 m).
   - The estimated bottle footprint is undersized along the view (0.063-0.075 vs 0.096 m), because the back half is
     hidden. It is safe for grasping: the closing axis follows the short side, and max_grasp_width guards it.
 
+**User (2026-10-04):** accepted, including `footprint.max_height_fraction` defaulting to 1.0 (off).
+
 ## D-15 Phase 4 interfaces: grasp attach target, MoveIt attach, scene freeze  - ACCEPTED (user, 2026-10-04)
 
 **Gap:** the architecture does not say how the robot names the Gazebo model for /attach (it only knows perceived
@@ -465,7 +467,7 @@ ids; ground truth is evaluation-only). 7.3 and 7.5 also overlap on who attaches 
   This is why the pick code must freeze the scene before picking.
 - A placed object that perception still sees (e.g. in a bin) is re-added after unfreeze.
 
-## D-16 Phase 4 pick-and-place implementation choices  - NEEDS DECISION (non-blocking review)
+## D-16 Phase 4 pick-and-place implementation choices  - ACCEPTED
 
 Found by subagent B while reaching 5/5 + 5/5 (docs/CHECKLIST.md Phase 4); all are parameters or local behaviour.
 - **Held object vs table:** while an object is attached, MoveIt may allow it to touch the table (allowed collision
@@ -485,6 +487,8 @@ Found by subagent B while reaching 5/5 + 5/5 (docs/CHECKLIST.md Phase 4); all ar
   yaw 0. Phase 6 randomised layouts are the real test.
 
 **Recommendation:** accept as is.
+
+**Final (accepted 2026-10-04, user):** accepted as is.
 
 ---
 
