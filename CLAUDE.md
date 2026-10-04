@@ -33,3 +33,9 @@ Never run sudo. If something needs sudo, tell me the exact command and I will ru
 ## Completion report (end every task with this)
 Files changed | Commands run and results | Tests added/passed | Failures or unresolved issues |
 Deviations from architecture | What I need to approve or verify manually.
+
+## GraspSort specifics
+Stack: ROS 2 Humble, Gazebo (per D-01), MoveIt 2, ros2_control, C++17. Simulation only.
+Middleware: RMW_IMPLEMENTATION=rmw_cyclonedds_cpp in every launch file.
+Objects are never added to the planning scene from world files; only from perception.
+Every investigation has a time box; record findings and fallbacks in docs/DECISIONS.md.
