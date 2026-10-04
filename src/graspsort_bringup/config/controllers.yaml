@@ -1,0 +1,51 @@
+# ros2_control controllers for the GraspSort UR5e + custom 2-finger gripper (D-02).
+# Loaded by gazebo_ros2_control through the robot xacro arg simulation_controllers.
+# Origin: docs/phase0/A/harness/ur5e_parallel_controllers.yaml (verified in Phase 0 A, check 3c),
+# itself based on ur_simulation_gazebo/config/ur_controllers.yaml (humble, SHA 34a0417).
+# Names are fixed by the Phase 1 contract and PDF section 6:
+#   /joint_trajectory_controller/follow_joint_trajectory, /gripper_controller/gripper_cmd
+
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    gripper_controller:
+      type: position_controllers/GripperActionController
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    state_publish_rate: 100.0  # Hz
+    action_monitor_rate: 20.0  # Hz
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2  # rad/s
+      goal_time: 0.0  # s, 0 = no limit on reaching the goal after the trajectory end
+      shoulder_pan_joint: {trajectory: 0.2, goal: 0.1}  # rad
+      shoulder_lift_joint: {trajectory: 0.2, goal: 0.1}
+      elbow_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_1_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_2_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_3_joint: {trajectory: 0.2, goal: 0.1}
+
+# Driven finger joint; gripper_right_finger_joint mimics it (URDF + ros2_control mimic param).
+# position 0.0 = open (90 mm), 0.04 = closed. Close width-based, never fully (D-02).
+gripper_controller:
+  ros__parameters:
+    joint: gripper_left_finger_joint
+    goal_tolerance: 0.002  # m
+    max_effort: 50.0  # N
+    allow_stalling: true
+    stall_velocity_threshold: 0.001  # m/s
+    stall_timeout: 1.0  # s

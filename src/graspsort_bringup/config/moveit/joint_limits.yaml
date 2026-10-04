@@ -1,0 +1,33 @@
+# MoveIt joint limit overrides (loaded as robot_description_planning).
+# Position and velocity limits come from the URDF (ur_description ur5e/joint_limits.yaml and the
+# gripper xacro); only acceleration limits are added. They are required by time parametrization
+# and by the Pilz planner (D-06). Arm values as ur_moveit_config 2.14 (conservative, rad/s^2).
+default_velocity_scaling_factor: 0.5
+default_acceleration_scaling_factor: 0.5
+
+joint_limits:
+  shoulder_pan_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  shoulder_lift_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  elbow_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  wrist_1_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  wrist_2_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  wrist_3_joint:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  # prismatic finger joints, m/s^2 (velocity limit 0.2 m/s from the URDF)
+  gripper_left_finger_joint:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  gripper_right_finger_joint:
+    has_acceleration_limits: true
+    max_acceleration: 1.0

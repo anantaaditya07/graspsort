@@ -1,0 +1,10 @@
+# Pilz industrial motion planner pipeline (PTP, LIN, CIRC), used for straight-line approach and
+# retreat (PDF 3, 7.5; D-06). Select with pipeline_id "pilz_industrial_motion_planner",
+# planner_id "LIN".
+planning_plugin: pilz_industrial_motion_planner/CommandPlanner
+request_adapters: >-
+  default_planner_request_adapters/FixWorkspaceBounds
+  default_planner_request_adapters/FixStartStateBounds
+  default_planner_request_adapters/FixStartStateCollision
+  default_planner_request_adapters/FixStartStatePathConstraints
+default_planner_config: PTP

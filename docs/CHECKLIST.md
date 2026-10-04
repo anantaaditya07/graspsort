@@ -26,18 +26,30 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 **Done when:** all three checks pass or a fallback is decided (D-01..D-04).
 
 ## Phase 1 - World, robot, MoveIt
-- [ ] Workspace layout: repo root is the colcon workspace; packages per architecture section 5 build
-      with zero warnings; `colcon test` runs
-- [ ] scripts/fetch_models.sh (D-08): pinned object models, YCB inertials and materials patched
-- [ ] graspsort_gazebo: world with table, 3 bins, 4-6 objects, `libgazebo_ros_state.so`, and a fixed
-      RGB-D camera (pose per D-05, topics remapped to /camera/color/*, /camera/depth/*)
-- [ ] Arm + gripper URDF per D-02 (gripper_tcp frame); controllers yaml; launch with
-      RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-- [ ] graspsort_bringup: MoveIt config (OMPL with RRTConnect default + Pilz, D-06); named poses
-- [ ] Static frames: world -> table, bin_<class>
-- [ ] Verify: controllers active, /joint_states rate, camera topic rates + encodings
+- [x] Workspace layout: repo root is the colcon workspace; 3 packages (graspsort_msgs,
+      graspsort_gazebo, graspsort_bringup) build with zero warnings; docs/COLCON_IGNORE (D-10)
+- [x] `colcon test`: 42 tests, 0 failures (registry GoogleTests, world/layout/xacro pytest,
+      bringup config consistency pytest)
+- [x] scripts/fetch_models.sh (D-08): pinned models, SHA-256 verified, masses, inertia, collision,
+      material and pose fixed; models rest with 0.0 mm drift (D-10)
+- [x] graspsort_gazebo: world with table, 3 bins, 6 objects (2 each of ball, bottle, cup), gazebo_ros_state,
+      attach plugin; layout in config/world_layout.yaml
+- [x] Arm + gripper + camera URDF per D-02/D-05 (gripper_tcp; camera 50 deg, 0.75 m)
+- [x] graspsort_msgs/AttachLink.srv; /attach and /detach on the real finger link verified (D-03)
+- [x] graspsort_bringup: own sim launch (D-01), controllers, MoveIt config (RRTConnect default + Pilz,
+      D-06), named states home/ready/open/closed, CycloneDDS in every launch (tested)
+- [x] Static frames: world -> table, bin_cup, bin_bottle, bin_ball (from world_layout.yaml)
+- [x] Integration, headless (2026-10-04): 3 controllers active;
+      `move_named.py home ready home ready home` 5/5 SUCCESS (planning 0.020-0.027 s,
+      joint error <= 0.00096 rad); gripper close/open SUCCEEDED (0.0400 / 0.0000);
+      /camera/color 9.98 Hz rgb8, /camera/depth 9.98 Hz 32FC1, both frame camera_color_optical_frame
+- [x] Pilz LIN plan + execute 5 cm down/up from ready, within 0.1 mm (subagent C, not re-run in integration)
+- [ ] USER: RViz on a display: `ros2 launch graspsort_bringup sim.launch.py rviz:=true`, plan and
+      execute from the MotionPlanning panel (no display available headless)
+- [ ] USER: review D-09 and D-10
 
 **Done when:** the arm moves from the RViz MotionPlanning panel and from a script.
+The script part is done; the RViz part is waiting on the user.
 
 ## Phase 2 - Messages + ROS-free libraries
 - [ ] graspsort_msgs: ObjectPose.msg, ObjectPoseArray.msg, SortObjects.action, AttachLink.srv (D-03)
