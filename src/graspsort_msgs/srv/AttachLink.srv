@@ -1,0 +1,9 @@
+# Used for both /attach and /detach (D-03). Creates or removes a fixed joint in Gazebo
+# between parent_model/parent_link (gripper finger link) and child_model/child_link (object).
+string parent_model  # e.g. "ur"
+string parent_link   # e.g. "gripper_left_finger_link"
+string child_model   # object model name, e.g. "ball_1"
+string child_link    # object link name, e.g. "link"
+---
+bool success
+string message

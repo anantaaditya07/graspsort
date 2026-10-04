@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!-- GraspSort robot description - UR5e (Gazebo Classic, ros2_control) + custom 2-finger prismatic
+     gripper (D-02) + fixed oblique RGB-D camera (D-05).
+     Spawned into Gazebo as entity "ur". Default pose args match config/world_layout.yaml.
+     RULE - never put colon+space in comments, gazebo_ros2_control 0.4 passes robot_description
+     through the rcl YAML parameter parser (D-06). -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+  <xacro:arg name="simulation_controllers" default=""/>
+  <xacro:arg name="mimic" default="true"/>
+  <xacro:arg name="initial_positions_file" default="$(find ur_description)/config/initial_positions.yaml"/>
+
+  <!-- Robot base_link pose in world (robot_base in world_layout.yaml) -->
+  <xacro:arg name="base_x" default="0.0"/>
+  <xacro:arg name="base_y" default="0.0"/>
+  <xacro:arg name="base_z" default="0.75"/>
+  <xacro:arg name="base_yaw" default="0.0"/>
+
+  <!-- camera_link pose in world (camera in world_layout.yaml) -->
+  <xacro:arg name="camera_x" default="0.9721"/>
+  <xacro:arg name="camera_y" default="0.0"/>
+  <xacro:arg name="camera_z" default="1.3245"/>
+  <xacro:arg name="camera_roll" default="0.0"/>
+  <xacro:arg name="camera_pitch" default="0.8727"/>
+  <xacro:arg name="camera_yaw" default="3.141593"/>
+  <xacro:arg name="camera_width" default="640"/>
+  <xacro:arg name="camera_height" default="480"/>
+  <xacro:arg name="camera_update_rate" default="10.0"/>
+  <xacro:arg name="camera_horizontal_fov" default="1.2112"/>
+  <xacro:arg name="camera_clip_near" default="0.1"/>
+  <xacro:arg name="camera_clip_far" default="5.0"/>
+
+  <!-- Gripper geometry (metres). q=0 open (inner faces at +-open_half), q=stroke closed -->
+  <xacro:arg name="gripper_base_t" default="0.04"/>
+  <xacro:arg name="gripper_base_w" default="0.12"/>
+  <xacro:arg name="gripper_base_d" default="0.04"/>
+  <xacro:arg name="finger_len" default="0.10"/>
+  <xacro:arg name="finger_t" default="0.01"/>
+  <xacro:arg name="finger_w" default="0.02"/>
+  <xacro:arg name="stroke" default="0.04"/>
+  <xacro:arg name="open_half" default="0.045"/>
+  <!-- gripper_tcp sits this far above the fingertips (grasp point between the pads) -->
+  <xacro:arg name="tcp_inset" default="0.02"/>
+  <xacro:arg name="finger_mu" default="1.0"/>
+  <xacro:arg name="finger_effort" default="100"/>
+  <xacro:arg name="finger_velocity" default="0.2"/>
+
+  <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
+  <xacro:property name="use_mimic" value="$(arg mimic)"/>
+  <xacro:property name="base_t" value="$(arg gripper_base_t)"/>
+  <xacro:property name="base_w" value="$(arg gripper_base_w)"/>
+  <xacro:property name="base_d" value="$(arg gripper_base_d)"/>
+  <xacro:property name="finger_len" value="$(arg finger_len)"/>
+  <xacro:property name="finger_t" value="$(arg finger_t)"/>
+  <xacro:property name="finger_w" value="$(arg finger_w)"/>
+  <xacro:property name="stroke" value="$(arg stroke)"/>
+  <xacro:property name="open_half" value="$(arg open_half)"/>
+  <xacro:property name="tcp_inset" value="$(arg tcp_inset)"/>
+
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+
+  <link name="world"/>
+
+  <!-- UR5e arm, Gazebo Classic hardware (GazeboSystem) from ur_description -->
+  <xacro:ur_robot name="ur" tf_prefix="" parent="world"
+    joint_limits_parameters_file="$(find ur_description)/config/ur5e/joint_limits.yaml"
+    kinematics_parameters_file="$(find ur_description)/config/ur5e/default_kinematics.yaml"
+    physical_parameters_file="$(find ur_description)/config/ur5e/physical_parameters.yaml"
+    visual_parameters_file="$(find ur_description)/config/ur5e/visual_parameters.yaml"
+    safety_limits="true" sim_gazebo="true" ur_type="ur5e"
+    initial_positions="${xacro.load_yaml(initial_positions_file)}">
+    <origin xyz="$(arg base_x) $(arg base_y) $(arg base_z)" rpy="0 0 $(arg base_yaw)"/>
+  </xacro:ur_robot>
+
+  <!-- ===== Custom 2-finger prismatic gripper (copy of Phase 0 A geometry) ===== -->
+  <link name="gripper_base_link">
+    <visual><origin xyz="0 0 ${base_t/2}"/><geometry><box size="${base_d} ${base_w} ${base_t}"/></geometry></visual>
+    <collision><origin xyz="0 0 ${base_t/2}"/><geometry><box size="${base_d} ${base_w} ${base_t}"/></geometry></collision>
+    <inertial><mass value="0.3"/><origin xyz="0 0 ${base_t/2}"/><inertia ixx="4e-4" iyy="8e-5" izz="4e-4" ixy="0" ixz="0" iyz="0"/></inertial>
+  </link>
+  <joint name="gripper_base_joint" type="fixed">
+    <parent link="tool0"/><child link="gripper_base_link"/><origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- fingers move along +-y of gripper_base_link -->
+  <xacro:macro name="finger" params="side sign">
+    <link name="gripper_${side}_finger_link">
+      <visual><origin xyz="0 ${sign*finger_t/2} ${finger_len/2}"/><geometry><box size="${finger_w} ${finger_t} ${finger_len}"/></geometry></visual>
+      <collision><origin xyz="0 ${sign*finger_t/2} ${finger_len/2}"/><geometry><box size="${finger_w} ${finger_t} ${finger_len}"/></geometry></collision>
+      <inertial><mass value="0.05"/><origin xyz="0 ${sign*finger_t/2} ${finger_len/2}"/>
+        <inertia ixx="4.2e-5" iyy="4.3e-5" izz="2.1e-6" ixy="0" ixz="0" iyz="0"/></inertial>
+    </link>
+    <joint name="gripper_${side}_finger_joint" type="prismatic">
+      <parent link="gripper_base_link"/><child link="gripper_${side}_finger_link"/>
+      <origin xyz="0 ${sign*open_half} ${base_t}" rpy="0 0 0"/>
+      <axis xyz="0 ${-sign} 0"/>
+      <limit lower="0.0" upper="${stroke}" effort="$(arg finger_effort)" velocity="$(arg finger_velocity)"/>
+      <xacro:if value="${side == 'right' and use_mimic}"><mimic joint="gripper_left_finger_joint" multiplier="1"/></xacro:if>
+    </joint>
+    <gazebo reference="gripper_${side}_finger_link"><mu1>$(arg finger_mu)</mu1><mu2>$(arg finger_mu)</mu2></gazebo>
+  </xacro:macro>
+  <xacro:finger side="left" sign="1"/>
+  <xacro:finger side="right" sign="-1"/>
+
+  <link name="gripper_tcp"/>
+  <joint name="gripper_tcp_joint" type="fixed">
+    <parent link="gripper_base_link"/><child link="gripper_tcp"/>
+    <origin xyz="0 0 ${base_t + finger_len - tcp_inset}" rpy="0 0 0"/>
+  </joint>
+
+  <ros2_control name="ParallelGripperGazebo" type="system">
+    <hardware><plugin>gazebo_ros2_control/GazeboSystem</plugin></hardware>
+    <joint name="gripper_left_finger_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="gripper_right_finger_joint">
+      <xacro:if value="${use_mimic}">
+        <param name="mimic">gripper_left_finger_joint</param>
+        <param name="multiplier">1</param>
+      </xacro:if>
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(arg simulation_controllers)</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- ===== Fixed RGB-D camera (D-05). world -> camera_link -> camera_color_optical_frame ===== -->
+  <link name="camera_link">
+    <visual>
+      <origin xyz="-0.02 0 0"/>
+      <geometry><box size="0.03 0.09 0.025"/></geometry>
+    </visual>
+    <!-- small inertial so the URDF to SDF conversion keeps the link (and its sensor) -->
+    <inertial><mass value="0.1"/><origin xyz="0 0 0"/><inertia ixx="1e-4" iyy="1e-4" izz="1e-4" ixy="0" ixz="0" iyz="0"/></inertial>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="world"/><child link="camera_link"/>
+    <origin xyz="$(arg camera_x) $(arg camera_y) $(arg camera_z)"
+            rpy="$(arg camera_roll) $(arg camera_pitch) $(arg camera_yaw)"/>
+  </joint>
+  <link name="camera_color_optical_frame"/>
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/><child link="camera_color_optical_frame"/>
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+  </joint>
+
+  <!-- Gazebo depth camera looks along +x of camera_link; images are stamped with the optical frame.
+       The plugin publishes depth under color/depth, the remaps give /camera/depth/* (D-06). -->
+  <gazebo reference="camera_link">
+    <gravity>false</gravity>
+    <sensor name="rgbd" type="depth">
+      <always_on>true</always_on>
+      <update_rate>$(arg camera_update_rate)</update_rate>
+      <camera>
+        <horizontal_fov>$(arg camera_horizontal_fov)</horizontal_fov>
+        <image><width>$(arg camera_width)</width><height>$(arg camera_height)</height><format>R8G8B8</format></image>
+        <clip><near>$(arg camera_clip_near)</near><far>$(arg camera_clip_far)</far></clip>
+      </camera>
+      <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/camera</namespace>
+          <remapping>color/depth/image_raw:=depth/image_raw</remapping>
+          <remapping>color/depth/camera_info:=depth/camera_info</remapping>
+          <remapping>color/points:=depth/points</remapping>
+        </ros>
+        <camera_name>color</camera_name>
+        <frame_name>camera_color_optical_frame</frame_name>
+        <min_depth>$(arg camera_clip_near)</min_depth>
+        <max_depth>$(arg camera_clip_far)</max_depth>
+      </plugin>
+    </sensor>
+  </gazebo>
+</robot>

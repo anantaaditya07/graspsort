@@ -1,0 +1,126 @@
+# GraspSort world layout. SINGLE SOURCE OF TRUTH for the static scene geometry.
+# Units metres / radians, all poses in the "world" frame (Gazebo world origin).
+# Format is a ROS 2 parameter file, so nodes can load it directly with --params-file.
+#
+# Consumers
+#   worlds/graspsort.world          table, pedestal, bins and objects must match (checked by
+#                                   test/test_world_layout.py)
+#   urdf/graspsort_robot.urdf.xacro default xacro args for robot base and camera pose match
+#                                   (checked by the same test); bringup may pass them explicitly
+#   graspsort_bringup               static TF frames table, bin_cup, bin_bottle, bin_ball
+#   scene_manager (Phase 4)         table, pedestal and bins as fixed collision objects
+#
+# Reachability (UR5e, gripper pointing down, gripper_tcp 0.12 m below tool0, fingertips
+# 0.14 m below tool0). Horizontal distance from the arm base axis
+#   objects  0.393 .. 0.612 m     bins  0.489 .. 0.653 m     (design band 0.30 .. 0.70 m)
+# Pre-grasp is 0.10 m above the object top. The robot base sits on a pedestal with
+# base_link at table-top height.
+/**:
+  ros__parameters:
+    world_frame: world
+
+    # Robot base_link pose (UR5e). base_link is at the top of the pedestal.
+    robot_base:
+      x: 0.0
+      y: 0.0
+      z: 0.75
+      yaw: 0.0
+    # Static box under the robot base. Pose = centre of its top face (= robot base).
+    pedestal:
+      x: 0.0
+      y: 0.0
+      z: 0.75
+      size: [0.20, 0.20, 0.75]
+
+    # Table. Pose = centre of the top surface (this is the static TF frame "table").
+    # size = [x, y, top thickness]. Legs are below the top, inside its footprint.
+    table:
+      frame: table
+      x: 0.47
+      y: 0.0
+      z: 0.75
+      yaw: 0.0
+      size: [0.70, 1.10, 0.05]
+      leg_size: [0.05, 0.05, 0.70]
+
+    # Open-top bins on the table. Pose = centre of the bin's bottom face, which rests on the
+    # table top (this is the static TF frame of the bin). size = outer [x, y, height].
+    bins:
+      names: [bin_cup, bin_bottle, bin_ball]
+      size: [0.20, 0.20, 0.08]
+      wall_thickness: 0.01
+      floor_thickness: 0.01
+      bin_cup:
+        x: 0.25
+        y: 0.42
+        z: 0.75
+        yaw: 0.0
+      bin_bottle:
+        x: 0.35
+        y: -0.42
+        z: 0.75
+        yaw: 0.0
+      bin_ball:
+        x: 0.50
+        y: 0.42
+        z: 0.75
+        yaw: 0.0
+
+    # Fixed RGB-D camera (D-05, oblique). Pose of camera_link (x forward, REP 103). The
+    # optical frame camera_color_optical_frame is a child with rpy (-pi/2, 0, -pi/2).
+    # Mounted opposite the arm (+x side, looking back towards the robot), 50 deg pitch,
+    # 0.75 m along the optical axis from the aim point at the object-area centre.
+    camera:
+      x: 0.9721
+      y: 0.0
+      z: 1.3245
+      roll: 0.0
+      pitch: 0.8727
+      yaw: 3.141593
+      aim_point: [0.49, 0.0, 0.75]
+      width: 640
+      height: 480
+      update_rate: 10.0
+      horizontal_fov: 1.2112
+
+    # Initial object poses in the world file. Ground truth for evaluation ONLY. Never use
+    # these for planning; the planning scene gets objects from perception only (CLAUDE.md).
+    # Pose = model origin (bottom centre of the object), upright.
+    objects:
+      names: [ball_1, ball_2, cup_1, cup_2, bottle_1, bottle_2]
+      ball_1:
+        model: cricket_ball
+        x: 0.60
+        y: -0.12
+        z: 0.75
+        yaw: 0.0
+      ball_2:
+        model: cricket_ball
+        x: 0.60
+        y: 0.12
+        z: 0.75
+        yaw: 0.0
+      cup_1:
+        model: plastic_cup
+        x: 0.48
+        y: -0.20
+        z: 0.75
+        yaw: 0.0
+      cup_2:
+        model: plastic_cup
+        x: 0.48
+        y: 0.20
+        z: 0.75
+        yaw: 0.0
+      bottle_1:
+        model: mustard_bottle
+        x: 0.38
+        y: -0.08
+        z: 0.75
+        yaw: 0.0
+      bottle_2:
+        model: mustard_bottle
+        x: 0.38
+        y: 0.10
+        z: 0.75
+        yaw: 0.0
