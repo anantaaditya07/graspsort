@@ -9,7 +9,8 @@
 // obliquely). Footprint size and yaw come from cv::minAreaRect as in 7.2.
 //
 // D-20 (overnight): for a class with a known footprint (KnownFootprintTable, e.g. the bottle),
-// the known rectangle is fitted to the visible points instead (fitKnownFootprint). The oblique
+// the known rectangle is fitted to the visible points (fitKnownFootprint): minAreaRect axes, the
+// known size decides which axis is long, and the centre is anchored on the camera side. The oblique
 // camera sees only the near half of an object (D-14), so minAreaRect undersizes it along the view
 // and tilts its yaw; the undersized width made the gripper close inside the bottle.
 //
@@ -45,8 +46,6 @@ struct KnownFootprint {
 
 // D-20 known-footprint fit.
 struct KnownFitConfig {
-  // Yaw search step (rad) over [-pi/2, pi/2).
-  double angle_step{0.0087};
   // The visible extent may exceed a known side by this much (m): depth noise and edge pixels.
   double max_overflow{0.015};
 };
@@ -82,18 +81,21 @@ inline cv::Rect boxFromCenterSize(double cx, double cy, double w, double h) {
 }
 
 // D-20: fits a rectangle of the known size to the table-plane points `xy` of an object seen from
-// `camera_xy` (camera position on the table plane). From a raised camera every face that points
-// towards the camera is fully visible, the far faces are hidden. For each yaw on the grid the
-// visible extents (du along the long side, dv along the short side) must fit the known rectangle
-// within cfg.max_overflow; the cost is how far the extent of each camera-facing face differs from
-// its known length, weighted by how directly the face points at the camera:
-//   |dir . b| * |du - size_x| / size_x + |dir . a| * |dv - size_y| / size_y + overflow / size_x
-// (a, b: long and short axis; dir: unit vector from the points' centroid to the camera). The
-// weighting resolves the 90 deg ambiguity of a partly hidden object. Along an axis whose extent
-// is shorter than the known side, the rectangle is anchored on the camera side, so the hidden part
-// lies away from the camera. size_x/size_y are the known sizes, yaw is the long-side angle in
-// [-pi/2, pi/2). nullopt if `xy` is empty or no yaw fits. Throws std::invalid_argument for
-// non-positive sizes, size_x < size_y, or a non-positive angle step.
+// `camera_xy` (camera position on the table plane).
+// 1. Axes: cv::minAreaRect of the points (as 7.2). On the real bottle its axes are right to within
+//    the yaw error of the visible shape, but which side is the long one is not: seen end-on, the
+//    visible part (short face plus a strip of the top) is longer across the view than along it.
+// 2. Long axis: each of the two axes is tried as the long side (a). The visible extents (du along
+//    a, dv along b) must fit the known rectangle within cfg.max_overflow. From a raised camera
+//    every face that points towards the camera is fully visible, so the hypothesis is scored by how
+//    far the extent of each camera-facing face differs from its known length, weighted by how
+//    directly the face points at the camera (dir: unit vector from the centroid to the camera):
+//      |dir . b| * |du - size_x| / size_x + |dir . a| * |dv - size_y| / size_y + overflow / size_x
+// 3. Centre: along an axis whose extent is shorter than the known side, the rectangle is anchored
+//    on the camera side, so the hidden part lies away from the camera.
+// size_x/size_y are the known sizes, yaw is the long-side angle in [-pi/2, pi/2). nullopt if `xy`
+// is empty or neither hypothesis fits (e.g. two merged objects). Throws std::invalid_argument
+// unless size_x >= size_y > 0 and max_overflow >= 0.
 inline std::optional<Footprint> fitKnownFootprint(const std::vector<cv::Point2f>& xy,
                                                   const Eigen::Vector2d& camera_xy,
                                                   const KnownFootprint& known,
@@ -101,8 +103,8 @@ inline std::optional<Footprint> fitKnownFootprint(const std::vector<cv::Point2f>
   if (!(known.size_x > 0.0) || !(known.size_y > 0.0) || known.size_x < known.size_y) {
     throw std::invalid_argument("known footprint needs size_x >= size_y > 0");
   }
-  if (!(cfg.angle_step > 0.0)) {
-    throw std::invalid_argument("known footprint fit angle_step must be > 0");
+  if (!(cfg.max_overflow >= 0.0)) {
+    throw std::invalid_argument("known footprint fit max_overflow must be >= 0");
   }
   if (xy.empty()) {
     return std::nullopt;
@@ -116,38 +118,39 @@ inline std::optional<Footprint> fitKnownFootprint(const std::vector<cv::Point2f>
   dir = dir.norm() > 0.0 ? Eigen::Vector2d(dir.normalized()) : Eigen::Vector2d::Zero();
 
   const double pi = EIGEN_PI;
+  const double axis0 = static_cast<double>(cv::minAreaRect(xy).angle) * pi / 180.0;
   const double lx = known.size_x;
   const double ly = known.size_y;
-  struct Best {
-    double cost, yaw, umin, umax, vmin, vmax;
+  struct Hypothesis {
+    double cost{0.0};
+    double yaw{0.0};
+    double umin{0.0}, umax{0.0}, vmin{0.0}, vmax{0.0};
   };
-  std::optional<Best> best;
-  for (double yaw = -pi / 2.0; yaw < pi / 2.0; yaw += cfg.angle_step) {
+  std::optional<Hypothesis> best;
+  for (const double yaw : {axis0, axis0 + pi / 2.0}) {
     const Eigen::Vector2d a(std::cos(yaw), std::sin(yaw));
     const Eigen::Vector2d b(-a.y(), a.x());
-    double umin = std::numeric_limits<double>::infinity();
-    double umax = -umin;
-    double vmin = umin;
-    double vmax = -umin;
+    Hypothesis h;
+    h.yaw = yaw;
+    h.umin = h.vmin = std::numeric_limits<double>::infinity();
+    h.umax = h.vmax = -std::numeric_limits<double>::infinity();
     for (const auto& p : xy) {
       const Eigen::Vector2d q = Eigen::Vector2d(p.x, p.y) - centroid;
-      const double u = q.dot(a);
-      const double v = q.dot(b);
-      umin = std::min(umin, u);
-      umax = std::max(umax, u);
-      vmin = std::min(vmin, v);
-      vmax = std::max(vmax, v);
+      h.umin = std::min(h.umin, q.dot(a));
+      h.umax = std::max(h.umax, q.dot(a));
+      h.vmin = std::min(h.vmin, q.dot(b));
+      h.vmax = std::max(h.vmax, q.dot(b));
     }
-    const double du = umax - umin;
-    const double dv = vmax - vmin;
+    const double du = h.umax - h.umin;
+    const double dv = h.vmax - h.vmin;
     const double overflow = std::max(0.0, du - lx) + std::max(0.0, dv - ly);
     if (overflow > cfg.max_overflow) {
       continue;
     }
-    const double cost = std::abs(dir.dot(b)) * std::abs(du - lx) / lx +
-                        std::abs(dir.dot(a)) * std::abs(dv - ly) / ly + overflow / lx;
-    if (!best || cost < best->cost) {
-      best = Best{cost, yaw, umin, umax, vmin, vmax};
+    h.cost = std::abs(dir.dot(b)) * std::abs(du - lx) / lx +
+             std::abs(dir.dot(a)) * std::abs(dv - ly) / ly + overflow / lx;
+    if (!best || h.cost < best->cost) {
+      best = h;
     }
   }
   if (!best) {
@@ -176,13 +179,15 @@ inline std::optional<Footprint> fitKnownFootprint(const std::vector<cv::Point2f>
 
 // One frame's estimate for one detection (D-12). With `known` (D-20), the known footprint is
 // fitted to the points (fitKnownFootprint) and the minAreaRect result is used only if that fit
-// fails. nullopt if the box has no valid depth or too few object points above the table. Throws
+// fails (then *known_fit_failed is set, if given). nullopt if the box has no valid depth or too
+// few object points above the table. Throws
 // std::invalid_argument unless depth is CV_32FC1.
 inline std::optional<ObjectSample> localizeBox(const cv::Mat& depth, const cv::Rect& box,
                                                const CameraIntrinsics& k,
                                                const Eigen::Isometry3d& world_T_optical,
                                                const LocalizerConfig& cfg, double confidence,
-                                               const std::optional<KnownFootprint>& known = {}) {
+                                               const std::optional<KnownFootprint>& known = {},
+                                               bool* known_fit_failed = nullptr) {
   const auto object_depth = percentileDepth(depth, box, cfg.depth);
   if (!object_depth) {
     return std::nullopt;
@@ -199,6 +204,8 @@ inline std::optional<ObjectSample> localizeBox(const cv::Mat& depth, const cv::R
                                        cfg.known_fit, f->height);
     if (fit) {
       f = fit;
+    } else if (known_fit_failed != nullptr) {
+      *known_fit_failed = true;
     }
   }
   ObjectSample s;

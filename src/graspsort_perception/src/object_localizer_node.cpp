@@ -119,13 +119,10 @@ class ObjectLocalizerNode : public rclcpp::Node {
                                                     std::vector<std::string>{}),
         declare_parameter<std::vector<double>>("known_footprint.size_x", std::vector<double>{}),
         declare_parameter<std::vector<double>>("known_footprint.size_y", std::vector<double>{}));
-    config_.known_fit.angle_step =
-        declare_parameter<double>("known_footprint.angle_step", config_.known_fit.angle_step);
     config_.known_fit.max_overflow =
         declare_parameter<double>("known_footprint.max_overflow", config_.known_fit.max_overflow);
-    if (!(config_.known_fit.angle_step > 0.0) || !(config_.known_fit.max_overflow >= 0.0)) {
-      throw std::invalid_argument(
-          "known_footprint.angle_step must be > 0 and known_footprint.max_overflow >= 0");
+    if (!(config_.known_fit.max_overflow >= 0.0)) {
+      throw std::invalid_argument("known_footprint.max_overflow must be >= 0");
     }
 
     depth_cache_size_ =
@@ -246,8 +243,16 @@ class ObjectLocalizerNode : public rclcpp::Node {
           det.bbox.center.position.x, det.bbox.center.position.y, det.bbox.size_x, det.bbox.size_y);
       std::optional<gp::ObjectSample> sample;
       try {
-        sample = gp::localizeBox(depth->image, box, *intrinsics_, world_T_optical, config_,
-                                 hyp.score, known_footprints_->find(hyp.class_id));
+        bool known_fit_failed = false;
+        sample =
+            gp::localizeBox(depth->image, box, *intrinsics_, world_T_optical, config_, hyp.score,
+                            known_footprints_->find(hyp.class_id), &known_fit_failed);
+        if (known_fit_failed) {
+          RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), kLogThrottleMs,
+                               "known footprint of '%s' does not fit the visible points within "
+                               "max_overflow; using minAreaRect (D-20)",
+                               hyp.class_id.c_str());
+        }
       } catch (const std::invalid_argument& e) {
         RCLCPP_ERROR_THROTTLE(get_logger(), *get_clock(), kLogThrottleMs, "%s (encoding %s)",
                               e.what(), depth_msg->encoding.c_str());

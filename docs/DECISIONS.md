@@ -573,25 +573,35 @@ limitation.
 
 ## D-20 Known-footprint fit for the bottle (fix B of D-19)  - PROPOSED (overnight, 2026-10-06)
 
-**Problem:** D-19. minAreaRect on the near half of the bottle undersizes it along the view and tilts its yaw.
+**Problem:** D-19. minAreaRect on the near half of the bottle (a) undersizes it along the view, so the gripper
+closes inside it; (b) seen end-on, it picks the wrong side as the long one (90 deg flip); (c) biases the
+centre toward the camera.
 **Change:**
-- New pure function `fitKnownFootprint` in localizer.hpp: for each class with a known box, grid-search yaw
-  (0.5 deg). The visible points must fit inside the known rectangle (overflow <= 15 mm). The cost is how far
-  each camera-facing face's visible extent differs from its known length, weighted by how directly the face
-  points at the camera; this weighting resolves the 90 deg ambiguity. The centre is anchored on the camera
-  side when a side is only partly seen.
-- The sizes are reported as the known sizes. If no yaw fits, the localizer keeps minAreaRect.
+- New pure function `fitKnownFootprint` in localizer.hpp, for classes with a known box:
+  - Axes: cv::minAreaRect, as in 7.2.
+  - Long axis: each axis is tried as the long side. The visible extents must fit the known rectangle
+    (overflow <= 15 mm). The score is how far each camera-facing face's extent differs from its known length,
+    weighted by how directly the face points at the camera.
+  - Centre: anchored on the camera side for a side that is only partly seen.
+  - Sizes are reported as the known sizes. If neither axis fits (e.g. merged objects), the localizer keeps
+    minAreaRect and logs a throttled warning.
+- **First version, abandoned:** a 0.5 deg yaw grid search for the best extent match. It passed the box unit
+  tests but was worse on the real bottle: 11-24 deg yaw errors on points captured in sim, against 0-15 deg
+  for minAreaRect. Rotating the frame inflates the extents of a rounded, partly seen shape to the known
+  size. Captured with data/overnight/capture_bottle.py at 12 poses; 2 were not detected (the D-19 edge-on
+  near-camera misses).
+- On those captured points the final version keeps minAreaRect's yaw (0-15 deg; the rounded cross-section
+  limits it) and adds the correct width, the long-axis choice and the centre.
 **Parameters** (perception.yaml):
 - `known_footprint.classes` ["bottle"], `size_x` [0.0958], `size_y` [0.0582]: the collision box from
   fetch_models.sh.
-- `known_footprint.angle_step` 0.0087, `max_overflow` 0.015.
+- `known_footprint.max_overflow` 0.015 m.
 - Empty classes give the behaviour from before D-20.
-**Architecture:** 7.2 says footprint size and yaw come from minAreaRect, and D-12 already amended 7.2. Known
-object sizes are not in the PDF; they are configuration, not perception output. No new topic, message field
-or dependency.
-**Tests:** 7 new GoogleTests. They cover full rendered boxes, near-side-only points at 12 yaws x 2 positions
-(yaw within 1 deg, centre within 3 mm), a check that minAreaRect fails on the same end-on view, merged
-points giving nothing, and input validation.
+**Architecture:** 7.2 says footprint size and yaw come from minAreaRect, and D-12 already amended 7.2. The
+axes still come from minAreaRect. Known sizes are configuration. No new topic, message field or dependency.
+**Tests:** 7 new GoogleTests. They cover full rendered boxes, near-side-only points at 12 yaws x 2 positions x
+2 strip depths (yaw within 1 deg, centre within 3 mm), a check that minAreaRect fails on the same end-on
+view, merged points giving nothing, and input validation.
 
 **Recommendation:** accept if the re-run improves the bottle success rate (see results.md).
 

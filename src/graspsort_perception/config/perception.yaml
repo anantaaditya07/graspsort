@@ -48,7 +48,6 @@ object_localizer_node:
       classes: ["bottle"]            # [] = minAreaRect for every class (before D-20)
       size_x: [0.0958]               # m, long side; = BOTTLE_SIZE_X in scripts/fetch_models.sh
       size_y: [0.0582]               # m, short side; = BOTTLE_SIZE_Y in scripts/fetch_models.sh
-      angle_step: 0.0087             # rad (0.5 deg) yaw search step
       max_overflow: 0.015            # m, visible extent may exceed a known side by this
     depth_cache_size: 10             # depth frames kept for stamp matching
     stamp_tolerance: 0.0             # s, 0 = exact stamp match (one RGB-D sensor)

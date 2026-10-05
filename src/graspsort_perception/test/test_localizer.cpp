@@ -231,16 +231,23 @@ TEST(FitKnownFootprint, NearSideOnlyRecoversYawCentreAndWidth) {
   // The D-19 failure: only the near half is visible. Every view direction relative to the box,
   // including end-on views where minAreaRect gives a too-narrow rectangle.
   const Eigen::Vector2d camera_xy = cameraPose().translation().head<2>();
+  // Thin and deep visible strips of the top (the real bottle shows most of its top). Note: an
+  // earlier extent-matching yaw search passed these box tests but failed on the real bottle's
+  // rounded cross-section (11-24 deg errors on captured sim points, D-20); that case is checked
+  // in the evaluation, not here.
   for (const Eigen::Vector2d& xy : {Eigen::Vector2d(0.40, -0.20), Eigen::Vector2d(0.58, 0.15)}) {
-    for (double yaw_deg = -90.0; yaw_deg < 90.0; yaw_deg += 15.0) {
-      const auto pts = nearSidePoints(xy, deg(yaw_deg), camera_xy, 0.02);
-      const auto f =
-          gp::fitKnownFootprint(pts, camera_xy, kKnownBottle, gp::KnownFitConfig{}, 0.19);
-      ASSERT_TRUE(f.has_value()) << yaw_deg;
-      EXPECT_NEAR(gp::wrapHalfPi(f->yaw - deg(yaw_deg)), 0.0, deg(1.0)) << yaw_deg;
-      EXPECT_LT((f->center_xy - xy).norm(), 0.003) << yaw_deg;
-      EXPECT_DOUBLE_EQ(f->size_y, kBottleSy);
-      EXPECT_DOUBLE_EQ(f->height, 0.19);
+    for (double strip : {0.02, 0.045}) {
+      for (double yaw_deg = -90.0; yaw_deg < 90.0; yaw_deg += 15.0) {
+        const auto pts = nearSidePoints(xy, deg(yaw_deg), camera_xy, strip);
+        const auto f =
+            gp::fitKnownFootprint(pts, camera_xy, kKnownBottle, gp::KnownFitConfig{}, 0.19);
+        ASSERT_TRUE(f.has_value()) << yaw_deg << " strip " << strip;
+        EXPECT_NEAR(gp::wrapHalfPi(f->yaw - deg(yaw_deg)), 0.0, deg(1.0))
+            << yaw_deg << " strip " << strip;
+        EXPECT_LT((f->center_xy - xy).norm(), 0.003) << yaw_deg << " strip " << strip;
+        EXPECT_DOUBLE_EQ(f->size_y, kBottleSy);
+        EXPECT_DOUBLE_EQ(f->height, 0.19);
+      }
     }
   }
 }
@@ -276,9 +283,9 @@ TEST(FitKnownFootprint, RejectsInvalidInput) {
   EXPECT_THROW(gp::fitKnownFootprint(pts, {1.0, 0.0}, {0.05, 0.09}, cfg, 0.1),
                std::invalid_argument);
   EXPECT_THROW(gp::fitKnownFootprint(pts, {1.0, 0.0}, {0.0, 0.0}, cfg, 0.1), std::invalid_argument);
-  gp::KnownFitConfig zero_step;
-  zero_step.angle_step = 0.0;
-  EXPECT_THROW(gp::fitKnownFootprint(pts, {1.0, 0.0}, kKnownBottle, zero_step, 0.1),
+  gp::KnownFitConfig negative;
+  negative.max_overflow = -0.001;
+  EXPECT_THROW(gp::fitKnownFootprint(pts, {1.0, 0.0}, kKnownBottle, negative, 0.1),
                std::invalid_argument);
 }
 
