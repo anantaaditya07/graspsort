@@ -528,6 +528,30 @@ Not in the PDF:
 
 **Recommendation:** accept as is.
 
+## D-19 Bottle yaw error with random yaw (Phase 6)  - OPEN (needs user decision)
+
+**Finding:** the smoke run (data/eval/smokeA_1, 1 trial per D-17 config) gives a median bottle yaw error of
+17.6 deg (n=5, p95 51.3; values 7-59 deg). The target in architecture 8 is < 10 deg. Phase 3 measured 4.0 deg,
+but only with the bottles at yaw 0. eval_summary.py folds the error into [0, 90] correctly, so the error comes
+from perception.
+**Likely cause (not yet proven):** as D-14 notes, the camera sees only the front half of a bottle. The
+minAreaRect footprint is short along the view direction, so at yaws away from 0 its long axis tilts toward the
+camera's view direction. The picks still worked at up to 19 deg error, because the closing axis follows the
+short side and max_grasp_width guards it. The worst case (59 deg, 4 objects / 3 cm gap) was in the trial with
+the unreachable / no-candidate failures.
+
+**Options:**
+- **A.** Run the full 40-trial D-17 evaluation as is (~50 min) and report the yaw result honestly, with the
+  cause. That gives n=60 bottles instead of 5, and a baseline for any fix.
+- **B.** Time-boxed fix (2 h) inside the existing 7.2 design: fit the known bottle footprint from ShapeTable to
+  the visible depth-band points instead of a free minAreaRect, then re-measure. If it doesn't help in time,
+  fall back to A.
+- **C.** Keep the algorithm and change the metric, e.g. only score the closing-axis error that matters for
+  grasping. This deviates from architecture 8.
+
+**Recommendation:** A first. 5 samples are too few to tell a perception problem from bad luck. Decide B from
+the full data (B means a second 40-trial run).
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)
