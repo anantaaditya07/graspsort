@@ -554,6 +554,47 @@ the unreachable / no-candidate failures.
 **Recommendation:** A first. 5 samples are too few to tell a perception problem from bad luck. Decide B from
 the full data (B means a second 40-trial run).
 
+**Full D-17 run (2026-10-06, data/eval/d17_full, docs/results_d17_baseline.md, commit c443c70):**
+- Bottle yaw median 9.6 deg, p95 51.1 (n=44). 16 of 60 bottles were not detected, so no yaw.
+- Bottles 32/60 in the correct bin, balls 56/60.
+- Bottle failures (28):
+  - 16 not detected.
+  - 5 yaw-linked: a grasp failure (`no_grasp_candidate` or `grasp_slipped`) with snapshot yaw error > 10 deg, i.e. 18 %.
+  - 7 other.
+- The rule set for the overnight run was "yaw >= 10 % of bottle failures -> fix B (2 h) and re-run".
+- A second finding counts more. Bottle `close_gripper` timed out in 20 of 55 closes (balls: 0 of 59). All
+  timeouts had a commanded width < 0.050 m against the real 0.0582 m (closes >= 0.050 m: 0 of 20 timed out).
+  This is the same D-14 effect: the near-half view undersizes the bottle when its short side runs along the
+  view. The fingers are sent about 1 cm inside the bottle and never stall. Fix B fixes the width too.
+
+**Final (overnight, PROPOSED):** fix B, as D-20. Re-run all 40 D-17 trials with the same seeds (every D-17
+trial has at least one bottle). Detection misses (edge-on bottles close to the camera) remain a known
+limitation.
+
+## D-20 Known-footprint fit for the bottle (fix B of D-19)  - PROPOSED (overnight, 2026-10-06)
+
+**Problem:** D-19. minAreaRect on the near half of the bottle undersizes it along the view and tilts its yaw.
+**Change:**
+- New pure function `fitKnownFootprint` in localizer.hpp: for each class with a known box, grid-search yaw
+  (0.5 deg). The visible points must fit inside the known rectangle (overflow <= 15 mm). The cost is how far
+  each camera-facing face's visible extent differs from its known length, weighted by how directly the face
+  points at the camera; this weighting resolves the 90 deg ambiguity. The centre is anchored on the camera
+  side when a side is only partly seen.
+- The sizes are reported as the known sizes. If no yaw fits, the localizer keeps minAreaRect.
+**Parameters** (perception.yaml):
+- `known_footprint.classes` ["bottle"], `size_x` [0.0958], `size_y` [0.0582]: the collision box from
+  fetch_models.sh.
+- `known_footprint.angle_step` 0.0087, `max_overflow` 0.015.
+- Empty classes give the behaviour from before D-20.
+**Architecture:** 7.2 says footprint size and yaw come from minAreaRect, and D-12 already amended 7.2. Known
+object sizes are not in the PDF; they are configuration, not perception output. No new topic, message field
+or dependency.
+**Tests:** 7 new GoogleTests. They cover full rendered boxes, near-side-only points at 12 yaws x 2 positions
+(yaw within 1 deg, centre within 3 mm), a check that minAreaRect fails on the same end-on view, merged
+points giving nothing, and input validation.
+
+**Recommendation:** accept if the re-run improves the bottle success rate (see results.md).
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)

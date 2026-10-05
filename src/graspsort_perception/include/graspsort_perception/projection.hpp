@@ -234,11 +234,16 @@ inline std::optional<double> heightAboveTable(const std::vector<Eigen::Vector3d>
   return zmax - table_height;
 }
 
-// Projects world points above the table (z >= table_height + table_clearance) and below
-// table_height + max_height_fraction * height vertically onto the table plane and fits
-// cv::minAreaRect. height = highest point above the table (all points). nullopt if fewer than
-// cfg.min_points remain for the rectangle.
-inline std::optional<Footprint> footprintFromWorldPoints(
+// Table-plane points of an upright object: world points above the table
+// (z >= table_height + table_clearance) and below table_height + max_height_fraction * height,
+// projected vertically onto the table plane. height = highest point above the table (all points).
+struct FootprintPoints {
+  std::vector<cv::Point2f> xy;
+  double height{0.0};
+};
+
+// nullopt if no point is above the table.
+inline std::optional<FootprintPoints> footprintPoints(
     const std::vector<Eigen::Vector3d>& points_world, double table_height,
     const FootprintConfig& cfg = {}) {
   std::vector<Eigen::Vector3d> above;
@@ -253,13 +258,27 @@ inline std::optional<Footprint> footprintFromWorldPoints(
     return std::nullopt;
   }
   const double z_max = table_height + cfg.max_height_fraction * *height;
-  std::vector<cv::Point2f> xy;
-  xy.reserve(above.size());
+  FootprintPoints out;
+  out.height = *height;
+  out.xy.reserve(above.size());
   for (const auto& p : above) {
     if (p.z() <= z_max) {
-      xy.emplace_back(static_cast<float>(p.x()), static_cast<float>(p.y()));
+      out.xy.emplace_back(static_cast<float>(p.x()), static_cast<float>(p.y()));
     }
   }
+  return out;
+}
+
+// Fits cv::minAreaRect to footprintPoints(). nullopt if fewer than cfg.min_points remain for the
+// rectangle.
+inline std::optional<Footprint> footprintFromWorldPoints(
+    const std::vector<Eigen::Vector3d>& points_world, double table_height,
+    const FootprintConfig& cfg = {}) {
+  const auto pts = footprintPoints(points_world, table_height, cfg);
+  if (!pts) {
+    return std::nullopt;
+  }
+  const auto& xy = pts->xy;
   if (xy.size() < std::max<std::size_t>(cfg.min_points, 1)) {
     return std::nullopt;
   }
@@ -275,7 +294,7 @@ inline std::optional<Footprint> footprintFromWorldPoints(
   f.size_x = std::max(e0.norm(), e1.norm());
   f.size_y = std::min(e0.norm(), e1.norm());
   f.yaw = wrapHalfPi(std::atan2(long_edge.y(), long_edge.x()));
-  f.height = *height;
+  f.height = pts->height;
   f.num_points = xy.size();
   return f;
 }

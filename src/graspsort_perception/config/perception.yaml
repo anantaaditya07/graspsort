@@ -44,6 +44,12 @@ object_localizer_node:
       max_position_stddev: 0.005     # m, publish only below this std-dev
     shape_classes: ["bottle", "sports ball"]  # D-13
     shape_types: [1, 0]              # ObjectPose.shape: 0 cylinder (ball as cylinder), 1 box
+    known_footprint:                 # D-20: fit the known box to the visible points (localizer.hpp)
+      classes: ["bottle"]            # [] = minAreaRect for every class (before D-20)
+      size_x: [0.0958]               # m, long side; = BOTTLE_SIZE_X in scripts/fetch_models.sh
+      size_y: [0.0582]               # m, short side; = BOTTLE_SIZE_Y in scripts/fetch_models.sh
+      angle_step: 0.0087             # rad (0.5 deg) yaw search step
+      max_overflow: 0.015            # m, visible extent may exceed a known side by this
     depth_cache_size: 10             # depth frames kept for stamp matching
     stamp_tolerance: 0.0             # s, 0 = exact stamp match (one RGB-D sensor)
     tf_timeout: 0.1                  # s

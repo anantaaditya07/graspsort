@@ -113,6 +113,20 @@ class ObjectLocalizerNode : public rclcpp::Node {
             "shape_classes", std::vector<std::string>{"bottle", "sports ball"}),  // D-13
         declare_parameter<std::vector<std::int64_t>>("shape_types",
                                                      std::vector<std::int64_t>{1, 0}));
+    // D-20: known footprints (default: none, i.e. minAreaRect for every class).
+    known_footprints_ = std::make_unique<gp::KnownFootprintTable>(
+        declare_parameter<std::vector<std::string>>("known_footprint.classes",
+                                                    std::vector<std::string>{}),
+        declare_parameter<std::vector<double>>("known_footprint.size_x", std::vector<double>{}),
+        declare_parameter<std::vector<double>>("known_footprint.size_y", std::vector<double>{}));
+    config_.known_fit.angle_step =
+        declare_parameter<double>("known_footprint.angle_step", config_.known_fit.angle_step);
+    config_.known_fit.max_overflow =
+        declare_parameter<double>("known_footprint.max_overflow", config_.known_fit.max_overflow);
+    if (!(config_.known_fit.angle_step > 0.0) || !(config_.known_fit.max_overflow >= 0.0)) {
+      throw std::invalid_argument(
+          "known_footprint.angle_step must be > 0 and known_footprint.max_overflow >= 0");
+    }
 
     depth_cache_size_ =
         toSize(declare_parameter<std::int64_t>("depth_cache_size", 10), "depth_cache_size");
@@ -232,8 +246,8 @@ class ObjectLocalizerNode : public rclcpp::Node {
           det.bbox.center.position.x, det.bbox.center.position.y, det.bbox.size_x, det.bbox.size_y);
       std::optional<gp::ObjectSample> sample;
       try {
-        sample =
-            gp::localizeBox(depth->image, box, *intrinsics_, world_T_optical, config_, hyp.score);
+        sample = gp::localizeBox(depth->image, box, *intrinsics_, world_T_optical, config_,
+                                 hyp.score, known_footprints_->find(hyp.class_id));
       } catch (const std::invalid_argument& e) {
         RCLCPP_ERROR_THROTTLE(get_logger(), *get_clock(), kLogThrottleMs, "%s (encoding %s)",
                               e.what(), depth_msg->encoding.c_str());
@@ -282,6 +296,7 @@ class ObjectLocalizerNode : public rclcpp::Node {
   gp::LocalizerConfig config_;
   std::unique_ptr<gp::TrackAssociator> tracks_;
   std::unique_ptr<gp::ShapeTable> shapes_;
+  std::unique_ptr<gp::KnownFootprintTable> known_footprints_;
   std::size_t depth_cache_size_{1};
   rclcpp::Duration stamp_tolerance_{0, 0};
   rclcpp::Duration tf_timeout_{0, 0};
