@@ -117,9 +117,9 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 - [x] sort_trials.py harness; verified by the main agent, headless, reference world (2026-10-05):
       3/3 runs PASS, one goal each, 4/4 objects in the correct bin, 0 failures, wall 59.0-70.8 s,
       cycle 12.0-21.6 s, planning 0.07-0.11 s
-- [ ] USER: D-18 (Phase 5 implementation choices, action_msgs dependency)
+- [x] USER: D-18 ACCEPTED, including the action_msgs dependency (2026-10-05)
 
-**Status: Phase 5 DONE (2026-10-05)** for its "done when"; D-18 awaits review.
+**Status: Phase 5 DONE (2026-10-05).**
 
 **Done when:** the full table is sorted from one action call.
 

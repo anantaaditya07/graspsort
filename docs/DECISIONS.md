@@ -510,7 +510,7 @@ The smaller counts follow from D-13: only 2 detectable classes, with 2 objects e
 - **Spawning:** objects are deleted and spawned with unique names (D-06).
 - **Ground truth:** used only by the evaluation scripts.
 
-## D-18 Phase 5 sort_task_node implementation choices  - PROPOSED (needs user review)
+## D-18 Phase 5 sort_task_node implementation choices  - ACCEPTED (user, 2026-10-05)
 
 Found by the main agent while reviewing the Phase 5 code against architecture 7.5 (2026-10-05).
 Ordering, pre-grasp, LIN approach/retreat, grasp/attach, transport, 2 retries and feedback follow 7.5.
