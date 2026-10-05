@@ -1,5 +1,6 @@
-# pick_place_test parameters (Phase 4, architecture 7.5). Defaults equal the node's declared
-# defaults. Bin geometry (bins.size, bins.wall_thickness, bins.floor_thickness) comes from
+# PickPlaceExecutor parameters (architecture 7.5), used by pick_place_test (Phase 4) and
+# sort_task_node (Phase 5, which also loads config/sort_task.yaml). Defaults equal the declared
+# defaults. target_class and object_wait_timeout are pick_place_test only. Bin geometry (bins.size, bins.wall_thickness, bins.floor_thickness) comes from
 # graspsort_gazebo/config/world_layout.yaml, loaded first by launch/pick_place_test.launch.py;
 # bin poses come from the static TF frames bin_<class> published by graspsort_bringup.
 # Gripper geometry values must match graspsort_robot.urdf.xacro (D-02).
@@ -41,6 +42,7 @@
       yaw_weight: 1.0
       clearance_weight: 10.0
       max_candidates: 3               # first candidate + 2 retries (architecture 7.5)
+      reach_check_candidates: 1       # sort ordering: IK-check this many best candidates (7.5)
 
     motion:                           # pick_place_geometry.hpp
       pregrasp_height: 0.10           # TCP above the grasp (architecture 7.5)
@@ -51,12 +53,21 @@
       release_clearance: 0.02         # held object's bottom above the bin floor at release
       transport_clearance: 0.05       # held object's bottom above the bin rim, above-bin pose
 
+    release_slot:                     # where in the bin to release (sort_logic.hpp), so a second
+      grid_step: 0.0025               # object of a class lands beside the first, not on it
+      wall_margin: 0.006              # object and open fingers stay this far inside the walls
+      clearance_cap: 0.05             # larger clearances to placed objects are equally good
+      box_max_across_offset: 0.0      # boxes: slot offset only along the closing axis (D-14:
+                                      # the perceived length of a bottle is too short)
+
     gripper:                          # D-02
       action: /gripper_controller/gripper_cmd
       tcp_to_fingertip: 0.02          # URDF tcp_inset
       open_width: 0.09                # 2 x open_half
       max_close_position: 0.038       # never beyond (stroke 0.04 = fully closed)
       squeeze: 0.0005                 # close to object width minus this (D-02, Phase 0 A)
+      release_opening_margin: 0.006   # release: open to object width + this (<= 0: fully open)
+      joint: gripper_left_finger_joint  # actuated finger joint (IK seed: gripper open = 0)
       max_effort: 50.0                # N
       timeout: 10.0                   # s, action accept / result
       settle_time: 0.3                # s, after each gripper action
@@ -77,6 +88,7 @@
       goal_position_tolerance: 0.001  # m
       goal_orientation_tolerance: 0.01  # rad
       ik_timeout: 0.1                 # s, IK for the joint goal of each free move
+      reach_ik_timeout: 0.5           # s, collision-aware /compute_ik in the sort ordering check
 
     services:
       freeze: /scene_manager/freeze   # std_srvs/SetBool
@@ -86,3 +98,7 @@
       attach_parent_link: gripper_left_finger_link
       timeout: 10.0                   # s
       get_planning_scene: /get_planning_scene
+      compute_ik: /compute_ik         # move_group, collision-aware IK (sort ordering check)
+
+    recovery:
+      move_to_ready: true             # after a failure: raise the TCP, go to ready_state

@@ -1,0 +1,19 @@
+# sort_task_node parameters (Phase 5, architecture 7.5), loaded after config/pick_place.yaml
+# (pick-and-place tunables) and graspsort_gazebo/config/world_layout.yaml (bins.size etc.) by
+# launch/sort_task.launch.py. Defaults equal the node's declared defaults. Key '/**' as in
+# pick_place.yaml (D-16), so -p overrides on the command line win.
+/**:
+  ros__parameters:
+    sort:
+      action_name: /sort_objects
+      settle_time: 2.0          # s, /objects_3d unchanged (ids, positions) this long = settled
+                                # (> the localizer's 10-frame track drop, so a picked object's
+                                # track is gone)
+      settle_tolerance: 0.01    # m, max motion of any object within the settle window
+      settle_timeout: 30.0      # s, then use the latest /objects_3d anyway (warning)
+      bin_margin: 0.02          # m, objects within a bin footprint grown by this are sorted
+      match_radius: 0.05        # m, same object across track ids (retry / given up), xy
+      max_attempts: 3           # per object: first attempt + 2 retries (architecture 7.5)
+      max_objects: 20           # stop after this many objects were placed
+      time_limit: 900.0         # s per goal, checked between objects
+    metrics_log_path: ""        # "" = off; else append one JSON line per attempt (evaluation)
