@@ -510,6 +510,24 @@ The smaller counts follow from D-13: only 2 detectable classes, with 2 objects e
 - **Spawning:** objects are deleted and spawned with unique names (D-06).
 - **Ground truth:** used only by the evaluation scripts.
 
+## D-18 Phase 5 sort_task_node implementation choices  - PROPOSED (needs user review)
+
+Found by the main agent while reviewing the Phase 5 code against architecture 7.5 (2026-10-05).
+Ordering, pre-grasp, LIN approach/retreat, grasp/attach, transport, 2 retries and feedback follow 7.5.
+Not in the PDF:
+- **Release slots in a bin** (sort_logic.hpp chooseReleaseSlot, `release_slot.*` parameters): the
+  second object of a class is released beside the first instead of on top of it. Each bin holds 2 objects.
+- **Re-detect between objects:** after each place the node waits until /objects_3d is stable
+  (`sort.settle_*`), then re-orders. Picked objects are matched across track ids by `sort.match_radius`.
+- **Reach check:** the "IK check" in 7.5 uses move_group's existing `/compute_ik` service (collision-aware)
+  on the best `reach_check_candidates` grasp. This adds no new interface.
+- **New dependency:** `action_msgs` exec_depend (GoalStatus in sort_trials.py). It is part of core ROS 2,
+  but CLAUDE.md rule 5 asks for approval.
+- **Metrics:** per-attempt JSON lines go to `metrics_log_path` (default off), used by eval_summary.py. This
+  is the 7.5 "log per-stage timings".
+
+**Recommendation:** accept as is.
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)

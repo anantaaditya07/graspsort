@@ -110,13 +110,23 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 **Done when:** one object lands in a bin, 5 times in a row.
 
 ## Phase 5 - sort_task_node
-- [ ] SortObjects action server per 7.5: ordering, pre-grasp, Pilz LIN approach/retreat, grasp, attach,
-      transport, place, retries, feedback, per-stage timings
+- [x] SortObjects action server per 7.5: ordering, pre-grasp, Pilz LIN approach/retreat, grasp, attach,
+      transport, place, retries, feedback, per-stage timings (sort_task_node + PickPlaceExecutor)
+- [x] sort_logic.hpp (ROS-free: ordering, attempt bookkeeping, release slots) + GoogleTests; workspace
+      tests 272/272, zero warnings
+- [x] sort_trials.py harness; verified by the main agent, headless, reference world (2026-10-05):
+      3/3 runs PASS, one goal each, 4/4 objects in the correct bin, 0 failures, wall 59.0-70.8 s,
+      cycle 12.0-21.6 s, planning 0.07-0.11 s
+- [ ] USER: D-18 (Phase 5 implementation choices, action_msgs dependency)
+
+**Status: Phase 5 DONE (2026-10-05)** for its "done when"; D-18 awaits review.
 
 **Done when:** the full table is sorted from one action call.
 
 ## Phase 6 - Evaluation
-- [ ] eval_runner: randomised layouts with a fixed seed and unique spawn names (D-06); headless
+- [x] eval_runner (scripts/eval_run.py, run_eval.sh): randomised layouts with a fixed seed and unique
+      spawn names (D-06, D-17); headless. Smoke run, 1 trial per config: 9/12 objects correct
+- [ ] Full D-17 run (40 trials) -> docs/results.md; bottle yaw error with random yaw needs a decision
 - [ ] Metrics per section 8; clutter sweep at 3/5/7 objects; results.md
 
 **Done when:** the results table has real numbers.
