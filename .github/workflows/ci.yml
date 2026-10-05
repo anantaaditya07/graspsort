@@ -1,0 +1,75 @@
+# GraspSort CI: build + test the graspsort packages on ROS 2 Humble (Ubuntu 22.04).
+#
+# What runs:
+#   - rosdep installs every dependency declared in src/*/package.xml.
+#   - scripts/setup_ort.sh fetches the pinned ONNX Runtime 1.20.1 (SHA-256 checked); graspsort_perception
+#     does not configure without it.
+#   - Build and test with the commands from CLAUDE.md; the build fails on any compiler warning.
+#   - scripts/test_eval_summary.py (pytest, evaluation summary, outside colcon).
+#
+# What is skipped, and why:
+#   - test_ort_session and test_yolo_detector (graspsort_perception): they load models/yolov8n.onnx, which is not
+#     in git (D-08). Producing it needs the AGPL-3.0 Ultralytics weights and a torch + ultralytics export
+#     (scripts/export_yolo.py); CI does not download or redistribute them. All other perception tests run.
+#   - scripts/fetch_models.sh: the object models are only needed to run the simulation, not to build or test.
+#   - No Gazebo / MoveIt runtime tests: the integration and evaluation runs are headless sim runs done locally
+#     (docs/CHECKLIST.md, docs/results.md).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-22.04
+    container:
+      image: ros:humble-ros-base-jammy
+    env:
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+      DEBIAN_FRONTEND: noninteractive
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies (rosdep)
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends curl unzip python3-colcon-common-extensions \
+            python3-pytest python3-yaml ros-humble-rmw-cyclonedds-cpp
+          rosdep update --rosdistro humble
+          rosdep install --from-paths src --ignore-src -y --rosdistro humble
+
+      - name: Fetch ONNX Runtime (pinned)
+        run: scripts/setup_ort.sh
+
+      - name: Build
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+          # CLAUDE.md: -Wall -Wextra -Wpedantic, no warnings allowed.
+          if grep -rn "warning:" log/latest_build/*/stdout_stderr.log; then
+            echo "::error::compiler warnings found"; exit 1
+          fi
+
+      - name: Test
+        run: |
+          source /opt/ros/humble/setup.bash
+          # The two model-dependent tests are excluded (see the header).
+          colcon test --event-handlers console_direct+ \
+            --ctest-args -E "^(test_ort_session|test_yolo_detector)$" \
+            && colcon test-result --verbose
+
+      - name: Evaluation summary tests
+        run: python3 -m pytest -q scripts/test_eval_summary.py
+
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: colcon-logs
+          path: log/
