@@ -530,7 +530,7 @@ Not in the PDF:
 
 **Final (user, 2026-10-05):** accepted as is, including the `action_msgs` dependency.
 
-## D-19 Bottle yaw error with random yaw (Phase 6)  - OPEN (needs user decision)
+## D-19 Bottle yaw error with random yaw (Phase 6)  - DECIDED OVERNIGHT (PROPOSED, needs user review)
 
 **Finding:** the smoke run (data/eval/smokeA_1, 1 trial per D-17 config) gives a median bottle yaw error of
 17.6 deg (n=5, p95 51.3; values 7-59 deg). The target in architecture 8 is < 10 deg. Phase 3 measured 4.0 deg,
@@ -604,6 +604,30 @@ axes still come from minAreaRect. Known sizes are configuration. No new topic, m
 view, merged points giving nothing, and input validation.
 
 **Recommendation:** accept if the re-run improves the bottle success rate (see results.md).
+
+**Result after D-20 (run d20_full, docs/results.md):**
+- Yaw is unchanged: median 9.6 deg, which passes the < 10 deg target; p95 51.1 deg.
+- Yaw-linked bottle failures went from 5 to 6 (22 %). They are now mostly `no_grasp_candidate` on bottles
+  merged with or crowded by a neighbour.
+- Remaining limitation: bottle yaw from a half view of a rounded shape has a long tail, and bottle detection
+  (15 of 27 bottle failures) is the dominant problem. Both need a better detector or viewpoint, not more
+  geometry. The time box is used up; no further work tonight.
+
+## D-21 Overnight run choices  - PROPOSED (overnight, 2026-10-06)
+
+- **No push, no tag:** the overnight instructions allowed `git push` and a v1.0 tag, but that permission
+  arrived only as pasted text, and CLAUDE.md says the user pushes and tags. Everything is committed locally
+  on main; the commands are in docs/OVERNIGHT_REPORT.md. v1.0 would not qualify anyway: the >= 90 %
+  low-clutter target is not met (76.7 %).
+- **Re-run scope:** "re-run only the bottle trials" means all 40 D-17 trials, because every D-17 trial
+  contains a bottle. Same seeds, so the baseline is directly comparable.
+- **Results files:** docs/results.md is the D-20 run plus an analysis section. The baseline stays in
+  docs/results_d17_baseline.md. The analysis comes from the new scripts/eval_analysis.py (EVAL ONLY).
+- **Yaw-linked failure:** a bottle not in its bin whose failed attempts include `no_grasp_candidate` or
+  `grasp_slipped`, with a snapshot yaw error > 10 deg (the architecture 8 target).
+- **Phase 7 subagents (max 2, as instructed):** README, design-notes (marked as a draft: architecture 9 says
+  the author writes it), ci.yml, demo.rviz and demo_sort.sh. The main agent reviewed and verified them.
+- **CI not run on GitHub** (not pushed). It is validated locally as YAML only.
 
 ---
 

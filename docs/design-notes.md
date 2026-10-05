@@ -168,7 +168,7 @@ Each entry covers the problem, the options, the choice and why, the evidence, an
 - **Interview:** "Each pick changes the scene, so the node re-perceives between objects instead of
   executing a plan made from a stale snapshot."
 
-## D-19 Bottle yaw error with random yaw (OPEN)
+## D-19 Bottle yaw error with random yaw (decided overnight, PROPOSED)
 
 - **Finding (smoke run, n=5):** median bottle yaw error 17.6 deg (p95 51.3) vs the < 10 deg target. Phase 3
   had 4.0 deg, but only at yaw 0. The summary script folds the error into [0, 90] correctly, so the error
@@ -177,5 +177,31 @@ Each entry covers the problem, the options, the choice and why, the evidence, an
   along the view and its long axis tilts toward the view direction.
 - **Options:** A, report as is; B, time-boxed fit of the known bottle footprint to the visible points;
   C, score only the closing-axis error.
-- **Outcome:** `<!-- D-19 OUTCOME: full 40-trial results and decision -->`
-- **Interview:** `<!-- TODO after the decision -->`
+- **Outcome (40 trials, n=44):** median 9.6 deg (passes), p95 51.1 deg.
+  - 5 of 28 bottle failures (18 %) traced to yaw, so fix B was tried (D-20).
+  - The bigger find: in 20 of 55 bottle grasps the gripper closed about 1 cm inside the bottle and timed
+    out. The undersized width came from the same half-view effect.
+  - 15 of the 28 failures were bottles never detected (end-on, close to the camera).
+- **Interview:** "The yaw metric passed on the median, but the failure analysis showed the real problem was
+  the width estimate from a half view, and behind that, detection. I fixed what was a geometry problem and
+  documented what needs a better detector."
+
+## D-20 Known-footprint fit for the bottle (PROPOSED)
+
+- **Problem:** from the half view, minAreaRect undersizes the bottle along the view (gripper closes inside
+  it), can pick the wrong long axis end-on, and biases the centre toward the camera.
+- **First try (abandoned):** a yaw grid search for the best extent match. It passed the box unit tests but
+  was worse on real captured sim points (11-24 deg vs 0-15 deg): rotating inflates a rounded, partly seen
+  shape to the known size.
+- **Chosen:** keep minAreaRect's axes. The known box size (configuration) and the camera-facing faces decide
+  which axis is long. The width is the known width, and the centre is anchored on the camera side. If the
+  box doesn't fit (e.g. merged objects), fall back to minAreaRect.
+- **Evidence (40 trials, same seeds):**
+  - Bottle 3D error 6.2 -> 2.2 mm.
+  - Gripper close timeouts 20 -> 2.
+  - Failed bottle attempts 33/65 -> 20/53.
+  - Overall 88 -> 91/120.
+  - Yaw unchanged: the rounded cross-section limits it.
+- **Interview:** "Unit tests on ideal boxes passed for a version that was worse in sim. I caught it by
+  capturing real points and checking offline, and that's why the final method keeps the measured axes and
+  only adds what the known size can really tell you."

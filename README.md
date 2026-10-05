@@ -99,21 +99,22 @@ colcon test --event-handlers console_direct+ && colcon test-result --verbose
 
 ### 4. Run the demo
 
-Every launch file sets `RMW_IMPLEMENTATION=rmw_cyclonedds_cpp`. Start the stack:
+Every launch file sets `RMW_IMPLEMENTATION=rmw_cyclonedds_cpp`. Terminal 1 starts the stack, with Gazebo
+and RViz (`demo.rviz`: robot, planning scene, planned path, YOLO image):
 
 ```bash
-source install/setup.bash
-ros2 launch graspsort_bringup sim.launch.py gui:=true rviz:=true &
+cd ~/graspsort && source install/setup.bash
+ros2 launch graspsort_bringup sim.launch.py gui:=true rviz:=true \
+  rviz_config:=$(ros2 pkg prefix graspsort_bringup)/share/graspsort_bringup/rviz/demo.rviz &
 ros2 launch graspsort_perception perception.launch.py &
 ros2 launch graspsort_scene scene.launch.py &
 ros2 launch graspsort_manipulation sort_task.launch.py
 ```
 
-Then, in a second terminal, sort the table with one action call:
+Terminal 2 sorts the table with one action call, once all four objects are perceived:
 
 ```bash
-source install/setup.bash
-scripts/demo_sort.sh    # waits for MoveIt and perception, sends one SortObjects goal, prints per-object results
+cd ~/graspsort && MIN_OBJECTS=4 scripts/demo_sort.sh
 ```
 
 ### 5. Evaluation
@@ -128,7 +129,24 @@ ground truth is used only by the evaluation scripts, never by the robot.
 
 ## Results
 
-<!-- RESULTS -->
+Headless evaluation, D-17 scenario: 40 trials with randomised positions and bottle yaw, fixed seeds,
+2 or 4 objects, minimum gap 8 or 3 cm (run `d20_full`).
+
+| Metric | Result | Target (architecture 8) |
+|---|---|---|
+| Objects in the correct bin, overall | 75.8 % (91/120) | |
+| ... sports ball / bottle | 96.7 % (58/60) / 55.0 % (33/60) | |
+| Pick success, low clutter (8 cm gap) | 76.7 % (46/60) | >= 90 %: **not met** |
+| 2 objects / 4 objects | 87.5 % / 70.0 % | |
+| 3D position error median, ball / bottle | 5.6 mm / 2.2 mm | < 15 mm |
+| Bottle yaw error median / p95 | 9.6 / 51.1 deg (n=44) | median < 10 deg |
+| Planning time p95 | 0.091 s | < 2 s |
+| Reference layout, `demo_sort.sh` | 4/4 sorted in 59.4 s | |
+
+Most bottle failures (15 of 27) are bottles the COCO YOLOv8n detector never finds. They are seen end-on,
+mostly close to the camera. Detection is not affected by clutter: 10/60 objects missed at a 3 cm gap,
+11/60 at 8 cm.
+
 
 Full tables: [docs/results.md](docs/results.md). Decisions and evidence: [docs/DECISIONS.md](docs/DECISIONS.md).
 Design notes: [docs/design-notes.md](docs/design-notes.md).
@@ -146,8 +164,11 @@ Design notes: [docs/design-notes.md](docs/design-notes.md).
   Robotiq linkage was unstable in contact on Gazebo Classic.
 - **Evaluation scale:** 2 and 4 objects with 8 / 3 cm minimum gaps, 10 trials per configuration
   (D-17), instead of the PDF's 3/5/7 objects and 2 / 8 cm.
-- **Bottle yaw:** the camera sees only the front half of a bottle, so the estimated footprint is
-  short along the view. The yaw error with random bottle yaw is still being evaluated (D-19, open).
+- **Bottle detection:** COCO YOLOv8n misses about a quarter of the bottles (16/60), mostly bottles seen
+  end-on close to the camera. A fine-tuned detector (D-04 stretch goal) is the fix.
+- **Bottle yaw:** the camera sees only the near half of a bottle with a rounded cross-section, so yaw comes
+  from minAreaRect with a long tail (p95 51 deg). The known bottle size fixes the width, centre and long
+  axis (D-20), but not the tail (D-19).
 
 ## Licenses
 

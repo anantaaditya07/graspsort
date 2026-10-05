@@ -125,13 +125,27 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 
 ## Phase 6 - Evaluation
 - [x] eval_runner (scripts/eval_run.py, run_eval.sh): randomised layouts with a fixed seed and unique
-      spawn names (D-06, D-17); headless. Smoke run, 1 trial per config: 9/12 objects correct
-- [ ] Full D-17 run (40 trials) -> docs/results.md; bottle yaw error with random yaw needs a decision
-- [ ] Metrics per section 8; clutter sweep at 3/5/7 objects; results.md
+      spawn names (D-06, D-17); headless; eval_summary.py writes results.md (17 pytests)
+- [x] Full D-17 baseline, 40 trials (2026-10-06): 88/120 correct (docs/results_d17_baseline.md)
+- [x] D-19 analysed (scripts/eval_analysis.py): 18 % of bottle failures yaw-linked; gripper closing
+      inside the bottle (20/55 closes); 15/28 bottle failures never detected
+- [x] D-20 known-footprint fit + 7 GoogleTests; re-run 40 trials: 91/120 correct, bottle 3D error 2.2 mm,
+      close timeouts 2; docs/results.md with real numbers
+- [ ] USER: review D-19, D-20, D-21 (PROPOSED overnight)
+- [ ] Architecture 8 target >= 90 % low-clutter pick success NOT met (76.7 %): bottle detection (D-04 stretch)
+
+**Status: Phase 6 DONE (2026-10-06)** for its "done when"; targets and D-19/D-20/D-21 await review.
 
 **Done when:** the results table has real numbers.
 
 ## Phase 7 - Demo and docs
-- [ ] Demo RViz config, demo_sort.sh, README, design-notes.md, CI, recorded video, v1.0 tag (by user)
+- [x] demo.rviz (graspsort_bringup/rviz) + scripts/demo_sort.sh; verified headless on the reference world:
+      one goal, 4/4 in the correct bins (ground truth), 59.4 s
+- [x] README (pitch, mermaid diagram, quick start, results, limitations, licenses)
+- [x] docs/design-notes.md (draft for the author to rewrite, architecture 9)
+- [x] .github/workflows/ci.yml (valid YAML; not yet run on GitHub)
+- [ ] Demo with GUI (gazebo + RViz demo.rviz) not run overnight: headless only; resize the YOLO panel and
+      save demo.rviz before recording
+- [ ] USER: recorded video, LICENSE file, push, CI run, v1.0 tag
 
 **Done when:** a stranger can run the demo in 15 minutes.
