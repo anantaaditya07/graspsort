@@ -528,6 +528,8 @@ Not in the PDF:
 
 **Recommendation:** accept as is.
 
+**Final (user, 2026-10-05):** accepted as is, including the `action_msgs` dependency.
+
 ## D-19 Bottle yaw error with random yaw (Phase 6)  - OPEN (needs user decision)
 
 **Finding:** the smoke run (data/eval/smokeA_1, 1 trial per D-17 config) gives a median bottle yaw error of
