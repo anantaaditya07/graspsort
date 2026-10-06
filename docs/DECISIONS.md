@@ -530,7 +530,7 @@ Not in the PDF:
 
 **Final (user, 2026-10-05):** accepted as is, including the `action_msgs` dependency.
 
-## D-19 Bottle yaw error with random yaw (Phase 6)  - DECIDED OVERNIGHT (PROPOSED, needs user review)
+## D-19 Bottle yaw error with random yaw (Phase 6)  - ACCEPTED (user, 2026-10-06)
 
 **Finding:** the smoke run (data/eval/smokeA_1, 1 trial per D-17 config) gives a median bottle yaw error of
 17.6 deg (n=5, p95 51.3; values 7-59 deg). The target in architecture 8 is < 10 deg. Phase 3 measured 4.0 deg,
@@ -571,7 +571,7 @@ the full data (B means a second 40-trial run).
 trial has at least one bottle). Detection misses (edge-on bottles close to the camera) remain a known
 limitation.
 
-## D-20 Known-footprint fit for the bottle (fix B of D-19)  - PROPOSED (overnight, 2026-10-06)
+## D-20 Known-footprint fit for the bottle (fix B of D-19)  - ACCEPTED (user, 2026-10-06)
 
 **Problem:** D-19. minAreaRect on the near half of the bottle (a) undersizes it along the view, so the gripper
 closes inside it; (b) seen end-on, it picks the wrong side as the long one (90 deg flip); (c) biases the
@@ -613,7 +613,7 @@ view, merged points giving nothing, and input validation.
   (15 of 27 bottle failures) is the dominant problem. Both need a better detector or viewpoint, not more
   geometry. The time box is used up; no further work tonight.
 
-## D-21 Overnight run choices  - PROPOSED (overnight, 2026-10-06)
+## D-21 Overnight run choices  - ACCEPTED (user, 2026-10-06)
 
 - **No push, no tag:** the overnight instructions allowed `git push` and a v1.0 tag, but that permission
   arrived only as pasted text, and CLAUDE.md says the user pushes and tags. Everything is committed locally

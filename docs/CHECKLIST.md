@@ -131,7 +131,7 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       inside the bottle (20/55 closes); 15/28 bottle failures never detected
 - [x] D-20 known-footprint fit + 7 GoogleTests; re-run 40 trials: 91/120 correct, bottle 3D error 2.2 mm,
       close timeouts 2; docs/results.md with real numbers
-- [ ] USER: review D-19, D-20, D-21 (PROPOSED overnight)
+- [x] USER: D-19, D-20, D-21 ACCEPTED (2026-10-06)
 - [ ] Architecture 8 target >= 90 % low-clutter pick success NOT met (76.7 %): bottle detection (D-04 stretch)
 
 **Status: Phase 6 DONE (2026-10-06)** for its "done when"; targets and D-19/D-20/D-21 await review.

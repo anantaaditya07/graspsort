@@ -168,7 +168,7 @@ Each entry covers the problem, the options, the choice and why, the evidence, an
 - **Interview:** "Each pick changes the scene, so the node re-perceives between objects instead of
   executing a plan made from a stale snapshot."
 
-## D-19 Bottle yaw error with random yaw (decided overnight, PROPOSED)
+## D-19 Bottle yaw error with random yaw (accepted)
 
 - **Finding (smoke run, n=5):** median bottle yaw error 17.6 deg (p95 51.3) vs the < 10 deg target. Phase 3
   had 4.0 deg, but only at yaw 0. The summary script folds the error into [0, 90] correctly, so the error
@@ -186,7 +186,7 @@ Each entry covers the problem, the options, the choice and why, the evidence, an
   the width estimate from a half view, and behind that, detection. I fixed what was a geometry problem and
   documented what needs a better detector."
 
-## D-20 Known-footprint fit for the bottle (PROPOSED)
+## D-20 Known-footprint fit for the bottle (accepted)
 
 - **Problem:** from the half view, minAreaRect undersizes the bottle along the view (gripper closes inside
   it), can pick the wrong long axis end-on, and biases the centre toward the camera.
