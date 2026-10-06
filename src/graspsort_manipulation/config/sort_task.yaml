@@ -16,4 +16,6 @@
       max_attempts: 3           # per object: first attempt + 2 retries (architecture 7.5)
       max_objects: 20           # stop after this many objects were placed
       time_limit: 900.0         # s per goal, checked between objects
+      start_at_ready: true      # D-24: move to the ready state at goal start unless already there
+      ready_tolerance: 0.01     # rad, every arm joint this close to ready = already there
     metrics_log_path: ""        # "" = off; else append one JSON line per attempt (evaluation)

@@ -471,3 +471,18 @@ TEST(SortLogic, TwoPerceivedBottlesWithTiltedClosingAxesFitSideBySide) {
   EXPECT_TRUE(slotInside(bin, r2, s2->xy, 1.6290, gap2, 0.0));
   EXPECT_GT(gm::footprintDistance(r1, r2), 0.0);
 }
+
+// D-24: the goal starts with a move to ready unless every arm joint is already there.
+TEST(SortLogic, JointsWithinTolerance) {
+  const std::vector<double> ready{-0.27, -1.57, 1.57, -1.5708, -1.5708, 0.0};
+  const std::vector<double> home{0.0, -1.57, 0.0, -1.57, 0.0, 0.0};
+  EXPECT_TRUE(gm::jointsWithin(ready, ready, 0.01));
+  EXPECT_FALSE(gm::jointsWithin(home, ready, 0.01));
+  auto near = ready;
+  near[5] += 0.009;
+  EXPECT_TRUE(gm::jointsWithin(near, ready, 0.01));
+  near[5] += 0.002;  // 0.011 rad off on one joint
+  EXPECT_FALSE(gm::jointsWithin(near, ready, 0.01));
+  EXPECT_FALSE(gm::jointsWithin({}, ready, 0.01));  // no state: size mismatch
+  EXPECT_FALSE(gm::jointsWithin({0.0, std::nan("")}, {0.0, 0.0}, 0.01));
+}

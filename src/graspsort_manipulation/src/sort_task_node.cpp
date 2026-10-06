@@ -90,6 +90,8 @@ class SortTask {
     max_attempts_ = n.declare_parameter<int>("sort.max_attempts", 3);
     max_objects_ = n.declare_parameter<int>("sort.max_objects", 20);
     time_limit_ = n.declare_parameter<double>("sort.time_limit", 900.0);
+    start_at_ready_ = n.declare_parameter<bool>("sort.start_at_ready", true);
+    ready_tolerance_ = n.declare_parameter<double>("sort.ready_tolerance", 0.01);
     metrics_log_path_ = n.declare_parameter<std::string>("metrics_log_path", "");
     bin_names_ = n.get_parameter("bin_names").as_string_array();
     static_cast<void>(gm::SortBook(max_attempts_, match_radius_));  // validates the values
@@ -226,6 +228,17 @@ class SortTask {
       std::vector<gm::NamedBin> bins;
       for (const auto& b : bin_names_) {
         bins.push_back(gm::NamedBin{b, exec_.binGeometry(b)});
+      }
+      // D-24: from the spawn pose (home) the reach check finds no collision-free IK, so every
+      // object of the first goal after launch was skipped in 2 s. Start each goal at ready.
+      if (start_at_ready_) {
+        try {
+          if (exec_.moveToReadyIfAway(ready_tolerance_)) {
+            RCLCPP_INFO(node_->get_logger(), "moved to the ready state before sorting");
+          }
+        } catch (const std::exception& e) {
+          RCLCPP_WARN(node_->get_logger(), "move to the ready state failed: %s", e.what());
+        }
       }
       while (rclcpp::ok()) {
         if (gh->is_canceling()) {
@@ -439,7 +452,8 @@ class SortTask {
 
   std::string action_name_;
   double settle_time_{2.0}, settle_tolerance_{0.01}, settle_timeout_{30.0}, bin_margin_{0.02},
-      match_radius_{0.05}, time_limit_{900.0};
+      match_radius_{0.05}, time_limit_{900.0}, ready_tolerance_{0.01};
+  bool start_at_ready_{true};
   int max_attempts_{3}, max_objects_{20};
   std::string metrics_log_path_;
   std::vector<std::string> bin_names_;

@@ -696,6 +696,25 @@ poses and size come from world_layout.yaml. An in-bin object that is already in 
 remove_timeout. ROS-free `insideBinArea` / `insideAnyBinArea` in scene_logic.hpp + 3 GoogleTests. The
 eval keeps object footprints >= 0.03 m from every bin wall, so no table object is excluded.
 
+## D-24 First trial after launch fails every object: start pose, not a readiness race  - INFO (user-requested fix, 2026-10-06)
+
+**Problem:** the first goal after a fresh launch skipped every object in ~2 s ("no collision-free IK for the
+pre-grasp"). The user suspected a readiness race (45 min time box, start 18:25).
+**Experiments (fresh launch each, seed 5026 = 4:0.03 t0):**
+- wait 60 s more before the trial: still 0/4 in 2.1 s, so **not a race**.
+- `move_named.py ready` before the trial, no extra wait: 2/4 picked (the same layout picks 2/4 in the middle
+  of d22_full).
+**Cause:** the arm spawns at `home` (arm straight up, SRDF). The reach check (/compute_ik, collision-aware,
+seeded from the current state) finds no collision-free solution from there. Every later goal starts at
+`ready`, where a pick ends.
+**Fix:** sort_task_node moves to the ready state at goal start unless every arm joint is within
+`sort.ready_tolerance` (0.01 rad) of it; `sort.start_at_ready` (true) switches this off. ROS-free
+`jointsWithin` (sort_logic.hpp) + GoogleTest; `PickPlaceExecutor::moveToReadyIfAway`. No new waits were added
+to demo_sort.sh: it already waits for move_group, /sort_objects and /objects_3d, and the experiment shows
+waiting is not the cause.
+**Verified:** 3 fresh launches (data/eval/d24_fresh1..3): the node moved to ready, then 2/4 picked each time,
+the same as this layout in a run (the other 2 objects are a too-wide bottle footprint and an IK failure).
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)

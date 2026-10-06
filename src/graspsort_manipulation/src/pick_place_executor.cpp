@@ -727,6 +727,25 @@ void PickPlaceExecutor::removeObject(Run& /*run*/, const std::string& id, StepRe
   r.detail = id;
 }
 
+bool PickPlaceExecutor::moveToReadyIfAway(double tolerance) {
+  const auto joints = move_group_->getActiveJoints();
+  const auto named = move_group_->getNamedTargetValues(ready_state_);
+  std::vector<double> target;
+  for (const auto& j : joints) {
+    const auto it = named.find(j);
+    if (it == named.end()) {
+      throw std::runtime_error("ready state '" + ready_state_ + "' has no value for " + j);
+    }
+    target.push_back(it->second);
+  }
+  if (jointsWithin(move_group_->getCurrentJointValues(), target, tolerance)) {
+    return false;
+  }
+  StepRecord r;
+  moveNamed(ready_state_, r);  // throws StepFailure (a std::runtime_error)
+  return true;
+}
+
 void PickPlaceExecutor::moveNamed(const std::string& name, StepRecord& r) {
   useOmpl();
   for (int attempt = 0; attempt <= free_plan_retries_; ++attempt) {

@@ -117,6 +117,10 @@ class PickPlaceExecutor {
   ReachCheck checkReachable(const Object& target, const std::vector<Object>& scene,
                             std::size_t first_candidate);
 
+  // Moves the arm to the ready state (OMPL) unless every arm joint is already within `tolerance`
+  // rad of it (D-24). Returns true if a move was made. Throws std::runtime_error on failure.
+  bool moveToReadyIfAway(double tolerance);
+
   PickOutcome pickAndPlace(const PickRequest& request, const StepCallback& on_step = {},
                            const CancelCheck& canceled = {});
 

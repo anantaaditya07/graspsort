@@ -13,6 +13,8 @@
 //   moved more than a tolerance for a minimum time.
 // - Release slot inside a bin: objects are released side by side so a later object of the same
 //   class does not land on an earlier one (the bins fit two objects, see chooseReleaseSlot).
+// - Start pose: jointsWithin decides whether the arm is already at the ready state before a goal
+//   (from the spawn pose the reach check finds no collision-free IK, D-24).
 //
 // Units: metres, radians, seconds. Frame: world, z up.
 #ifndef GRASPSORT_MANIPULATION__SORT_LOGIC_HPP_
@@ -319,6 +321,16 @@ class SortBook {
 
 // Indices of the objects a goal may pick: class in `classes`, centre not inside any bin
 // footprint grown by `bin_margin`, not given up.
+/// True if both vectors have the same size and every |current[i] - target[i]| <= tolerance.
+inline bool jointsWithin(const std::vector<double>& current, const std::vector<double>& target,
+                         double tolerance) {
+  if (current.size() != target.size()) return false;
+  for (std::size_t i = 0; i < current.size(); ++i) {
+    if (!(std::fabs(current[i] - target[i]) <= tolerance)) return false;
+  }
+  return true;
+}
+
 inline std::vector<std::size_t> filterCandidates(const std::vector<Object>& objects,
                                                  const std::vector<std::string>& classes,
                                                  const std::vector<NamedBin>& bins,
