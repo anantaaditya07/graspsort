@@ -132,25 +132,29 @@ ground truth is used only by the evaluation scripts, never by the robot.
 
 ## Results
 
-Headless evaluation, D-17 scenario: 40 trials with randomised positions and bottle yaw, fixed seeds,
-2 or 4 objects, minimum gap 8 or 3 cm. "Before" is run `d20_full`; "after" is run `d22_full` with the
-detector threshold lowered for end-on bottles (D-22).
+Headless evaluation, D-17 scenario: 40 trials with randomised positions and bottle yaw, the same fixed seeds
+in every run, 2 or 4 objects, minimum gap 8 or 3 cm. d20: known bottle footprint (D-20). d22: lower detector
+threshold for end-on bottles (D-22). d23: objects already in a bin kept out of the planning scene (D-23) and
+every goal starting at the ready pose (D-24).
 
-| Metric | Before (d20) | After (d22) | Target (architecture 8) |
-|---|---|---|---|
-| Objects in the correct bin, overall | 75.8 % (91/120) | 80.0 % (96/120) | |
-| ... sports ball / bottle | 96.7 % / 55.0 % | 98.3 % / 61.7 % | |
-| Pick success, low clutter (8 cm gap) | 76.7 % (46/60) | 83.3 % (50/60) | >= 90 %: **not met** |
-| 2 objects / 4 objects | 87.5 % / 70.0 % | 95.0 % / 72.5 % | |
-| Objects detected | 99/120 | 111/120 | |
-| 3D position error median, ball / bottle | 5.6 mm / 2.2 mm | 5.6 mm / 2.1 mm | < 15 mm |
-| Bottle yaw error median / p95 | 9.6 / 51.1 deg (n=44) | 8.3 / 42.7 deg (n=54) | median < 10 deg |
-| Planning time p95 | 0.091 s | 0.107 s | < 2 s |
-| Reference layout, `demo_sort.sh` | 4/4 sorted in 59.4 s | not re-run | |
+| Metric | d20 | d22 | d23 (current) | Target (architecture 8) |
+|---|---|---|---|---|
+| Objects in the correct bin, overall | 75.8 % (91/120) | 80.0 % (96/120) | **85.8 % (103/120)** | |
+| ... sports ball / bottle | 96.7 % / 55.0 % | 98.3 % / 61.7 % | 98.3 % / 73.3 % | |
+| Pick success, low clutter (8 cm gap) | 76.7 % (46/60) | 83.3 % (50/60) | **90.0 % (54/60)** | >= 90 % |
+| 2 objects / 4 objects | 87.5 % / 70.0 % | 95.0 % / 72.5 % | 97.5 % / 80.0 % | |
+| Objects detected | 99/120 | 111/120 | 111/120 | |
+| 3D position error median, ball / bottle | 5.6 / 2.2 mm | 5.6 / 2.1 mm | 5.6 / 2.1 mm | < 15 mm |
+| Bottle yaw error median / p95 | 9.6 / 51.1 deg | 8.3 / 42.7 deg | 8.3 / 42.6 deg | median < 10 deg |
+| Planning time p95 | 0.091 s | 0.107 s | 0.096 s | < 2 s |
 
-Missed bottles were the biggest failure reason before (16 of 29 failures): COCO YOLOv8n scores a bottle seen
-end-on at only 0.10-0.35. Lowering the threshold to 0.15 cut missed objects from 21 to 9. It also makes the
-detector see objects already in the bins, and those then block placing in the planning scene (D-23, open).
+**About the 90 % target:** d23 reaches exactly 90.0 % (54/60) at low clutter, which is on the line, not above
+it. One more failure would miss it, and the 95 % confidence interval for 54/60 is about 80-95 %. It is one run
+with fixed seeds and with 2/4 objects instead of the PDF's 3/5/7 (D-17). At 3 cm gap the rate is 81.7 %.
+16 of the 17 remaining failures are bottles, mostly in the 4-object layouts (missed detections, footprints
+too wide across the fingers from the yaw error tail, a full bottle bin).
+
+Reference layout, `demo_sort.sh` on a fresh headless launch: 4/4 placed in 58.6 s.
 
 Full tables: [docs/results.md](docs/results.md). Decisions and evidence: [docs/DECISIONS.md](docs/DECISIONS.md).
 Design notes: [docs/design-notes.md](docs/design-notes.md).
@@ -169,8 +173,8 @@ Design notes: [docs/design-notes.md](docs/design-notes.md).
 - **Evaluation scale:** 2 and 4 objects with 8 / 3 cm minimum gaps, 10 trials per configuration
   (D-17), instead of the PDF's 3/5/7 objects and 2 / 8 cm.
 - **Bottle detection:** COCO YOLOv8n scores bottles seen end-on low. With the threshold at 0.15 (D-22) it
-  still misses 6/60 bottles, and it also detects objects already in the bins, which block placing (D-23,
-  open). A fine-tuned detector (D-04 stretch goal) is the clean fix.
+  still misses 6/60 bottles. Objects it now detects in the bins are kept out of the planning scene (D-23).
+  A fine-tuned detector (D-04 stretch goal) is the clean fix.
 - **Bottle yaw:** the camera sees only the near half of a bottle with a rounded cross-section, so yaw comes
   from minAreaRect with a long tail (p95 51 deg). The known bottle size fixes the width, centre and long
   axis (D-20), but not the tail (D-19).

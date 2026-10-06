@@ -695,6 +695,8 @@ over a bin's outer footprint grown by the new parameter `bin_exclusion_margin` (
 poses and size come from world_layout.yaml. An in-bin object that is already in the scene expires by
 remove_timeout. ROS-free `insideBinArea` / `insideAnyBinArea` in scene_logic.hpp + 3 GoogleTests. The
 eval keeps object footprints >= 0.03 m from every bin wall, so no table object is excluded.
+**Result (d23_full, with D-24):** failed `lower` attempts 13 -> 0, plan_failed attempts 31 -> 0, no
+unattributed action failures; 103/120 correct (docs/results.md).
 
 ## D-24 First trial after launch fails every object: start pose, not a readiness race  - INFO (user-requested fix, 2026-10-06)
 

@@ -135,10 +135,16 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 - [x] D-22 (time-boxed 2 h): detector conf_threshold 0.35 -> 0.15 for end-on bottles; re-run 40 trials
       (d22_full): 96/120 correct, detected 111/120, not_detected 16 -> 5; docs/results.md (d20 kept in
       docs/results_d20.md)
-- [ ] D-23 NEEDS DECISION: objects already in a bin are detected and block the `lower` into the bin
-- [ ] Architecture 8 target >= 90 % low-clutter pick success NOT met (83.3 %)
+- [x] D-23 (user: option A): scene_manager keeps objects inside bin areas out of the planning scene
+      (bin_exclusion_margin) + 3 GoogleTests
+- [x] D-24: first goal after launch failed every object (spawn pose, not a race); sort_task_node starts each
+      goal at ready (start_at_ready, ready_tolerance) + GoogleTest; 3 fresh launches: first trial OK
+- [x] Re-run 40 trials (d23_full): 103/120 correct, failed lowers 13 -> 0, plan_failed 31 -> 0;
+      docs/results.md (d22 kept in docs/results_d22.md); README 3-column table
+- [x] Architecture 8 target >= 90 % low-clutter pick success: 90.0 % (54/60), exactly on the line
+      (95 % CI about 80-95 %)
 
-**Status: Phase 6 DONE (2026-10-06)** for its "done when"; D-19/D-20/D-21 ACCEPTED; D-23 open.
+**Status: Phase 6 DONE (2026-10-06).** D-19..D-21 and D-23 ACCEPTED; D-22, D-24 INFO.
 
 **Done when:** the results table has real numbers.
 
@@ -151,7 +157,8 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 - [x] LICENSE (Apache-2.0, matches every package.xml)
 - [x] README YOLO download/export commands checked in a clean venv (2026-10-06): export OK, ONNX
       scores identical to models/yolov8n.onnx
-- [ ] Demo with GUI (gazebo + RViz demo.rviz) not run overnight: headless only; resize the YOLO panel and
+- [x] demo_sort.sh re-run headless on a fresh launch after D-22..D-24: 4/4 placed, 58.6 s
+- [ ] Demo with GUI (gazebo + RViz demo.rviz) not run: headless only; resize the YOLO panel and
       save demo.rviz before recording
 - [ ] USER: recorded video, push, v1.0 tag
 

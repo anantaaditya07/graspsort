@@ -1,27 +1,32 @@
-run data/eval/d23_full: 40 trials, 120 objects
+run data/eval/d22_full: 40 trials, 120 objects
 
 == success (object in correct bin) ==
-  overall     85.8 % (103/120)
-  2 obj       97.5 % (39/40)
-  4 obj       80.0 % (64/80)
-  gap 8 cm    90.0 % (54/60)
-  gap 3 cm    81.7 % (49/60)
+  overall     80.0 % (96/120)
+  2 obj       95.0 % (38/40)
+  4 obj       72.5 % (58/80)
+  gap 8 cm    83.3 % (50/60)
+  gap 3 cm    76.7 % (46/60)
   2 obj gap 3 cm   95.0 % (19/20)
-  2 obj gap 8 cm  100.0 % (20/20)
-  4 obj gap 3 cm   75.0 % (30/40)
-  4 obj gap 8 cm   85.0 % (34/40)
-  class bottle        73.3 % (44/60)   2/3cm  90.0 % (9/10)  2/8cm 100.0 % (10/10)  4/3cm  55.0 % (11/20)  4/8cm  70.0 % (14/20)
+  2 obj gap 8 cm   95.0 % (19/20)
+  4 obj gap 3 cm   67.5 % (27/40)
+  4 obj gap 8 cm   77.5 % (31/40)
+  class bottle        61.7 % (37/60)   2/3cm  90.0 % (9/10)  2/8cm  90.0 % (9/10)  4/3cm  40.0 % (8/20)  4/8cm  55.0 % (11/20)
   class sports ball   98.3 % (59/60)   2/3cm 100.0 % (10/10)  2/8cm 100.0 % (10/10)  4/3cm  95.0 % (19/20)  4/8cm 100.0 % (20/20)
 
-== bottle yaw error at snapshot: median 8.3 p95 42.6 deg, n=54, > 10 deg: 22
+== bottle yaw error at snapshot: median 8.3 p95 42.7 deg, n=54, > 10 deg: 22
   2 obj gap 3 cm: median 6.7 p95 17.0 (n=9)
   2 obj gap 8 cm: median 9.9 p95 18.1 (n=10)
   4 obj gap 3 cm: median 8.3 p95 59.6 (n=17)
-  4 obj gap 8 cm: median 7.9 p95 36.3 (n=18)
+  4 obj gap 8 cm: median 7.9 p95 36.4 (n=18)
 
 == bottle attempts (yaw error at grasp time = target_pose.yaw vs spawn yaw) ==
-  successful attempts: n=47, yaw err median 7.3 p95 18.8, max 20.6
-  failed attempts: n=12
+  successful attempts: n=41, yaw err median 7.3 p95 18.5, max 20.6
+  failed attempts: n=20
+    plan_failed          yaw err  11.4  e0t8_bottle_0 trial 8 {'n_objects': 2, 'min_gap': 0.08}
+    plan_failed          yaw err   2.2  e2t3_bottle_1 trial 3 {'n_objects': 4, 'min_gap': 0.08}
+    plan_failed          yaw err   0.4  e2t3_bottle_1 trial 3 {'n_objects': 4, 'min_gap': 0.08}
+    plan_failed          yaw err   3.2  e2t4_bottle_0 trial 4 {'n_objects': 4, 'min_gap': 0.08}
+    plan_failed          yaw err   4.6  e2t4_bottle_0 trial 4 {'n_objects': 4, 'min_gap': 0.08}
     grasp_slipped        yaw err  33.3  e2t5_bottle_1 trial 5 {'n_objects': 4, 'min_gap': 0.08}
     no_grasp_candidate   yaw err  53.7  e2t6_bottle_1 trial 6 {'n_objects': 4, 'min_gap': 0.08}
     no_grasp_candidate   yaw err  17.3  e2t6_bottle_0 trial 6 {'n_objects': 4, 'min_gap': 0.08}
@@ -29,16 +34,23 @@ run data/eval/d23_full: 40 trials, 120 objects
     other                yaw err   2.6  e3t1_bottle_0 trial 1 {'n_objects': 4, 'min_gap': 0.03}
     other                yaw err   2.6  e3t1_bottle_0 trial 1 {'n_objects': 4, 'min_gap': 0.03}
     other                yaw err   2.6  e3t1_bottle_0 trial 1 {'n_objects': 4, 'min_gap': 0.03}
+    execution_failed     yaw err  18.9  e3t2_bottle_1 trial 2 {'n_objects': 4, 'min_gap': 0.03}
     other                yaw err  36.8  e3t3_bottle_1 trial 3 {'n_objects': 4, 'min_gap': 0.03}
     other                yaw err  36.8  e3t3_bottle_1 trial 3 {'n_objects': 4, 'min_gap': 0.03}
     other                yaw err  36.8  e3t3_bottle_1 trial 3 {'n_objects': 4, 'min_gap': 0.03}
     no_grasp_candidate   yaw err  17.1  e3t3_bottle_0 trial 3 {'n_objects': 4, 'min_gap': 0.03}
+    plan_failed          yaw err   6.8  e3t5_bottle_0 trial 5 {'n_objects': 4, 'min_gap': 0.03}
     no_grasp_candidate   yaw err  61.1  e3t8_bottle_1 trial 8 {'n_objects': 4, 'min_gap': 0.03}
+    plan_failed          yaw err  11.2  e3t9_bottle_1 trial 9 {'n_objects': 4, 'min_gap': 0.03}
 
 == bottles not in the correct bin ==
+  e0t8_bottle_0    {'n_objects': 2, 'min_gap': 0.08} matched=True yaw_snap=11.4 attempts=['plan_failed'] final_bin=None -> not yaw
   e1t4_bottle_0    {'n_objects': 2, 'min_gap': 0.03} matched=False yaw_snap=n/a attempts=[] final_bin=None -> not yaw
+  e2t1_bottle_0    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=5.4 attempts=[] final_bin=None -> not yaw
+  e2t1_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=10.4 attempts=[] final_bin=None -> not yaw
   e2t2_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=False yaw_snap=n/a attempts=[] final_bin=None -> not yaw
-  e2t3_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=2.2 attempts=[] final_bin=None -> not yaw
+  e2t3_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=2.2 attempts=['plan_failed', 'plan_failed'] final_bin=None -> not yaw
+  e2t4_bottle_0    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=3.2 attempts=['plan_failed', 'plan_failed'] final_bin=None -> not yaw
   e2t5_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=33.3 attempts=['grasp_slipped'] final_bin=None -> YAW-LINKED
   e2t6_bottle_0    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=17.3 attempts=['no_grasp_candidate'] final_bin=None -> YAW-LINKED
   e2t6_bottle_1    {'n_objects': 4, 'min_gap': 0.08} matched=True yaw_snap=53.7 attempts=['no_grasp_candidate'] final_bin=None -> YAW-LINKED
@@ -46,12 +58,15 @@ run data/eval/d23_full: 40 trials, 120 objects
   e3t0_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=59.3 attempts=['no_grasp_candidate'] final_bin=None -> YAW-LINKED
   e3t1_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=2.6 attempts=['other', 'other', 'other'] final_bin=None -> not yaw
   e3t1_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=False yaw_snap=n/a attempts=[] final_bin=None -> not yaw
-  e3t2_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=4.0 attempts=[] final_bin=None -> not yaw
+  e3t2_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=18.9 attempts=['execution_failed'] final_bin=None -> not yaw
   e3t3_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=17.1 attempts=['no_grasp_candidate'] final_bin=None -> YAW-LINKED
-  e3t3_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=36.7 attempts=['other', 'other', 'other'] final_bin=None -> not yaw
+  e3t3_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=36.8 attempts=['other', 'other', 'other'] final_bin=None -> not yaw
+  e3t5_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=6.8 attempts=['plan_failed'] final_bin=None -> not yaw
+  e3t6_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=False yaw_snap=n/a attempts=[] final_bin=None -> not yaw
+  e3t6_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=20.6 attempts=[] final_bin=None -> not yaw
   e3t8_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=False yaw_snap=n/a attempts=[] final_bin=None -> not yaw
   e3t8_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=61.0 attempts=['no_grasp_candidate'] final_bin=None -> YAW-LINKED
-  e3t9_bottle_0    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=1.8 attempts=[] final_bin=None -> not yaw
+  e3t9_bottle_1    {'n_objects': 4, 'min_gap': 0.03} matched=True yaw_snap=11.2 attempts=['plan_failed'] final_bin=None -> not yaw
 
 == perception misses at snapshot ==
   gap 3 cm: 6/60 objects missed (Counter({'bottle': 4, 'sports ball': 2})), 5/20 trials with a miss, 5 trials not settled
@@ -59,7 +74,7 @@ run data/eval/d23_full: 40 trials, 120 objects
     trial 1 n=4 e3t1_bottle_1    bottle      x 0.350 y +0.219 yaw  -131.3 correct=False
     trial 4 n=4 e3t4_ball_0      sports ball x 0.424 y +0.188 yaw    +0.0 correct=True
     trial 4 n=4 e3t4_ball_1      sports ball x 0.456 y -0.054 yaw    +0.0 correct=True
-    trial 6 n=4 e3t6_bottle_0    bottle      x 0.401 y +0.151 yaw    +3.6 correct=True
+    trial 6 n=4 e3t6_bottle_0    bottle      x 0.401 y +0.151 yaw    +3.6 correct=False
     trial 8 n=4 e3t8_bottle_0    bottle      x 0.427 y -0.195 yaw  +121.3 correct=False
   gap 8 cm: 3/60 objects missed (Counter({'bottle': 2, 'sports ball': 1})), 2/20 trials with a miss, 2 trials not settled
     trial 2 n=4 e2t2_bottle_1    bottle      x 0.441 y -0.230 yaw  -157.6 correct=False
@@ -73,12 +88,12 @@ run data/eval/d23_full: 40 trials, 120 objects
 == action statuses == Counter({'SUCCEEDED': 40})
 
 == bottle yaw relative to line of sight, folded [0, 90] deg (0 = model x axis along the view) ==
-   0-15 deg: n= 9 missed  2 correct  7
-  15-30 deg: n=12 missed  1 correct  9
-  30-45 deg: n= 9 missed  1 correct  7
-  45-60 deg: n= 7 missed  0 correct  5
-  60-75 deg: n= 8 missed  1 correct  5
-  75-90 deg: n=15 missed  1 correct 11
+   0-15 deg: n= 9 missed  2 correct  5
+  15-30 deg: n=12 missed  1 correct  7
+  30-45 deg: n= 9 missed  1 correct  6
+  45-60 deg: n= 7 missed  0 correct  3
+  60-75 deg: n= 8 missed  1 correct  6
+  75-90 deg: n=15 missed  1 correct 10
   by distance to the camera (xy) and line-of-sight angle < 45 / >= 45 deg:
     0.357-0.447 m, angle < 45: n=14 missed  1
     0.357-0.447 m, angle >=45: n= 6 missed  0
