@@ -668,7 +668,7 @@ D-17 run the first trial is 2:0.08 t0, which was unaffected in d17_full and d20_
 detected at snapshot 99/120 -> 111/120 (bottles 44/60 -> 54/60); `not_detected` 16 -> 5; low-clutter pick
 success 76.7 % -> 83.3 % (target >= 90 %: still not met). Side effect: see D-23.
 
-## D-23 Objects already in a bin are detected and block placing  - NEEDS DECISION
+## D-23 Objects already in a bin are detected and block placing  - ACCEPTED (user, 2026-10-06: option A)
 
 **Finding (d22_full, after D-22):** at conf 0.15 the detector also finds objects lying in the bins. The
 scene manager added 53 `sports ball` objects inside bin_ball (0 in d20_full) and 26 bottles inside bin_bottle
@@ -689,6 +689,12 @@ Not fixed: out of the D-22 time box and scope ("fix only that"), and a fix needs
   in the detector copied from SemNav.
 - C. Revert D-22 (back to 91/120).
 **Recommendation:** A, then re-run the 40 trials.
+
+**Final (accepted 2026-10-06):** A. scene_manager_node drops every /objects_3d object whose centre lies
+over a bin's outer footprint grown by the new parameter `bin_exclusion_margin` (0.02 m, scene.yaml); bin
+poses and size come from world_layout.yaml. An in-bin object that is already in the scene expires by
+remove_timeout. ROS-free `insideBinArea` / `insideAnyBinArea` in scene_logic.hpp + 3 GoogleTests. The
+eval keeps object footprints >= 0.03 m from every bin wall, so no table object is excluded.
 
 ---
 

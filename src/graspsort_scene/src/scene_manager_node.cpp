@@ -6,6 +6,8 @@
 // - Perceived objects from /objects_3d become "object_<id>" cylinders or boxes. They are added,
 //   updated when they moved (update_distance / update_yaw) and removed when they have not been
 //   perceived for remove_timeout s. The world file's object poses are never read.
+// - Perceived objects whose centre is over a bin (outer footprint + bin_exclusion_margin) are
+//   already sorted and are ignored, so they never block placing into that bin (D-23).
 // - Objects attached to the robot are never added, modified or removed.
 // - ~/freeze (std_srvs/SetBool, true = freeze): while frozen /objects_3d is ignored completely.
 //   The freeze response is sent only after any running sync step has finished, so no scene
@@ -116,6 +118,7 @@ class SceneManagerNode : public rclcpp::Node {
     if (!(sync_period > 0.0)) throw std::invalid_argument("sync_period must be > 0");
     scene_timeout_ = declare_parameter<double>("scene_service_timeout", 2.0);
     if (!(scene_timeout_ > 0.0)) throw std::invalid_argument("scene_service_timeout must be > 0");
+    bin_margin_ = declare_parameter<double>("bin_exclusion_margin", 0.02);
     const auto objects_topic = declare_parameter<std::string>("objects_topic", "objects_3d");
     const auto qos_depth = declare_parameter<std::int64_t>("objects_qos_depth", 1);
     if (qos_depth < 1) throw std::invalid_argument("objects_qos_depth must be >= 1");
@@ -143,8 +146,9 @@ class SceneManagerNode : public rclcpp::Node {
         std::chrono::duration<double>(sync_period), [this] { sync(); }, main_group_);
     RCLCPP_INFO(get_logger(),
                 "scene_manager: %zu fixed objects, update_distance %.3f m, update_yaw %.3f rad, "
-                "remove_timeout %.2f s, padding %.3f m",
-                fixed_.size(), tp.update_distance, tp.update_yaw, tp.remove_timeout, padding_);
+                "remove_timeout %.2f s, padding %.3f m, bin_exclusion_margin %.3f m",
+                fixed_.size(), tp.update_distance, tp.update_yaw, tp.remove_timeout, padding_,
+                bin_margin_);
   }
 
  private:
@@ -181,7 +185,9 @@ class SceneManagerNode : public rclcpp::Node {
           declare_parameter<double>(p + "x", 0.0), declare_parameter<double>(p + "y", 0.0),
           declare_parameter<double>(p + "z", 0.0), declare_parameter<double>(p + "yaw", 0.0)};
       fixed_.push_back(fixedObject(n, world_frame_, pose, boxes));
+      bin_poses_.push_back(pose);
     }
+    bin_size_ = bin_size;
   }
 
   void onObjects(const graspsort_msgs::msg::ObjectPoseArray::ConstSharedPtr& msg) {
@@ -193,7 +199,13 @@ class SceneManagerNode : public rclcpp::Node {
       return;
     }
     std::vector<gs::ObjectEstimate> objs;
+    std::size_t in_bins = 0;
     for (const auto& o : msg->objects) {
+      if (gs::insideAnyBinArea(o.pose.position.x, o.pose.position.y, bin_poses_, bin_size_,
+                               bin_margin_)) {
+        ++in_bins;  // already sorted (D-23)
+        continue;
+      }
       gs::ObjectEstimate e;
       e.id = o.id;
       e.shape = o.shape == static_cast<std::uint8_t>(gs::Shape::kBox) ? gs::Shape::kBox
@@ -204,6 +216,10 @@ class SceneManagerNode : public rclcpp::Node {
       e.yaw = yawOf(o.pose.orientation);
       e.size = {o.size.x, o.size.y, o.size.z};
       objs.push_back(e);
+    }
+    if (in_bins > 0) {
+      RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), kLogThrottleMs,
+                           "ignoring %zu perceived objects inside bin areas (D-23)", in_bins);
     }
     latest_ = std::move(objs);
   }
@@ -330,6 +346,9 @@ class SceneManagerNode : public rclcpp::Node {
 
   std::string world_frame_;
   double padding_{0.0};
+  double bin_margin_{0.0};
+  std::vector<gs::Pose2D> bin_poses_;
+  std::array<double, 3> bin_size_{0.0, 0.0, 0.0};
   double scene_timeout_{0.0};
   std::vector<CollisionObject> fixed_;
   std::unique_ptr<gs::SceneTracker> tracker_;

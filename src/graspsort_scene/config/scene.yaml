@@ -9,5 +9,7 @@ scene_manager:
     update_yaw: 0.1                # rad, re-apply a box whose yaw changed more than this (mod pi)
     remove_timeout: 2.0            # s, remove an object not perceived for longer than this
     object_padding: 0.0            # m, added on every side of a perceived object's primitive
+    bin_exclusion_margin: 0.02     # m, D-23: objects centred over a bin (outer footprint + this)
+                                   # are already sorted and stay out of the planning scene
     sync_period: 0.2               # s, scene sync step
     scene_service_timeout: 2.0     # s, get_planning_scene call timeout

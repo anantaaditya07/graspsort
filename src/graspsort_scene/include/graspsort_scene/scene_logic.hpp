@@ -17,6 +17,9 @@
 //      object gets a fresh last-seen time, so the freeze itself never causes a removal.
 //    - object ids already in the world with the "object_<n>" form that the tracker does not
 //      know (for example after a restart) are adopted: they expire like any other object.
+// 3. insideBinArea: perceived objects whose centre lies over a bin (outer footprint grown by a
+//    margin) are already sorted; the node keeps them out of the planning scene (D-23), so they
+//    never block placing into that bin.
 #ifndef GRASPSORT_SCENE__SCENE_LOGIC_HPP_
 #define GRASPSORT_SCENE__SCENE_LOGIC_HPP_
 
@@ -94,6 +97,26 @@ inline std::optional<std::string> checkBin(const std::array<double, 3>& size, do
     return std::string("bin floor_thickness must be > 0 and < the bin height");
   }
   return std::nullopt;
+}
+
+/// True if (x, y) lies over the outer footprint {size x, size y} of a bin at `bin`, grown by
+/// `margin` on every side (margin < 0 shrinks it). D-23: such an object is already in the bin.
+inline bool insideBinArea(double x, double y, const Pose2D& bin, const std::array<double, 3>& size,
+                          double margin) {
+  const double dx = x - bin.x;
+  const double dy = y - bin.y;
+  const double c = std::cos(bin.yaw);
+  const double s = std::sin(bin.yaw);
+  const double lx = c * dx + s * dy;  // in the bin frame
+  const double ly = -s * dx + c * dy;
+  return std::fabs(lx) <= size[0] / 2.0 + margin && std::fabs(ly) <= size[1] / 2.0 + margin;
+}
+
+/// True if (x, y) is inside the area of any of the bins (see insideBinArea).
+inline bool insideAnyBinArea(double x, double y, const std::vector<Pose2D>& bins,
+                             const std::array<double, 3>& size, double margin) {
+  return std::any_of(bins.begin(), bins.end(),
+                     [&](const Pose2D& b) { return insideBinArea(x, y, b, size, margin); });
 }
 
 /// Shape codes of graspsort_msgs/ObjectPose.

@@ -370,3 +370,34 @@ TEST(SceneTracker, DuplicateIdsInOneMessageUseTheFirst) {
   ASSERT_EQ(a.add.size(), 1u);
   EXPECT_NEAR(a.add[0].x, 0.6, kEps);
 }
+
+// D-23: objects centred over a bin are already sorted and stay out of the planning scene.
+TEST(BinArea, CentreOverBinFootprintPlusMargin) {
+  const gs::Pose2D bin{0.50, 0.42, 0.75, 0.0};
+  const std::array<double, 3> size{0.20, 0.20, 0.08};
+  EXPECT_TRUE(gs::insideBinArea(0.50, 0.42, bin, size, 0.02));   // bin centre
+  EXPECT_TRUE(gs::insideBinArea(0.599, 0.519, bin, size, 0.0));  // inside the outer corner
+  EXPECT_TRUE(gs::insideBinArea(0.50, 0.305, bin, size, 0.02));  // in the margin band
+  EXPECT_FALSE(gs::insideBinArea(0.50, 0.295, bin, size, 0.02));
+  EXPECT_FALSE(gs::insideBinArea(0.50, 0.315, bin, size, 0.0));  // margin 0: outer wall only
+  EXPECT_FALSE(gs::insideBinArea(0.50, 0.25, bin, size, 0.02));  // object area edge (y 0.25)
+}
+
+TEST(BinArea, RotatedBin) {
+  const gs::Pose2D bin{0.0, 0.0, 0.0, gs::kPi / 4.0};
+  const std::array<double, 3> size{0.20, 0.10, 0.08};
+  // Along the bin's long axis (45 deg) 0.09 m is inside; across it (135 deg) only 0.05 m is.
+  const double d = 0.09 / std::sqrt(2.0);
+  EXPECT_TRUE(gs::insideBinArea(d, d, bin, size, 0.0));
+  EXPECT_FALSE(gs::insideBinArea(-d, d, bin, size, 0.0));
+  EXPECT_TRUE(gs::insideBinArea(-d, d, bin, size, 0.05));
+}
+
+TEST(BinArea, AnyOfTheBins) {
+  const std::vector<gs::Pose2D> bins{{0.35, -0.42, 0.75, 0.0}, {0.50, 0.42, 0.75, 0.0}};
+  const std::array<double, 3> size{0.20, 0.20, 0.08};
+  EXPECT_TRUE(gs::insideAnyBinArea(0.35, -0.40, bins, size, 0.02));
+  EXPECT_TRUE(gs::insideAnyBinArea(0.527, 0.453, bins, size, 0.02));  // d22 phantom object_286
+  EXPECT_FALSE(gs::insideAnyBinArea(0.49, 0.0, bins, size, 0.02));    // object-area centre
+  EXPECT_FALSE(gs::insideAnyBinArea(0.50, 0.42, {}, size, 0.02));     // no bins
+}
