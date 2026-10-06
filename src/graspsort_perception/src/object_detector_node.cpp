@@ -1,6 +1,6 @@
 // object_detector_node (architecture 7.1): YOLOv8 ONNX inference on /camera/color/image_raw.
-// Copied from SemNav yolo_onnx_node; changed only the class_filter default (D-04: COCO names)
-// and the image topic, plus the semnav -> graspsort renames.
+// Copied from SemNav yolo_onnx_node; changed only the class_filter default (D-04: COCO names),
+// the conf_threshold default (D-22) and the image topic, plus the semnav -> graspsort renames.
 //
 // The image callback only stores the newest frame under a mutex and signals a condition
 // variable; a worker thread runs inference. Frames that arrive while the worker is busy replace
@@ -49,7 +49,8 @@ class ObjectDetectorNode : public rclcpp::Node {
   ObjectDetectorNode() : rclcpp::Node("object_detector_node") {
     const auto model_path =
         declare_parameter<std::string>("model_path", GRASPSORT_DEFAULT_MODEL_PATH);
-    conf_threshold_ = static_cast<float>(declare_parameter<double>("conf_threshold", 0.35));
+    conf_threshold_ =
+        static_cast<float>(declare_parameter<double>("conf_threshold", 0.15));  // D-22
     iou_threshold_ = static_cast<float>(declare_parameter<double>("iou_threshold", 0.45));
     const auto input_size = declare_parameter<int>("input_size", 640);
     const auto class_filter = declare_parameter<std::vector<std::string>>(

@@ -5,7 +5,7 @@
 # with scripts/export_yolo.py (D-08). Override with --ros-args -p model_path:=... if needed.
 object_detector_node:
   ros__parameters:
-    conf_threshold: 0.35          # D-04 pass rule
+    conf_threshold: 0.15          # D-22 (was 0.35, the D-04 pass rule): end-on bottles score 0.1-0.35
     iou_threshold: 0.45           # NMS IoU
     input_size: 640               # must match the ONNX input
     class_filter: ["bottle", "sports ball"]  # D-04/D-13: COCO class names, no cup

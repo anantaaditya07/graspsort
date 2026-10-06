@@ -629,6 +629,43 @@ view, merged points giving nothing, and input validation.
   the author writes it), ci.yml, demo.rviz and demo_sort.sh. The main agent reviewed and verified them.
 - **CI not run on GitHub** (not pushed). It is validated locally as YAML only.
 
+## D-22 Bottles seen end-on are missed: lower conf_threshold 0.35 -> 0.15  - INFO (user-requested fix, 2026-10-06)
+
+**Problem:** the largest failure category in docs/results.md (run d20_full) is `not_detected`, 16 of 29
+objects not in their correct bin. 14 of the 16 missed bottles are seen end-on (line-of-sight angle < 45 deg).
+The user asked for a 2 h time-boxed fix of only this cause (start 16:53).
+
+**Diagnosis (scratch harness, not committed):** one mustard bottle moved with /gazebo/set_entity_state over
+5 x 5 positions in the object area x 12 yaws (0..165 deg), 300 frames from the real camera. models/yolov8n.onnx
+was run offline with the node's preprocessing; per frame the highest raw class score of the anchors whose box
+centre is within 30 px of the projected bottle centre.
+- Of the 81 frames below 0.35, the top-scoring class was still `bottle` in 49 (else banana 17, fire hydrant 6).
+  The detector does see the end-on bottle, just with 0.10-0.35 confidence.
+
+| bottle score >= | all | line of sight < 45 deg | >= 45 deg |
+|---|---|---|---|
+| 0.35 (before) | 73.0 % | 58.6 % | 86.5 % |
+| 0.25 | 82.7 % | 73.1 % | 91.6 % |
+| 0.15 | 91.7 % | 86.2 % | 96.8 % |
+| 0.10 | 96.3 % | 93.1 % | 99.4 % |
+
+- False positives: the highest `bottle` and `sports ball` score more than 60 px from the bottle, over all 300
+  frames (table, bins, arm at its start pose), is 0.005. So 0.15 leaves a margin of 30x.
+
+**Options:** A. lower the global conf_threshold (parameter value only, no code). B. a per-class
+threshold (new parameter + changes in the code copied from SemNav). C. fine-tune (D-04 stretch; no GPU,
+not possible in 2 h).
+**Chosen:** A, 0.15 (config and node default). `decode()` takes the best *allowed* class per anchor, so a
+ball anchor still resolves to `sports ball`. Each class must also pass the localizer's stability gate.
+
+**Side finding:** in a 3-trial smoke run (config 4:0.03, seeds 5026-5028), the **first trial after launch**
+failed every object in 2 s with "no collision-free IK for the pre-grasp". An A/B run at 0.35 showed the
+same failure (data/eval/d22_ab035), so this is an existing start-up issue and not caused by D-22. In the
+D-17 run the first trial is 2:0.08 t0, which was unaffected in d17_full and d20_full. Not investigated
+(out of scope).
+
+**Result:** see docs/results.md (run d22_full).
+
 ---
 
 ## Spot checks by the main agent (2026-10-04)
