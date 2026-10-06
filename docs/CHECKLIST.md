@@ -132,9 +132,13 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
 - [x] D-20 known-footprint fit + 7 GoogleTests; re-run 40 trials: 91/120 correct, bottle 3D error 2.2 mm,
       close timeouts 2; docs/results.md with real numbers
 - [x] USER: D-19, D-20, D-21 ACCEPTED (2026-10-06)
-- [ ] Architecture 8 target >= 90 % low-clutter pick success NOT met (76.7 %): bottle detection (D-04 stretch)
+- [x] D-22 (time-boxed 2 h): detector conf_threshold 0.35 -> 0.15 for end-on bottles; re-run 40 trials
+      (d22_full): 96/120 correct, detected 111/120, not_detected 16 -> 5; docs/results.md (d20 kept in
+      docs/results_d20.md)
+- [ ] D-23 NEEDS DECISION: objects already in a bin are detected and block the `lower` into the bin
+- [ ] Architecture 8 target >= 90 % low-clutter pick success NOT met (83.3 %)
 
-**Status: Phase 6 DONE (2026-10-06)** for its "done when"; targets and D-19/D-20/D-21 await review.
+**Status: Phase 6 DONE (2026-10-06)** for its "done when"; D-19/D-20/D-21 ACCEPTED; D-23 open.
 
 **Done when:** the results table has real numbers.
 
@@ -143,9 +147,12 @@ Open questions blocking a phase are listed in docs/DECISIONS.md (D-xx).
       one goal, 4/4 in the correct bins (ground truth), 59.4 s
 - [x] README (pitch, mermaid diagram, quick start, results, limitations, licenses)
 - [x] docs/design-notes.md (draft for the author to rewrite, architecture 9)
-- [x] .github/workflows/ci.yml (valid YAML; not yet run on GitHub)
+- [x] .github/workflows/ci.yml: green on GitHub (run 37406283812, commit 909ff33: 271 tests, 0 failures)
+- [x] LICENSE (Apache-2.0, matches every package.xml)
+- [x] README YOLO download/export commands checked in a clean venv (2026-10-06): export OK, ONNX
+      scores identical to models/yolov8n.onnx
 - [ ] Demo with GUI (gazebo + RViz demo.rviz) not run overnight: headless only; resize the YOLO panel and
       save demo.rviz before recording
-- [ ] USER: recorded video, LICENSE file, push, CI run, v1.0 tag
+- [ ] USER: recorded video, push, v1.0 tag
 
 **Done when:** a stranger can run the demo in 15 minutes.

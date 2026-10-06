@@ -605,7 +605,7 @@ view, merged points giving nothing, and input validation.
 
 **Recommendation:** accept if the re-run improves the bottle success rate (see results.md).
 
-**Result after D-20 (run d20_full, docs/results.md):**
+**Result after D-20 (run d20_full, docs/results_d20.md):**
 - Yaw is unchanged: median 9.6 deg, which passes the < 10 deg target; p95 51.1 deg.
 - Yaw-linked bottle failures went from 5 to 6 (22 %). They are now mostly `no_grasp_candidate` on bottles
   merged with or crowded by a neighbour.
@@ -631,7 +631,7 @@ view, merged points giving nothing, and input validation.
 
 ## D-22 Bottles seen end-on are missed: lower conf_threshold 0.35 -> 0.15  - INFO (user-requested fix, 2026-10-06)
 
-**Problem:** the largest failure category in docs/results.md (run d20_full) is `not_detected`, 16 of 29
+**Problem:** the largest failure category in run d20_full (docs/results_d20.md) is `not_detected`, 16 of 29
 objects not in their correct bin. 14 of the 16 missed bottles are seen end-on (line-of-sight angle < 45 deg).
 The user asked for a 2 h time-boxed fix of only this cause (start 16:53).
 
@@ -664,7 +664,31 @@ same failure (data/eval/d22_ab035), so this is an existing start-up issue and no
 D-17 run the first trial is 2:0.08 t0, which was unaffected in d17_full and d20_full. Not investigated
 (out of scope).
 
-**Result:** see docs/results.md (run d22_full).
+**Result (run d22_full, same 40 D-17 seeds, docs/results.md):** objects in the correct bin 91/120 -> 96/120;
+detected at snapshot 99/120 -> 111/120 (bottles 44/60 -> 54/60); `not_detected` 16 -> 5; low-clutter pick
+success 76.7 % -> 83.3 % (target >= 90 %: still not met). Side effect: see D-23.
+
+## D-23 Objects already in a bin are detected and block placing  - NEEDS DECISION
+
+**Finding (d22_full, after D-22):** at conf 0.15 the detector also finds objects lying in the bins. The
+scene manager added 53 `sports ball` objects inside bin_ball (0 in d20_full) and 26 bottles inside bin_bottle
+(17 in d20_full), some as wide as 0.178 m (balls merged with the bin). MoveIt then rejects the Pilz LIN
+`lower` into the bin: "Found a contact between 'object_286' (type 'Object') and 'object_285' (type 'Robot
+attached')". Failed attempts at `lower`: 0 -> 13 (all balls); plan_failed attempts overall 8 -> 31. The
+ball still ends in its bin (recovery opens the gripper above the bin), so ball success is 98.3 %, but the
+action reports these 13 balls as failed (`misdetection: not perceived again`, the 13 "not attributable"
+failures in results.md) and each costs retries and time. The sorter already skips in-bin objects when
+picking (sort_logic.hpp `filterCandidates`); they only hurt as planning-scene obstacles.
+Not fixed: out of the D-22 time box and scope ("fix only that"), and a fix needs another 1 h eval run.
+
+**Options**
+- A. Keep objects whose centre lies inside a bin's inner area out of the planning scene (scene_manager_node;
+  bin poses come from world_layout.yaml, the area check exists as `binContaining` in sort_logic.hpp). Small
+  change; also covers the 17 in-bin bottles that existed before D-22.
+- B. Per-class threshold: bottle 0.15, sports ball 0.35. Removes the ball phantoms only; needs code changes
+  in the detector copied from SemNav.
+- C. Revert D-22 (back to 91/120).
+**Recommendation:** A, then re-run the 40 trials.
 
 ---
 

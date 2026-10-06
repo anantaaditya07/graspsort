@@ -81,12 +81,15 @@ separate Python venv (never in a ROS-sourced shell):
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install ultralytics onnx onnxslim   # used here: ultralytics 8.4.171, onnx 1.23.1
+.venv/bin/pip install ultralytics onnx onnxslim onnxruntime   # checked: ultralytics 8.4.173, onnx 1.23.2
 mkdir -p models && (cd models && ../.venv/bin/python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')")
 .venv/bin/python scripts/export_yolo.py           # models/yolov8n.pt -> models/yolov8n.onnx
 ```
 
-The export defaults are a static 1x3x640x640 input, opset 12 and no embedded NMS. Models,
+Checked in a clean venv on 2026-10-06: the export works, and its ONNX gives the same class scores as
+the one used for the results (the file hash differs between tool versions). The default PyPI torch
+pulls CUDA wheels (the venv is about 6 GB). Without onnxruntime in the list, the export installs it
+itself. The export defaults are a static 1x3x640x640 input, opset 12 and no embedded NMS. Models,
 weights, ONNX Runtime and the fetched object models are gitignored.
 
 ### 3. Build and test
@@ -130,23 +133,24 @@ ground truth is used only by the evaluation scripts, never by the robot.
 ## Results
 
 Headless evaluation, D-17 scenario: 40 trials with randomised positions and bottle yaw, fixed seeds,
-2 or 4 objects, minimum gap 8 or 3 cm (run `d20_full`).
+2 or 4 objects, minimum gap 8 or 3 cm. "Before" is run `d20_full`; "after" is run `d22_full` with the
+detector threshold lowered for end-on bottles (D-22).
 
-| Metric | Result | Target (architecture 8) |
-|---|---|---|
-| Objects in the correct bin, overall | 75.8 % (91/120) | |
-| ... sports ball / bottle | 96.7 % (58/60) / 55.0 % (33/60) | |
-| Pick success, low clutter (8 cm gap) | 76.7 % (46/60) | >= 90 %: **not met** |
-| 2 objects / 4 objects | 87.5 % / 70.0 % | |
-| 3D position error median, ball / bottle | 5.6 mm / 2.2 mm | < 15 mm |
-| Bottle yaw error median / p95 | 9.6 / 51.1 deg (n=44) | median < 10 deg |
-| Planning time p95 | 0.091 s | < 2 s |
-| Reference layout, `demo_sort.sh` | 4/4 sorted in 59.4 s | |
+| Metric | Before (d20) | After (d22) | Target (architecture 8) |
+|---|---|---|---|
+| Objects in the correct bin, overall | 75.8 % (91/120) | 80.0 % (96/120) | |
+| ... sports ball / bottle | 96.7 % / 55.0 % | 98.3 % / 61.7 % | |
+| Pick success, low clutter (8 cm gap) | 76.7 % (46/60) | 83.3 % (50/60) | >= 90 %: **not met** |
+| 2 objects / 4 objects | 87.5 % / 70.0 % | 95.0 % / 72.5 % | |
+| Objects detected | 99/120 | 111/120 | |
+| 3D position error median, ball / bottle | 5.6 mm / 2.2 mm | 5.6 mm / 2.1 mm | < 15 mm |
+| Bottle yaw error median / p95 | 9.6 / 51.1 deg (n=44) | 8.3 / 42.7 deg (n=54) | median < 10 deg |
+| Planning time p95 | 0.091 s | 0.107 s | < 2 s |
+| Reference layout, `demo_sort.sh` | 4/4 sorted in 59.4 s | not re-run | |
 
-Most bottle failures (15 of 27) are bottles the COCO YOLOv8n detector never finds. They are seen end-on,
-mostly close to the camera. Detection is not affected by clutter: 10/60 objects missed at a 3 cm gap,
-11/60 at 8 cm.
-
+Missed bottles were the biggest failure reason before (16 of 29 failures): COCO YOLOv8n scores a bottle seen
+end-on at only 0.10-0.35. Lowering the threshold to 0.15 cut missed objects from 21 to 9. It also makes the
+detector see objects already in the bins, and those then block placing in the planning scene (D-23, open).
 
 Full tables: [docs/results.md](docs/results.md). Decisions and evidence: [docs/DECISIONS.md](docs/DECISIONS.md).
 Design notes: [docs/design-notes.md](docs/design-notes.md).
@@ -164,8 +168,9 @@ Design notes: [docs/design-notes.md](docs/design-notes.md).
   Robotiq linkage was unstable in contact on Gazebo Classic.
 - **Evaluation scale:** 2 and 4 objects with 8 / 3 cm minimum gaps, 10 trials per configuration
   (D-17), instead of the PDF's 3/5/7 objects and 2 / 8 cm.
-- **Bottle detection:** COCO YOLOv8n misses about a quarter of the bottles (16/60), mostly bottles seen
-  end-on close to the camera. A fine-tuned detector (D-04 stretch goal) is the fix.
+- **Bottle detection:** COCO YOLOv8n scores bottles seen end-on low. With the threshold at 0.15 (D-22) it
+  still misses 6/60 bottles, and it also detects objects already in the bins, which block placing (D-23,
+  open). A fine-tuned detector (D-04 stretch goal) is the clean fix.
 - **Bottle yaw:** the camera sees only the near half of a bottle with a rounded cross-section, so yaw comes
   from minAreaRect with a long tail (p95 51 deg). The known bottle size fixes the width, centre and long
   axis (D-20), but not the tail (D-19).
